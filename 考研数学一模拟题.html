@@ -806,34 +806,62 @@
     <!-- API配置模态框 -->
     <div class="modal" id="apiModal">
         <div class="modal-content">
-            <div class="modal-header">Claude API 配置</div>
+            <div class="modal-header">AI模型配置</div>
+
+            <!-- 厂商选择 -->
             <div class="input-group">
-                <label for="apiKeyInput">API Key:</label>
-                <input type="password" id="apiKeyInput" placeholder="请输入您的Claude API Key (sk-ant-...)">
-                <small style="color: #666; margin-top: 5px; display: block;">
-                    您的API Key将安全保存在浏览器本地，不会上传到任何服务器
-                </small>
-            </div>
-            <div class="input-group">
-                <label for="apiBaseUrl">API Base URL (可选):</label>
-                <input type="text" id="apiBaseUrl" placeholder="https://api.anthropic.com" value="https://api.anthropic.com">
-                <small style="color: #666; margin-top: 5px; display: block;">
-                    如使用代理，请修改此地址
-                </small>
-            </div>
-            <div class="input-group">
-                <label for="apiModel">模型选择:</label>
-                <select id="apiModel" style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px;">
-                    <option value="claude-sonnet-4-5-20250929">Claude Sonnet 4.5 (推荐)</option>
-                    <option value="claude-opus-4-5-20251101">Claude Opus 4.5 (最强)</option>
-                    <option value="claude-sonnet-3-5-20241022">Claude Sonnet 3.5</option>
+                <label for="apiProvider">选择AI厂商:</label>
+                <select id="apiProvider" style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px;">
+                    <option value="claude">Claude (Anthropic)</option>
+                    <option value="deepseek">Deepseek</option>
+                    <option value="zhipu">智谱AI (GLM)</option>
+                    <option value="openai">其他OpenAI兼容API</option>
                 </select>
                 <small style="color: #666; margin-top: 5px; display: block;">
-                    Sonnet性价比高，Opus质量最好但更贵
+                    支持多个AI厂商，自动适配不同的API格式
                 </small>
             </div>
+
+            <!-- API Key输入 -->
+            <div class="input-group">
+                <label for="apiKeyInput">API Key:</label>
+                <input type="password" id="apiKeyInput" placeholder="请输入您的API Key">
+            </div>
+
+            <!-- Base URL配置 -->
+            <div class="input-group">
+                <label for="apiBaseUrl">API Base URL:</label>
+                <input type="text" id="apiBaseUrl" placeholder="将自动填充默认URL">
+                <small style="color: #666; margin-top: 5px; display: block;">
+                    使用代理时可修改此地址
+                </small>
+            </div>
+
+            <!-- 模型选择 -->
+            <div class="input-group">
+                <label for="apiModel">选择模型:</label>
+                <select id="apiModel" style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px;">
+                    <!-- 动态加载模型列表 -->
+                </select>
+                <small id="modelInfo" style="color: #666; margin-top: 5px; display: block;">
+                    不同模型有不同的能力和价格
+                </small>
+            </div>
+
+            <!-- 自定义模型ID (仅OpenAI兼容时显示) -->
+            <div class="input-group" id="customModelGroup" style="display: none;">
+                <label for="customModelId">自定义模型ID:</label>
+                <input type="text" id="customModelId" placeholder="例如: gpt-4, gpt-3.5-turbo">
+                <small style="color: #666; margin-top: 5px; display: block;">
+                    使用自定义OpenAI兼容API时，请输入实际的模型ID
+                </small>
+            </div>
+
+            <!-- 测试连接 -->
             <button class="test-connection-btn" id="testConnectionBtn">测试连接</button>
             <div id="connectionStatus"></div>
+
+            <!-- 操作按钮 -->
             <div class="modal-buttons">
                 <button class="modal-btn modal-btn-secondary" id="cancelApiBtn">取消</button>
                 <button class="modal-btn modal-btn-primary" id="saveApiBtn">保存</button>
@@ -902,7 +930,7 @@
             {
                 type: 'choice',
                 subject: 'probability',
-                question: '设 $X_1, X_2, \\ldots, X_n$ 是来自总体 $N(\\mu, \\sigma^2)$ 的简单随机样本，$\\bar{X}$ 为样本均值，$S^2$ 为样本方差，则服从 $t(n-1)$ 分布的统计量是',
+                question: '设随机变量 $X_1, X_2, \\ldots, X_n$ 是来自总体 $N(\\mu, \\sigma^2)$ 的简单随机样本，$\\bar{X}$ 为样本均值，$S^2$ 为样本方差，则服从 $t(n-1)$ 分布的统计量是',
                 options: ['A. $\\frac{\\bar{X}-\\mu}{S/\\sqrt{n}}$', 'B. $\\frac{\\bar{X}-\\mu}{\\sigma/\\sqrt{n}}$', 'C. $\\frac{\\bar{X}}{S/\\sqrt{n}}$', 'D. $\\frac{\\bar{X}-\\mu}{S}$'],
                 answer: 'A',
                 explanation: '由 $t$ 分布的定义，$\\frac{\\bar{X}-\\mu}{S/\\sqrt{n}} \\sim t(n-1)$。这是单样本 $t$ 检验的基础统计量。',
@@ -1048,100 +1076,377 @@
             }
         ];
 
-        // 全局状态
-        let currentMode = 'instant'; // 'instant' 或 'submit'
-        let userAnswers = new Array(questions.length).fill('');
-        let isSubmitted = false;
-        let startTime = Date.now();
-        let timerInterval;
+        // ========== AI配置相关 ==========
+
+        // AI厂商配置
+        const AI_PROVIDERS = {
+            claude: {
+                name: 'Claude (Anthropic)',
+                baseUrl: 'https://api.anthropic.com',
+                apiVersion: '2023-06-01',
+                models: [
+                    { id: 'claude-sonnet-4-5-20250929', name: 'Sonnet 4.5', maxTokens: 8000 },
+                    { id: 'claude-opus-4-5-20251101', name: 'Opus 4.5', maxTokens: 8000 },
+                    { id: 'claude-sonnet-3-5-20241022', name: 'Sonnet 3.5', maxTokens: 8000 }
+                ]
+            },
+            deepseek: {
+                name: 'Deepseek',
+                baseUrl: 'https://api.deepseek.com',
+                models: [
+                    { id: 'deepseek-chat', name: 'DeepSeek Chat', maxTokens: 4096 },
+                    { id: 'deepseek-reasoner', name: 'DeepSeek Reasoner', maxTokens: 4096 }
+                ]
+            },
+            zhipu: {
+                name: '智谱AI (GLM)',
+                baseUrl: 'https://open.bigmodel.cn/api/paas/v4',
+                models: [
+                    { id: 'glm-4-plus', name: 'GLM-4 Plus', maxTokens: 8000 },
+                    { id: 'glm-4-flash', name: 'GLM-4 Flash', maxTokens: 4000 }
+                ]
+            },
+            openai: {
+                name: 'OpenAI兼容API',
+                baseUrl: 'https://api.openai.com',
+                models: [
+                    { id: 'custom', name: '自定义模型', maxTokens: 4096 }
+                ]
+            }
+        };
 
         // AI相关全局变量
+        let currentProvider = 'claude';
+        let apiAdapter = null;
+        let aiExplanations = new Array(questions.length).fill(null);
+
+        // 保留向后兼容的变量 (已废弃,使用apiAdapter代替)
         let apiKey = '';
         let apiBaseUrl = 'https://api.anthropic.com';
         let apiModel = 'claude-sonnet-4-5-20250929';
-        let aiExplanations = new Array(questions.length).fill(null);
 
         // ========== AI API 功能函数 ==========
 
-        // 统一的Claude API调用函数
+        /**
+         * 统一的Claude API调用函数 (向后兼容)
+         * 现在使用新的 callAI 接口
+         * @param {Array} messages - 消息数组
+         * @param {number} maxTokens - 最大token数,默认2000
+         * @returns {Promise<string>} - AI响应文本
+         */
         async function callClaudeAPI(messages, maxTokens = 2000) {
-            if (!apiKey) {
-                throw new Error('请先配置API Key');
+            // 如果apiAdapter尚未初始化,尝试使用旧的配置创建
+            if (!apiAdapter && apiKey) {
+                console.warn('使用旧配置初始化apiAdapter');
+                apiAdapter = new AIModelAdapter('claude', apiKey, apiModel, apiBaseUrl);
             }
 
-            const response = await fetch(`${apiBaseUrl}/v1/messages`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-api-key': apiKey,
-                    'anthropic-version': '2023-06-01'
-                },
-                body: JSON.stringify({
-                    model: apiModel,
-                    max_tokens: maxTokens,
-                    messages: messages
-                })
-            });
+            // 使用新的统一接口
+            return await callAI(messages, { maxTokens });
+        }
 
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
-                if (response.status === 401) {
-                    throw new Error('API Key无效，请检查配置');
-                } else if (response.status === 429) {
-                    throw new Error('请求过于频繁，请稍后再试');
-                } else if (response.status === 500) {
-                    throw new Error('API服务器错误，请稍后再试');
+        // ========== AI模型适配器类 ==========
+
+        /**
+         * AIModelAdapter - 统一的AI模型适配器类
+         * 支持多个AI厂商的API调用,包括:
+         * - Claude (Anthropic)
+         * - Deepseek (OpenAI兼容)
+         * - 智谱AI/GLM (OpenAI兼容)
+         * - 其他OpenAI兼容API
+         */
+        class AIModelAdapter {
+            /**
+             * 构造函数
+             * @param {string} provider - 厂商名称: 'claude', 'deepseek', 'zhipu', 'openai'
+             * @param {string} apiKey - API密钥
+             * @param {string} modelId - 模型ID
+             * @param {string} baseUrl - API基础URL
+             */
+            constructor(provider, apiKey, modelId, baseUrl) {
+                this.provider = provider;
+                this.apiKey = apiKey;
+                this.modelId = modelId;
+                this.baseUrl = baseUrl || AI_PROVIDERS[provider].baseUrl;
+            }
+
+            /**
+             * 统一的聊天接口
+             * @param {Array} messages - 消息数组
+             * @param {Object} options - 可选参数
+             * @returns {Promise<string>} - AI响应文本
+             */
+            async chat(messages, options = {}) {
+                const {
+                    maxTokens = 2000,
+                    temperature = 1.0,
+                    retries = 3
+                } = options;
+
+                // 根据provider调用不同的API
+                if (this.provider === 'claude') {
+                    return await this.callAnthropicAPI(messages, options);
                 } else {
-                    throw new Error(errorData.error?.message || `API调用失败: ${response.status}`);
+                    return await this.callOpenAICompatibleAPI(messages, options);
                 }
             }
 
-            const data = await response.json();
-            return data.content[0].text;
+            /**
+             * Claude (Anthropic) API调用
+             * @param {Array} messages - 消息数组
+             * @param {Object} options - 可选参数
+             * @returns {Promise<string>} - AI响应文本
+             */
+            async callAnthropicAPI(messages, options = {}) {
+                const { maxTokens = 2000, temperature = 1.0, retries = 3 } = options;
+
+                for (let attempt = 1; attempt <= retries; attempt++) {
+                    try {
+                        const response = await fetch(`${this.baseUrl}/v1/messages`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'x-api-key': this.apiKey,
+                                'anthropic-version': AI_PROVIDERS.claude.apiVersion
+                            },
+                            body: JSON.stringify({
+                                model: this.modelId,
+                                max_tokens: maxTokens,
+                                temperature: temperature,
+                                messages: messages
+                            })
+                        });
+
+                        if (!response.ok) {
+                            await this.handleError(response, attempt, retries);
+                            continue;
+                        }
+
+                        const data = await response.json();
+                        return data.content[0].text;
+
+                    } catch (error) {
+                        if (attempt === retries) {
+                            throw new Error(`网络错误: ${error.message}`);
+                        }
+                        // 网络错误也进行重试
+                        await this.sleep(Math.pow(2, attempt - 1) * 1000);
+                    }
+                }
+            }
+
+            /**
+             * OpenAI兼容API调用 (Deepseek, 智谱AI, OpenAI等)
+             * @param {Array} messages - 消息数组
+             * @param {Object} options - 可选参数
+             * @returns {Promise<string>} - AI响应文本
+             */
+            async callOpenAICompatibleAPI(messages, options = {}) {
+                const { maxTokens = 2000, temperature = 1.0, retries = 3 } = options;
+
+                for (let attempt = 1; attempt <= retries; attempt++) {
+                    try {
+                        const response = await fetch(`${this.baseUrl}/v1/chat/completions`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${this.apiKey}`
+                            },
+                            body: JSON.stringify({
+                                model: this.modelId,
+                                max_tokens: maxTokens,
+                                temperature: temperature,
+                                messages: messages
+                            })
+                        });
+
+                        if (!response.ok) {
+                            await this.handleError(response, attempt, retries);
+                            continue;
+                        }
+
+                        const data = await response.json();
+                        return data.choices[0].message.content;
+
+                    } catch (error) {
+                        if (attempt === retries) {
+                            throw new Error(`网络错误: ${error.message}`);
+                        }
+                        // 网络错误也进行重试
+                        await this.sleep(Math.pow(2, attempt - 1) * 1000);
+                    }
+                }
+            }
+
+            /**
+             * 错误处理和重试逻辑
+             * @param {Response} response - Fetch响应对象
+             * @param {number} attempt - 当前尝试次数
+             * @param {number} maxRetries - 最大重试次数
+             */
+            async handleError(response, attempt, maxRetries) {
+                const errorData = await response.json().catch(() => ({}));
+
+                // 401 - 认证失败,不重试
+                if (response.status === 401) {
+                    throw new Error('API Key无效，请检查配置');
+                }
+
+                // 429 - 速率限制,使用指数退避重试
+                if (response.status === 429) {
+                    if (attempt < maxRetries) {
+                        const delay = Math.pow(2, attempt - 1) * 1000; // 1s, 2s, 4s
+                        console.log(`速率限制,${delay/1000}秒后重试... (${attempt}/${maxRetries})`);
+                        await this.sleep(delay);
+                        return; // 继续重试
+                    } else {
+                        throw new Error('请求过于频繁，请稍后再试');
+                    }
+                }
+
+                // 5xx - 服务器错误,重试
+                if (response.status >= 500) {
+                    if (attempt < maxRetries) {
+                        const delay = Math.pow(2, attempt - 1) * 1000;
+                        console.log(`服务器错误,${delay/1000}秒后重试... (${attempt}/${maxRetries})`);
+                        await this.sleep(delay);
+                        return; // 继续重试
+                    } else {
+                        throw new Error('API服务器错误，请稍后再试');
+                    }
+                }
+
+                // 其他错误
+                throw new Error(errorData.error?.message || `API调用失败: ${response.status}`);
+            }
+
+            /**
+             * 延迟函数
+             * @param {number} ms - 延迟毫秒数
+             * @returns {Promise} - Promise对象
+             */
+            sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+        }
+
+        // 统一的AI调用接口
+        async function callAI(messages, options = {}) {
+            if (!apiAdapter) {
+                throw new Error('请先配置AI模型');
+            }
+
+            try {
+                return await apiAdapter.chat(messages, options);
+            } catch (error) {
+                console.error('AI调用失败:', error);
+                throw error;
+            }
+        }
+
+        // 向后兼容的接口 - 保持现有代码可以正常工作
+        async function callClaudeAPI_deprecated(messages, maxTokens = 2000) {
+            return await callAI(messages, { maxTokens });
+        }
+
+        // ========== UI辅助函数 ==========
+
+        /**
+         * 更新模型列表下拉框
+         * @param {string} provider - 厂商名称
+         */
+        function updateModelList(provider) {
+            const modelSelect = document.getElementById('apiModel');
+            const modelInfo = document.getElementById('modelInfo');
+            const customModelGroup = document.getElementById('customModelGroup');
+
+            // 清空现有选项
+            modelSelect.innerHTML = '';
+
+            // 获取当前厂商的模型列表
+            const models = AI_PROVIDERS[provider].models;
+
+            // 添加模型选项
+            models.forEach(model => {
+                const option = document.createElement('option');
+                option.value = model.id;
+                option.textContent = model.name;
+                modelSelect.appendChild(option);
+            });
+
+            // 更新提示信息
+            const selectedModel = models[0];
+            modelInfo.textContent = `最大Token: ${selectedModel.maxTokens}`;
+
+            // 处理自定义模型ID输入框
+            if (provider === 'openai') {
+                customModelGroup.style.display = 'block';
+            } else {
+                customModelGroup.style.display = 'none';
+            }
+        }
+
+        /**
+         * 更新Base URL
+         * @param {string} provider - 厂商名称
+         */
+        function updateBaseUrl(provider) {
+            const baseUrlInput = document.getElementById('apiBaseUrl');
+            baseUrlInput.value = AI_PROVIDERS[provider].baseUrl;
+        }
+
+        /**
+         * 显示连接状态
+         * @param {string} type - 状态类型: 'success' 或 'error'
+         * @param {string} message - 状态消息
+         */
+        function showConnectionStatus(type, message) {
+            const statusDiv = document.getElementById('connectionStatus');
+            statusDiv.innerHTML = `<div class="connection-status ${type}">${message}</div>`;
         }
 
         // 测试API连接
         async function testAPIConnection() {
             const btn = document.getElementById('testConnectionBtn');
-            const statusDiv = document.getElementById('connectionStatus');
+            const provider = document.getElementById('apiProvider').value;
+            const key = document.getElementById('apiKeyInput').value.trim();
+            let baseUrl = document.getElementById('apiBaseUrl').value.trim();
+            let modelId = document.getElementById('apiModel').value;
 
-            // 获取当前输入的配置
-            const testKey = document.getElementById('apiKeyInput').value.trim();
-            const testUrl = document.getElementById('apiBaseUrl').value.trim() || 'https://api.anthropic.com';
+            // 处理自定义模型ID
+            if (provider === 'openai') {
+                const customModelId = document.getElementById('customModelId').value.trim();
+                if (customModelId) {
+                    modelId = customModelId;
+                }
+            }
 
-            if (!testKey) {
-                statusDiv.innerHTML = '<div class="connection-status error">请先输入API Key</div>';
+            if (!key) {
+                showConnectionStatus('error', '请先输入API Key');
                 return;
+            }
+
+            if (!baseUrl) {
+                baseUrl = AI_PROVIDERS[provider].baseUrl;
             }
 
             btn.disabled = true;
             btn.textContent = '测试中...';
-            statusDiv.innerHTML = '';
+            showConnectionStatus('', '');
 
             try {
-                const response = await fetch(`${testUrl}/v1/messages`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-api-key': testKey,
-                        'anthropic-version': '2023-06-01'
-                    },
-                    body: JSON.stringify({
-                        model: 'claude-sonnet-4-5-20250929',
-                        max_tokens: 10,
-                        messages: [{ role: 'user', content: '测试' }]
-                    })
-                });
+                // 创建测试适配器
+                const testAdapter = new AIModelAdapter(provider, key, modelId, baseUrl);
 
-                if (response.ok) {
-                    statusDiv.innerHTML = '<div class="connection-status success">✓ 连接成功！API配置正常</div>';
-                } else if (response.status === 401) {
-                    statusDiv.innerHTML = '<div class="connection-status error">✗ API Key无效</div>';
-                } else {
-                    statusDiv.innerHTML = `<div class="connection-status error">✗ 连接失败: ${response.status}</div>`;
-                }
+                // 发送测试请求
+                await testAdapter.chat([{
+                    role: 'user',
+                    content: '测试连接'
+                }], { maxTokens: 10 });
+
+                showConnectionStatus('success', `✓ 连接成功! 厂商: ${AI_PROVIDERS[provider].name}, 模型: ${modelId}`);
             } catch (error) {
-                statusDiv.innerHTML = `<div class="connection-status error">✗ 网络错误: ${error.message}</div>`;
+                showConnectionStatus('error', `✗ 连接失败: ${error.message}`);
             } finally {
                 btn.disabled = false;
                 btn.textContent = '测试连接';
@@ -1150,50 +1455,105 @@
 
         // 保存API配置
         function saveAPIConfig() {
+            const provider = document.getElementById('apiProvider').value;
             const key = document.getElementById('apiKeyInput').value.trim();
-            const url = document.getElementById('apiBaseUrl').value.trim() || 'https://api.anthropic.com';
-            const model = document.getElementById('apiModel').value;
+            let baseUrl = document.getElementById('apiBaseUrl').value.trim();
+            let modelId = document.getElementById('apiModel').value;
+
+            // 处理自定义模型ID
+            if (provider === 'openai') {
+                const customModelId = document.getElementById('customModelId').value.trim();
+                if (customModelId) {
+                    modelId = customModelId;
+                }
+            }
 
             if (!key) {
                 alert('请输入API Key');
                 return;
             }
 
+            if (!baseUrl) {
+                baseUrl = AI_PROVIDERS[provider].baseUrl;
+            }
+
+            // 保存到localStorage (使用新的键名)
+            localStorage.setItem('aiProvider', provider);
+            localStorage.setItem('aiApiKey', key);
+            localStorage.setItem('aiBaseUrl', baseUrl);
+            localStorage.setItem('aiModel', modelId);
+
+            // 保留旧的键名以保持兼容性
+            if (provider === 'claude') {
+                localStorage.setItem('claudeApiKey', key);
+                localStorage.setItem('claudeApiBaseUrl', baseUrl);
+                localStorage.setItem('claudeApiModel', modelId);
+            }
+
+            // 更新全局变量
+            currentProvider = provider;
             apiKey = key;
-            apiBaseUrl = url;
-            apiModel = model;
+            apiBaseUrl = baseUrl;
+            apiModel = modelId;
 
-            // 保存到localStorage
-            localStorage.setItem('claudeApiKey', apiKey);
-            localStorage.setItem('claudeApiBaseUrl', apiBaseUrl);
-            localStorage.setItem('claudeApiModel', apiModel);
+            // 初始化适配器
+            apiAdapter = new AIModelAdapter(provider, key, modelId, baseUrl);
 
-            // 更新状态显示
-            updateAPIStatus();
+            alert(`AI配置已保存！\n厂商: ${AI_PROVIDERS[provider].name}\n模型: ${modelId}`);
 
             // 关闭模态框
             document.getElementById('apiModal').classList.remove('show');
-
-            alert('API配置已保存！');
         }
 
         // 加载API配置
         function loadAPIConfig() {
-            const savedKey = localStorage.getItem('claudeApiKey');
-            const savedUrl = localStorage.getItem('claudeApiBaseUrl');
-            const savedModel = localStorage.getItem('claudeApiModel');
+            // 优先使用新的键名
+            let provider = localStorage.getItem('aiProvider');
+            let key = localStorage.getItem('aiApiKey');
+            let baseUrl = localStorage.getItem('aiBaseUrl');
+            let modelId = localStorage.getItem('aiModel');
 
-            if (savedKey) {
-                apiKey = savedKey;
-                document.getElementById('apiKeyInput').value = savedKey;
+            // 如果没有新配置，尝试从旧的Claude配置迁移
+            if (!provider && localStorage.getItem('claudeApiKey')) {
+                provider = 'claude';
+                key = localStorage.getItem('claudeApiKey');
+                baseUrl = localStorage.getItem('claudeApiBaseUrl') || 'https://api.anthropic.com';
+                modelId = localStorage.getItem('claudeApiModel') || 'claude-sonnet-4-5-20250929';
             }
-            if (savedUrl) {
-                apiBaseUrl = savedUrl;
-                document.getElementById('apiBaseUrl').value = savedUrl;
+
+            // 设置默认值
+            if (!provider) provider = 'claude';
+
+            // 更新UI
+            document.getElementById('apiProvider').value = provider;
+            updateModelList(provider);
+            updateBaseUrl(provider);
+
+            if (key) {
+                document.getElementById('apiKeyInput').value = key;
             }
-            if (savedModel) {
-                apiModel = savedModel;
-                document.getElementById('apiModel').value = savedModel;
+
+            if (baseUrl) {
+                document.getElementById('apiBaseUrl').value = baseUrl;
+            }
+
+            if (modelId) {
+                document.getElementById('apiModel').value = modelId;
+
+                // 如果是OpenAI兼容且是自定义模型，填充到自定义输入框
+                if (provider === 'openai' && modelId !== 'custom') {
+                    document.getElementById('customModelId').value = modelId;
+                }
+            }
+
+            // 初始化全局变量和适配器
+            if (key) {
+                currentProvider = provider;
+                apiKey = key;
+                apiBaseUrl = baseUrl || AI_PROVIDERS[provider].baseUrl;
+                apiModel = modelId || AI_PROVIDERS[provider].models[0].id;
+
+                apiAdapter = new AIModelAdapter(currentProvider, apiKey, apiModel, apiBaseUrl);
             }
 
             updateAPIStatus();
@@ -1520,6 +1880,23 @@ ${question.explanation}
             document.getElementById('apiModal').addEventListener('click', (e) => {
                 if (e.target.id === 'apiModal') {
                     document.getElementById('apiModal').classList.remove('show');
+                }
+            });
+
+            // 厂商切换事件
+            document.getElementById('apiProvider').addEventListener('change', function() {
+                const provider = this.value;
+                updateModelList(provider);
+                updateBaseUrl(provider);
+            });
+
+            // 模型切换事件 (更新maxTokens提示)
+            document.getElementById('apiModel').addEventListener('change', function() {
+                const provider = document.getElementById('apiProvider').value;
+                const modelId = this.value;
+                const model = AI_PROVIDERS[provider].models.find(m => m.id === modelId);
+                if (model) {
+                    document.getElementById('modelInfo').textContent = `最大Token: ${model.maxTokens}`;
                 }
             });
         };
