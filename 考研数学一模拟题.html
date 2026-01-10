@@ -753,6 +753,145 @@
             color: #f44336;
             border-left: 3px solid #f44336;
         }
+
+        /* 一键换题按钮样式 */
+        .batch-refresh-btn {
+            background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .batch-refresh-btn:hover {
+            background: linear-gradient(135deg, #7B1FA2 0%, #6A1B9A 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(156, 39, 176, 0.3);
+        }
+
+        .batch-refresh-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* 批量换题进度模态框 */
+        .batch-progress-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .batch-progress-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .batch-progress-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .batch-progress-header {
+            font-size: 22px;
+            font-weight: bold;
+            color: #9C27B0;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .batch-progress-bar-container {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .batch-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #9C27B0, #E040FB);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .batch-progress-text {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .batch-progress-status {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+            min-height: 40px;
+        }
+
+        .batch-progress-status.error {
+            color: #f44336;
+        }
+
+        .batch-progress-status.success {
+            color: #4CAF50;
+        }
+
+        .batch-progress-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .batch-cancel-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .batch-cancel-btn:hover {
+            background: #d32f2f;
+        }
+
+        .batch-close-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: none;
+        }
+
+        .batch-close-btn:hover {
+            background: #388E3C;
+        }
     </style>
 </head>
 <body>
@@ -762,6 +901,9 @@
         </div>
         <div class="header-controls">
             <div class="timer" id="timer">00:00:00</div>
+            <button class="batch-refresh-btn" id="batchRefreshBtn" title="一键更换所有题目">
+                🔄 换一套题
+            </button>
             <button class="settings-btn" id="apiSettingsBtn">
                 ⚙️ AI设置<span class="api-status inactive" id="apiStatus">未配置</span>
             </button>
@@ -806,55 +948,49 @@
     <!-- API配置模态框 -->
     <div class="modal" id="apiModal">
         <div class="modal-content">
-            <div class="modal-header">AI模型配置</div>
+            <div class="modal-header">AI模型配置（只读）</div>
+
+            <!-- 提示信息 -->
+            <div style="background: #fff3e0; border-left: 4px solid #ff9800; padding: 12px; margin-bottom: 15px; border-radius: 4px;">
+                <strong style="color: #e65100;">提示：</strong>
+                <span style="color: #666;">AI配置已集中到主页面管理，请前往「考研数学学习助手」的设置页面进行配置。</span>
+            </div>
 
             <!-- 厂商选择 -->
             <div class="input-group">
-                <label for="apiProvider">选择AI厂商:</label>
-                <select id="apiProvider" style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px;">
+                <label for="apiProvider">当前AI厂商:</label>
+                <select id="apiProvider" disabled style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px; background: #f5f5f5;">
                     <option value="claude">Claude (Anthropic)</option>
                     <option value="deepseek">Deepseek</option>
                     <option value="zhipu">智谱AI (GLM)</option>
                     <option value="openai">其他OpenAI兼容API</option>
                 </select>
-                <small style="color: #666; margin-top: 5px; display: block;">
-                    支持多个AI厂商，自动适配不同的API格式
-                </small>
             </div>
 
             <!-- API Key输入 -->
             <div class="input-group">
                 <label for="apiKeyInput">API Key:</label>
-                <input type="password" id="apiKeyInput" placeholder="请输入您的API Key">
+                <input type="password" id="apiKeyInput" disabled placeholder="未配置" style="background: #f5f5f5;">
             </div>
 
             <!-- Base URL配置 -->
             <div class="input-group">
                 <label for="apiBaseUrl">API Base URL:</label>
-                <input type="text" id="apiBaseUrl" placeholder="将自动填充默认URL">
-                <small style="color: #666; margin-top: 5px; display: block;">
-                    使用代理时可修改此地址
-                </small>
+                <input type="text" id="apiBaseUrl" disabled placeholder="未配置" style="background: #f5f5f5;">
             </div>
 
             <!-- 模型选择 -->
             <div class="input-group">
-                <label for="apiModel">选择模型:</label>
-                <select id="apiModel" style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px;">
+                <label for="apiModel">当前模型:</label>
+                <select id="apiModel" disabled style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px; background: #f5f5f5;">
                     <!-- 动态加载模型列表 -->
                 </select>
-                <small id="modelInfo" style="color: #666; margin-top: 5px; display: block;">
-                    不同模型有不同的能力和价格
-                </small>
             </div>
 
             <!-- 自定义模型ID (仅OpenAI兼容时显示) -->
             <div class="input-group" id="customModelGroup" style="display: none;">
                 <label for="customModelId">自定义模型ID:</label>
-                <input type="text" id="customModelId" placeholder="例如: gpt-4, gpt-3.5-turbo">
-                <small style="color: #666; margin-top: 5px; display: block;">
-                    使用自定义OpenAI兼容API时，请输入实际的模型ID
-                </small>
+                <input type="text" id="customModelId" disabled placeholder="未配置" style="background: #f5f5f5;">
             </div>
 
             <!-- 测试连接 -->
@@ -863,8 +999,27 @@
 
             <!-- 操作按钮 -->
             <div class="modal-buttons">
-                <button class="modal-btn modal-btn-secondary" id="cancelApiBtn">取消</button>
-                <button class="modal-btn modal-btn-primary" id="saveApiBtn">保存</button>
+                <button class="modal-btn modal-btn-secondary" id="cancelApiBtn">关闭</button>
+                <button class="modal-btn modal-btn-primary" onclick="window.location.href='考研数学学习助手.html'">前往主页配置</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 批量换题进度模态框 -->
+    <div class="batch-progress-modal" id="batchProgressModal">
+        <div class="batch-progress-content">
+            <div class="batch-progress-header">
+                <span>🔄</span>
+                <span>一键换题</span>
+            </div>
+            <div class="batch-progress-bar-container">
+                <div class="batch-progress-bar" id="batchProgressBar"></div>
+            </div>
+            <div class="batch-progress-text" id="batchProgressText">正在生成新题目...</div>
+            <div class="batch-progress-status" id="batchProgressStatus">准备中...</div>
+            <div class="batch-progress-buttons">
+                <button class="batch-cancel-btn" id="batchCancelBtn">取消换题</button>
+                <button class="batch-close-btn" id="batchCloseBtn">完成</button>
             </div>
         </div>
     </div>
@@ -1119,6 +1274,10 @@
         let currentProvider = 'claude';
         let apiAdapter = null;
         let aiExplanations = new Array(questions.length).fill(null);
+
+        // 批量换题相关变量
+        let batchRefreshCancelled = false;
+        let batchRefreshInProgress = false;
 
         // 保留向后兼容的变量 (已废弃,使用apiAdapter代替)
         let apiKey = '';
@@ -1507,13 +1666,35 @@
 
         // 加载API配置
         function loadAPIConfig() {
-            // 优先使用新的键名
-            let provider = localStorage.getItem('aiProvider');
-            let key = localStorage.getItem('aiApiKey');
-            let baseUrl = localStorage.getItem('aiBaseUrl');
-            let modelId = localStorage.getItem('aiModel');
+            // 优先从主页面的统一配置读取
+            let provider = null;
+            let key = null;
+            let baseUrl = null;
+            let modelId = null;
 
-            // 如果没有新配置，尝试从旧的Claude配置迁移
+            try {
+                const globalConfig = localStorage.getItem('mathHelper_aiConfig');
+                if (globalConfig) {
+                    const config = JSON.parse(globalConfig);
+                    provider = config.provider;
+                    key = config.apiKey;
+                    baseUrl = config.baseUrl;
+                    modelId = config.modelId;
+                    console.log('使用主页面统一配置');
+                }
+            } catch (e) {
+                console.warn('读取主页面配置失败:', e);
+            }
+
+            // 如果没有主页面配置，回退到本页面的旧配置
+            if (!provider) {
+                provider = localStorage.getItem('aiProvider');
+                key = localStorage.getItem('aiApiKey');
+                baseUrl = localStorage.getItem('aiBaseUrl');
+                modelId = localStorage.getItem('aiModel');
+            }
+
+            // 如果还没有配置，尝试从更旧的Claude配置迁移
             if (!provider && localStorage.getItem('claudeApiKey')) {
                 provider = 'claude';
                 key = localStorage.getItem('claudeApiKey');
@@ -1524,7 +1705,7 @@
             // 设置默认值
             if (!provider) provider = 'claude';
 
-            // 更新UI
+            // 更新UI（只读模式）
             document.getElementById('apiProvider').value = provider;
             updateModelList(provider);
             updateBaseUrl(provider);
@@ -1723,6 +1904,308 @@ ${question.options ? '\n选项：\n' + question.options.join('\n') : ''}
             }
         }
 
+        // ========== 批量换题功能 ==========
+
+        // 批量换题主函数
+        async function batchRefreshAllQuestions() {
+            if (!apiKey) {
+                alert('请先配置AI API Key');
+                document.getElementById('apiModal').classList.add('show');
+                return;
+            }
+
+            if (batchRefreshInProgress) {
+                alert('正在换题中，请稍候...');
+                return;
+            }
+
+            if (!confirm('确定要更换所有题目吗？\n这将生成一套全新的试卷，当前答案将被清空。\n\n提示：换题过程可能需要几分钟，请耐心等待。')) {
+                return;
+            }
+
+            // 初始化状态
+            batchRefreshInProgress = true;
+            batchRefreshCancelled = false;
+
+            // 显示进度模态框
+            showBatchProgressModal();
+
+            const totalQuestions = questions.length;
+            let successCount = 0;
+            let failCount = 0;
+            let errorMessages = [];
+
+            try {
+                for (let i = 0; i < totalQuestions; i++) {
+                    // 检查是否被取消
+                    if (batchRefreshCancelled) {
+                        updateBatchProgress(i, totalQuestions, `已取消换题 (已完成 ${successCount} 题)`);
+                        updateBatchStatus('换题已取消', 'error');
+                        break;
+                    }
+
+                    // 更新进度
+                    const questionNum = i + 1;
+                    const questionType = questions[i].type === 'choice' ? '选择题' :
+                                        (questions[i].type === 'blank' ? '填空题' : '解答题');
+                    updateBatchProgress(i, totalQuestions, `正在生成第 ${questionNum}/${totalQuestions} 题 (${questionType})...`);
+                    updateBatchStatus(`正在处理...`);
+
+                    try {
+                        // 调用单题换题函数（内部实现）
+                        await refreshQuestionSilent(i);
+                        successCount++;
+                        updateBatchStatus(`✓ 第 ${questionNum} 题生成成功`);
+                    } catch (error) {
+                        failCount++;
+                        errorMessages.push(`第 ${questionNum} 题失败: ${error.message}`);
+                        updateBatchStatus(`✗ 第 ${questionNum} 题生成失败: ${error.message}`, 'error');
+                    }
+
+                    // 添加延迟，避免API速率限制
+                    if (i < totalQuestions - 1 && !batchRefreshCancelled) {
+                        await sleep(1500); // 1.5秒间隔
+                    }
+                }
+
+                // 完成
+                if (!batchRefreshCancelled) {
+                    updateBatchProgress(totalQuestions, totalQuestions, '换题完成！');
+
+                    if (failCount === 0) {
+                        updateBatchStatus(`✓ 全部 ${successCount} 道题目生成成功！`, 'success');
+                    } else {
+                        updateBatchStatus(`完成: ${successCount} 成功, ${failCount} 失败\n${errorMessages.join('\n')}`, failCount > successCount ? 'error' : '');
+                    }
+                }
+
+                // 重新渲染所有题目
+                renderQuestions();
+                renderAnswerCard();
+                updateStats();
+
+                // 重新渲染数学公式
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    setTimeout(() => {
+                        MathJax.typesetPromise().catch((err) => console.log('MathJax error:', err));
+                    }, 100);
+                }
+
+            } catch (error) {
+                console.error('批量换题失败:', error);
+                updateBatchStatus(`换题过程出错: ${error.message}`, 'error');
+            } finally {
+                batchRefreshInProgress = false;
+                showBatchCloseButton();
+            }
+        }
+
+        // 静默换题（不显示单题的提示）
+        async function refreshQuestionSilent(index) {
+            const question = questions[index];
+
+            // 构建题型描述
+            let typeDesc = '';
+            if (question.type === 'choice') {
+                typeDesc = '选择题（包含A、B、C、D四个选项）';
+            } else if (question.type === 'blank') {
+                typeDesc = '填空题';
+            } else {
+                typeDesc = '解答题（需要详细的解题步骤）';
+            }
+
+            // 构建学科描述
+            const subjectMap = {
+                'calculus': '微积分',
+                'linear': '线性代数',
+                'probability': '概率论与数理统计'
+            };
+            const subjectDesc = subjectMap[question.subject] || '数学';
+
+            // 构建prompt
+            const prompt = `请生成一道考研数学一的${typeDesc}，学科分类为${subjectDesc}，难度与以下题目相当：
+
+【原题】
+${question.question}
+${question.options ? '\n选项：\n' + question.options.join('\n') : ''}
+
+【要求】
+1. 题目格式与原题完全一致
+2. 难度相当，知识点相似但不完全相同
+3. 使用LaTeX数学公式（用$...$包裹行内公式，用$$...$$包裹独立公式）
+4. 必须包含答案和简要解析
+
+【输出格式】
+请严格按照以下JSON格式输出（不要包含任何其他文字）：
+\`\`\`json
+{
+  "question": "题目内容（使用LaTeX公式）",
+  ${question.type === 'choice' ? '"options": ["A. 选项1", "B. 选项2", "C. 选项3", "D. 选项4"],' : ''}
+  "answer": "${question.type === 'choice' ? 'A或B或C或D' : '答案内容'}",
+  "explanation": "解析内容（使用LaTeX公式）"
+}
+\`\`\``;
+
+            // 调用API
+            const response = await callClaudeAPI([{
+                role: 'user',
+                content: prompt
+            }], 2500);
+
+            // 解析响应
+            const jsonMatch = response.match(/```json\s*([\s\S]*?)\s*```/);
+            if (!jsonMatch) {
+                throw new Error('AI响应格式错误');
+            }
+
+            const newQuestion = JSON.parse(jsonMatch[1]);
+
+            // 验证生成的题目
+            if (!newQuestion.question || !newQuestion.answer || !newQuestion.explanation) {
+                throw new Error('生成的题目不完整');
+            }
+
+            if (question.type === 'choice' && (!newQuestion.options || newQuestion.options.length !== 4)) {
+                throw new Error('选择题选项不完整');
+            }
+
+            // 更新题目数据
+            questions[index].question = newQuestion.question;
+            questions[index].answer = newQuestion.answer;
+            questions[index].explanation = newQuestion.explanation;
+            if (question.type === 'choice') {
+                questions[index].options = newQuestion.options;
+            }
+
+            // 清空用户答案和AI解析
+            userAnswers[index] = '';
+            aiExplanations[index] = null;
+
+            // 保存到localStorage
+            saveToStorage();
+
+            // 实时更新页面上的单个题目
+            updateSingleQuestion(index);
+        }
+
+        // 实时更新单个题目的显示（不重新渲染整个试卷）
+        function updateSingleQuestion(index) {
+            const q = questions[index];
+            const qDiv = document.getElementById(`question-${index}`);
+            if (!qDiv) return;
+
+            // 计算题目编号
+            let qNumber;
+            if (q.type === 'choice') {
+                qNumber = index < 8 ? index + 1 : 0;
+            } else if (q.type === 'blank') {
+                qNumber = index >= 8 && index < 14 ? index - 7 : 0;
+            } else {
+                qNumber = index >= 14 ? index - 13 : 0;
+            }
+
+            // 更新题目标题
+            const titleDiv = qDiv.querySelector('.question-title');
+            if (titleDiv) {
+                titleDiv.innerHTML = `${qNumber}. ${q.question}`;
+            }
+
+            // 更新答案与解析
+            const explanationDiv = qDiv.querySelector(`#explanation-${index}`);
+            if (explanationDiv) {
+                explanationDiv.innerHTML = `
+                    <div class="explanation-title">答案与解析：</div>
+                    <div><strong>答案：</strong>${q.answer}</div>
+                    <div style="margin-top: 10px;"><strong>解析：</strong>${q.explanation}</div>
+                `;
+            }
+
+            // 更新题目内容区域
+            const contentDiv = document.getElementById(`content-${index}`);
+            if (contentDiv) {
+                contentDiv.innerHTML = '';
+                if (q.type === 'choice') {
+                    renderChoiceQuestion(contentDiv, q, index);
+                } else if (q.type === 'blank') {
+                    renderBlankQuestion(contentDiv, q, index);
+                } else if (q.type === 'solve') {
+                    renderSolveQuestion(contentDiv, q, index);
+                }
+            }
+
+            // 清空AI解析显示
+            const aiExplanationDiv = document.getElementById(`ai-explanation-${index}`);
+            if (aiExplanationDiv) {
+                aiExplanationDiv.innerHTML = '';
+            }
+
+            // 重新渲染数学公式（只针对这一题）
+            setTimeout(() => {
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    MathJax.typesetPromise([qDiv]).catch((err) => console.log('MathJax error:', err));
+                }
+            }, 50);
+        }
+
+        // 显示批量换题进度模态框
+        function showBatchProgressModal() {
+            const modal = document.getElementById('batchProgressModal');
+            const progressBar = document.getElementById('batchProgressBar');
+            const cancelBtn = document.getElementById('batchCancelBtn');
+            const closeBtn = document.getElementById('batchCloseBtn');
+
+            modal.classList.add('show');
+            progressBar.style.width = '0%';
+            cancelBtn.style.display = 'inline-block';
+            closeBtn.style.display = 'none';
+        }
+
+        // 隐藏批量换题进度模态框
+        function hideBatchProgressModal() {
+            const modal = document.getElementById('batchProgressModal');
+            modal.classList.remove('show');
+        }
+
+        // 更新批量换题进度
+        function updateBatchProgress(current, total, text) {
+            const progressBar = document.getElementById('batchProgressBar');
+            const progressText = document.getElementById('batchProgressText');
+
+            const percent = Math.round((current / total) * 100);
+            progressBar.style.width = `${percent}%`;
+            progressText.textContent = text;
+        }
+
+        // 更新批量换题状态
+        function updateBatchStatus(message, type = '') {
+            const statusDiv = document.getElementById('batchProgressStatus');
+            statusDiv.textContent = message;
+            statusDiv.className = 'batch-progress-status';
+            if (type) {
+                statusDiv.classList.add(type);
+            }
+        }
+
+        // 显示完成按钮
+        function showBatchCloseButton() {
+            const cancelBtn = document.getElementById('batchCancelBtn');
+            const closeBtn = document.getElementById('batchCloseBtn');
+
+            cancelBtn.style.display = 'none';
+            closeBtn.style.display = 'inline-block';
+        }
+
+        // 取消批量换题
+        function cancelBatchRefresh() {
+            batchRefreshCancelled = true;
+            updateBatchStatus('正在取消...');
+        }
+
+        // sleep辅助函数
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
         // ========== AI解析功能 ==========
 
         // 生成AI解析
@@ -1875,6 +2358,11 @@ ${question.explanation}
 
             document.getElementById('saveApiBtn').addEventListener('click', saveAPIConfig);
             document.getElementById('testConnectionBtn').addEventListener('click', testAPIConnection);
+
+            // 批量换题事件监听
+            document.getElementById('batchRefreshBtn').addEventListener('click', batchRefreshAllQuestions);
+            document.getElementById('batchCancelBtn').addEventListener('click', cancelBatchRefresh);
+            document.getElementById('batchCloseBtn').addEventListener('click', hideBatchProgressModal);
 
             // 点击模态框外部关闭
             document.getElementById('apiModal').addEventListener('click', (e) => {

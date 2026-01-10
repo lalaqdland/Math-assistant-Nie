@@ -5,18 +5,50 @@
     box-sizing: border-box;
 }
 
+/* CSS变量 - 方便统一修改配色 */
 :root {
     --primary-color: #2196F3;
-    --primary-dark: #1976D2;
-    --primary-light: #E3F2FD;
+    --primary-light: #64B5F6;
+    --primary-dark: #1565C0;
+    --primary-gradient: linear-gradient(135deg, #2196F3 0%, #1565C0 100%);
+
+    --secondary-color: #FF9800;
+    --secondary-light: #FFB74D;
+    --secondary-dark: #F57C00;
+
     --success-color: #4CAF50;
+    --success-light: #81C784;
+    --success-dark: #388E3C;
+
     --warning-color: #FF9800;
     --danger-color: #F44336;
     --purple-color: #9C27B0;
-    --sidebar-width: 260px;
+
+    --sidebar-bg: linear-gradient(180deg, #1a237e 0%, #283593 50%, #3949ab 100%);
+    --sidebar-width: 240px;
     --header-height: 0px;
-    --border-radius: 10px;
+
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-muted: #999;
+
+    --bg-primary: #f5f7fa;
+    --bg-card: #ffffff;
+    --bg-hover: #f0f4f8;
+
+    --border-color: #e0e0e0;
+    --border-radius: 12px;
+    --border-radius-sm: 8px;
+    --border-radius-lg: 16px;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
     --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.4s ease;
     --transition: all 0.3s ease;
 }
 
@@ -35,7 +67,7 @@ body {
 /* ========== 左侧导航栏 ========== */
 .sidebar {
     width: var(--sidebar-width);
-    background: linear-gradient(180deg, #2196F3 0%, #1976D2 100%);
+    background: linear-gradient(180deg, #1a237e 0%, #283593 50%, #3949ab 100%);
     color: white;
     padding: 0;
     position: fixed;
@@ -43,7 +75,7 @@ body {
     top: 0;
     height: 100vh;
     overflow-y: auto;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
     z-index: 1000;
 }
 
@@ -62,17 +94,20 @@ body {
     font-weight: bold;
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.15);
 }
 
 .logo-icon {
     font-size: 32px;
     margin-bottom: 8px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .nav-menu {
     list-style: none;
     padding: 15px 0;
+    flex: 1;
 }
 
 .nav-menu li {
@@ -80,27 +115,52 @@ body {
     padding: 12px 15px;
     border-radius: 8px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 12px;
     font-size: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-menu li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #FF9800;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    border-radius: 0 4px 4px 0;
 }
 
 .nav-menu li:hover {
     background: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+}
+
+.nav-menu li:hover::before {
+    transform: scaleY(1);
 }
 
 .nav-menu li.active {
     background: rgba(255, 255, 255, 0.25);
     font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-menu li.active::before {
+    transform: scaleY(1);
 }
 
 .nav-icon {
     font-size: 20px;
     width: 24px;
     text-align: center;
+    flex-shrink: 0;
 }
 
 /* ========== 右侧内容区 ========== */
@@ -154,25 +214,46 @@ body {
 .btn {
     padding: 10px 20px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.btn:active::after {
+    width: 200px;
+    height: 200px;
 }
 
 .btn-primary {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, #2196F3 0%, #1565C0 100%);
     color: white;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
 }
 
 .btn-primary:hover {
-    background: var(--primary-dark);
+    background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
 }
 
 .btn-success {
@@ -3030,4 +3111,550 @@ body {
         width: 100%;
         justify-content: center;
     }
+}
+
+/* ========== Phase 10: 新手引导和AI配置提示 ========== */
+
+/* 新手引导遮罩层 */
+.onboarding-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+/* 新手引导弹窗 */
+.onboarding-modal {
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 引导弹窗头部 */
+.onboarding-header {
+    text-align: center;
+    padding: 30px 30px 20px;
+    background: linear-gradient(135deg, #2196F3 0%, #1565C0 100%);
+    color: white;
+    border-radius: 16px 16px 0 0;
+}
+
+.onboarding-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.onboarding-header h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* 引导弹窗内容 */
+.onboarding-content {
+    padding: 25px 30px;
+}
+
+.onboarding-intro {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 功能列表 */
+.onboarding-features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.onboarding-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 12px 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+
+.onboarding-feature:hover {
+    background: #e3f2fd;
+    transform: translateX(5px);
+}
+
+.onboarding-feature .feature-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+.onboarding-feature .feature-info strong {
+    display: block;
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.onboarding-feature .feature-info p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+}
+
+/* 提示信息 */
+.onboarding-tip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 12px 15px;
+    background: #fff3e0;
+    border-radius: 8px;
+    border-left: 4px solid #ff9800;
+}
+
+.onboarding-tip .tip-icon {
+    font-size: 20px;
+}
+
+.onboarding-tip span:last-child {
+    font-size: 13px;
+    color: #e65100;
+}
+
+/* 引导弹窗底部 */
+.onboarding-footer {
+    padding: 20px 30px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.onboarding-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+}
+
+.onboarding-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.onboarding-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* AI配置提示条 */
+.ai-config-banner {
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    right: 0;
+    background: linear-gradient(90deg, #ff9800, #f57c00);
+    color: white;
+    z-index: 999;
+    animation: slideDown 0.3s ease;
+}
+
+.ai-config-banner .banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+}
+
+.ai-config-banner .banner-icon {
+    font-size: 18px;
+}
+
+.ai-config-banner .banner-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ai-config-banner .btn {
+    padding: 5px 15px;
+    font-size: 13px;
+    background: white;
+    color: #f57c00;
+    border: none;
+}
+
+.ai-config-banner .btn:hover {
+    background: #fff3e0;
+}
+
+.ai-config-banner .banner-close {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.8;
+    padding: 5px 10px;
+}
+
+.ai-config-banner .banner-close:hover {
+    opacity: 1;
+}
+
+/* AI状态指示器（导航栏底部） */
+.ai-status-indicator {
+    margin: 10px 15px 20px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ai-status-indicator:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-dot.connected {
+    background: #4caf50;
+    box-shadow: 0 0 8px #4caf50;
+    animation: pulse 2s infinite;
+}
+
+.status-dot.disconnected {
+    background: #f44336;
+    box-shadow: 0 0 8px #f44336;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.status-text {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* 当有AI配置提示条时，调整内容区域上边距 */
+body.has-ai-banner .content-area {
+    padding-top: 70px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .onboarding-modal {
+        width: 95%;
+        max-height: 85vh;
+    }
+
+    .onboarding-header {
+        padding: 25px 20px 15px;
+    }
+
+    .onboarding-header h2 {
+        font-size: 18px;
+    }
+
+    .onboarding-content {
+        padding: 20px;
+    }
+
+    .onboarding-footer {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+
+    .onboarding-buttons {
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .onboarding-buttons .btn {
+        flex: 1;
+    }
+
+    .ai-config-banner {
+        left: 0;
+    }
+
+    .ai-config-banner .banner-content {
+        padding: 10px 40px 10px 15px;
+        justify-content: flex-start;
+    }
+
+    .ai-status-indicator {
+        margin: 10px;
+    }
+}
+
+/* ========== 设置页面AI配置区域样式 ========== */
+
+.ai-config-section {
+    border: 2px solid #3f51b5;
+}
+
+.ai-config-section .card-title {
+    color: #3f51b5;
+}
+
+.ai-config-form {
+    padding: 20px;
+}
+
+.ai-config-form .settings-row {
+    margin-bottom: 16px;
+}
+
+.ai-config-form .settings-row label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+}
+
+.ai-config-form input[type="text"],
+.ai-config-form input[type="password"],
+.ai-config-form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.ai-config-form input:focus,
+.ai-config-form select:focus {
+    outline: none;
+    border-color: #3f51b5;
+}
+
+.ai-config-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.ai-config-buttons .btn {
+    flex: 1;
+    padding: 12px 20px;
+}
+
+.connection-status {
+    min-height: 24px;
+    font-size: 14px;
+    padding: 8px 0;
+}
+
+/* ========== 学习规划时间段配置样式 ========== */
+
+.time-period-config {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.time-period-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.time-period-item .period-icon {
+    font-size: 20px;
+}
+
+.time-period-item label {
+    flex: 1;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-input-sm {
+    width: 60px;
+    padding: 6px 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.form-input-sm:focus {
+    outline: none;
+    border-color: #3f51b5;
+}
+
+.config-tip {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.config-note {
+    color: #ff9800;
+    font-size: 12px;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #fff8e1;
+    border-radius: 4px;
+}
+
+/* 时间段任务分组样式 */
+.time-period-group {
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.period-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.period-name {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.period-stats {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.period-tasks {
+    padding: 10px;
+    background: #fafafa;
+}
+
+.no-tasks-hint {
+    text-align: center;
+    padding: 15px;
+    color: #999;
+    font-size: 13px;
+}
+
+/* ========== AI助教图片上传样式 ========== */
+
+.image-preview-area {
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.preview-image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.preview-image-container img {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.remove-image-btn:hover {
+    background: #d32f2f;
+}
+
+.input-left-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+/* 聊天消息中的图片 */
+.message-image {
+    margin-bottom: 10px;
+}
+
+.message-image img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
 }

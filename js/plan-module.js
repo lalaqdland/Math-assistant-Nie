@@ -788,6 +788,29 @@ function renderPlanConfig() {
             </div>
 
             <div class="config-section">
+                <h3>🕐 每日时间段分配</h3>
+                <p class="config-tip">设置每天各时间段可用于学习的时长</p>
+                <div class="time-period-config">
+                    <div class="time-period-item">
+                        <span class="period-icon">🌅</span>
+                        <label>上午 (8:00-12:00)</label>
+                        <input type="number" id="morning-hours" min="0" max="4" value="2" class="form-input-sm"> 小时
+                    </div>
+                    <div class="time-period-item">
+                        <span class="period-icon">☀️</span>
+                        <label>下午 (14:00-18:00)</label>
+                        <input type="number" id="afternoon-hours" min="0" max="4" value="1" class="form-input-sm"> 小时
+                    </div>
+                    <div class="time-period-item">
+                        <span class="period-icon">🌙</span>
+                        <label>晚上 (19:00-23:00)</label>
+                        <input type="number" id="evening-hours" min="0" max="4" value="1" class="form-input-sm"> 小时
+                    </div>
+                </div>
+                <p class="config-note">提示：高难度知识点建议安排在精力充沛的上午</p>
+            </div>
+
+            <div class="config-section">
                 <h3>🎯 学科时间分配</h3>
                 <div class="subject-ratio">
                     <div class="ratio-item">
@@ -885,6 +908,12 @@ async function generatePlan() {
             calculus: parseFloat(document.getElementById('ratio-calculus').value) / 100,
             linearAlgebra: parseFloat(document.getElementById('ratio-linear').value) / 100,
             probability: parseFloat(document.getElementById('ratio-prob').value) / 100
+        },
+        // 新增：时间段配置
+        timePeriods: {
+            morning: parseInt(document.getElementById('morning-hours')?.value) || 2,
+            afternoon: parseInt(document.getElementById('afternoon-hours')?.value) || 1,
+            evening: parseInt(document.getElementById('evening-hours')?.value) || 1
         }
     };
 
@@ -1103,21 +1132,81 @@ function renderTodayTasks(plan) {
         return '<div class="empty-state-text">今日没有安排学习任务</div>';
     }
 
-    return todayTasks.tasks.map(task => `
-        <div class="task-item">
-            <div class="task-info">
-                <div class="task-name">${task.knowledgeName || task.description}</div>
-                <div class="task-meta">
-                    ${task.type === 'knowledge' ? `📖 知识点学习` : task.type === 'practice' ? '✍️ 练习' : '🔄 复习'}
-                    · ${task.duration}分钟
-                    ${task.difficulty ? ` · ${getDifficultyText(task.difficulty)}` : ''}
+    // 获取时间段配置（如果存在）
+    const timePeriods = plan.config?.timePeriods || { morning: 2, afternoon: 1, evening: 1 };
+
+    // 按时间段分组任务
+    const periodGroups = {
+        morning: { name: '🌅 上午 (8:00-12:00)', tasks: [], hours: timePeriods.morning },
+        afternoon: { name: '☀️ 下午 (14:00-18:00)', tasks: [], hours: timePeriods.afternoon },
+        evening: { name: '🌙 晚上 (19:00-23:00)', tasks: [], hours: timePeriods.evening }
+    };
+
+    // 根据任务难度智能分配时间段
+    // 高难度 -> 上午，中等 -> 下午，基础 -> 晚上
+    const sortedTasks = [...todayTasks.tasks].sort((a, b) => {
+        const diffOrder = { 'advanced': 0, 'intermediate': 1, 'basic': 2 };
+        return (diffOrder[a.difficulty] || 1) - (diffOrder[b.difficulty] || 1);
+    });
+
+    let morningMinutes = timePeriods.morning * 60;
+    let afternoonMinutes = timePeriods.afternoon * 60;
+    let eveningMinutes = timePeriods.evening * 60;
+
+    sortedTasks.forEach(task => {
+        const duration = task.duration || 30;
+        if (morningMinutes >= duration && (task.difficulty === 'advanced' || task.difficulty === 'intermediate')) {
+            periodGroups.morning.tasks.push({...task, suggestedPeriod: 'morning'});
+            morningMinutes -= duration;
+        } else if (afternoonMinutes >= duration) {
+            periodGroups.afternoon.tasks.push({...task, suggestedPeriod: 'afternoon'});
+            afternoonMinutes -= duration;
+        } else if (eveningMinutes >= duration) {
+            periodGroups.evening.tasks.push({...task, suggestedPeriod: 'evening'});
+            eveningMinutes -= duration;
+        } else if (morningMinutes >= duration) {
+            periodGroups.morning.tasks.push({...task, suggestedPeriod: 'morning'});
+            morningMinutes -= duration;
+        } else {
+            // 无法分配，放到任意有空间的时段
+            periodGroups.evening.tasks.push({...task, suggestedPeriod: 'evening'});
+        }
+    });
+
+    // 渲染分组后的任务
+    let html = '';
+    for (const [, group] of Object.entries(periodGroups)) {
+        if (group.tasks.length > 0 || group.hours > 0) {
+            const totalDuration = group.tasks.reduce((sum, t) => sum + (t.duration || 30), 0);
+            html += `
+                <div class="time-period-group">
+                    <div class="period-header">
+                        <span class="period-name">${group.name}</span>
+                        <span class="period-stats">${group.tasks.length}个任务 · ${totalDuration}分钟</span>
+                    </div>
+                    <div class="period-tasks">
+                        ${group.tasks.length > 0 ? group.tasks.map(task => `
+                            <div class="task-item">
+                                <div class="task-info">
+                                    <div class="task-name">${task.knowledgeName || task.description}</div>
+                                    <div class="task-meta">
+                                        ${task.type === 'knowledge' ? `📖 知识点学习` : task.type === 'practice' ? '✍️ 练习' : '🔄 复习'}
+                                        · ${task.duration}分钟
+                                        ${task.difficulty ? ` · ${getDifficultyText(task.difficulty)}` : ''}
+                                    </div>
+                                </div>
+                                <div class="task-status">
+                                    <span class="status-badge status-${task.status}">${getStatusText(task.status)}</span>
+                                </div>
+                            </div>
+                        `).join('') : '<div class="no-tasks-hint">此时段暂无安排</div>'}
+                    </div>
                 </div>
-            </div>
-            <div class="task-status">
-                <span class="status-badge status-${task.status}">${getStatusText(task.status)}</span>
-            </div>
-        </div>
-    `).join('');
+            `;
+        }
+    }
+
+    return html;
 }
 
 /**

@@ -33,6 +33,73 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- 新手引导遮罩层 -->
+    <div id="onboarding-overlay" class="onboarding-overlay" style="display: none;">
+        <div class="onboarding-modal">
+            <div class="onboarding-header">
+                <span class="onboarding-icon">🎓</span>
+                <h2>欢迎使用考研数学学习助手</h2>
+            </div>
+            <div class="onboarding-content">
+                <p class="onboarding-intro">这是一个专为考研数学一设计的学习平台，让我们先了解一下各项功能：</p>
+                <div class="onboarding-features">
+                    <div class="onboarding-feature">
+                        <span class="feature-icon">📚</span>
+                        <div class="feature-info">
+                            <strong>知识点学习</strong>
+                            <p>50+核心知识点，AI详解，互动提问</p>
+                        </div>
+                    </div>
+                    <div class="onboarding-feature">
+                        <span class="feature-icon">📅</span>
+                        <div class="feature-info">
+                            <strong>学习规划</strong>
+                            <p>三阶段计划，AI智能调整，每日任务</p>
+                        </div>
+                    </div>
+                    <div class="onboarding-feature">
+                        <span class="feature-icon">✍️</span>
+                        <div class="feature-info">
+                            <strong>练习测试</strong>
+                            <p>专项练习，模拟考试，错题管理</p>
+                        </div>
+                    </div>
+                    <div class="onboarding-feature">
+                        <span class="feature-icon">🤖</span>
+                        <div class="feature-info">
+                            <strong>AI助教</strong>
+                            <p>实时答疑，多轮对话，公式支持</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="onboarding-tip">
+                    <span class="tip-icon">💡</span>
+                    <span>使用AI功能前需要先配置API密钥</span>
+                </div>
+            </div>
+            <div class="onboarding-footer">
+                <label class="onboarding-checkbox">
+                    <input type="checkbox" id="dontShowAgain">
+                    <span>不再显示此欢迎页</span>
+                </label>
+                <div class="onboarding-buttons">
+                    <button class="btn btn-secondary" onclick="goToAISettings()">配置AI</button>
+                    <button class="btn btn-primary" onclick="closeOnboarding()">开始使用</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI配置提示条 -->
+    <div id="ai-config-banner" class="ai-config-banner" style="display: none;">
+        <div class="banner-content">
+            <span class="banner-icon">⚠️</span>
+            <span class="banner-text">AI功能未配置，部分功能不可用</span>
+            <button class="btn btn-primary btn-sm" onclick="goToAISettings()">立即配置</button>
+            <button class="banner-close" onclick="hideAIBanner()">&times;</button>
+        </div>
+    </div>
+
     <!-- 主容器 -->
     <div class="app-container">
         <!-- 左侧导航栏 -->
@@ -71,6 +138,11 @@
                     <span>设置</span>
                 </li>
             </ul>
+            <!-- AI状态指示器 -->
+            <div class="ai-status-indicator" id="aiStatusIndicator" onclick="goToAISettings()">
+                <span class="status-dot" id="aiStatusDot"></span>
+                <span class="status-text" id="aiStatusText">AI未配置</span>
+            </div>
         </nav>
 
         <!-- 右侧内容区 -->
@@ -1210,8 +1282,59 @@ type === 'blank' ?
         let tutorState = {
             currentConversationId: null,
             messages: [],
-            isLoading: false
+            isLoading: false,
+            selectedImage: null  // 存储选择的图片base64数据
         };
+
+        // 处理图片选择
+        function handleImageSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // 检查文件类型
+            if (!file.type.startsWith('image/')) {
+                alert('请选择图片文件');
+                return;
+            }
+
+            // 检查文件大小（限制5MB）
+            if (file.size > 5 * 1024 * 1024) {
+                alert('图片大小不能超过5MB');
+                return;
+            }
+
+            // 读取图片为base64
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                tutorState.selectedImage = {
+                    data: e.target.result,
+                    type: file.type,
+                    name: file.name
+                };
+
+                // 显示预览
+                const previewArea = document.getElementById('imagePreviewArea');
+                const previewImage = document.getElementById('previewImage');
+                if (previewArea && previewImage) {
+                    previewImage.src = e.target.result;
+                    previewArea.style.display = 'block';
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // 移除选择的图片
+        function removeSelectedImage() {
+            tutorState.selectedImage = null;
+            const previewArea = document.getElementById('imagePreviewArea');
+            const imageUpload = document.getElementById('imageUpload');
+            if (previewArea) {
+                previewArea.style.display = 'none';
+            }
+            if (imageUpload) {
+                imageUpload.value = '';
+            }
+        }
 
         // AI助教视图渲染
         function renderAITutorView() {
@@ -1274,13 +1397,26 @@ type === 'blank' ?
 
                         <!-- 输入区域 -->
                         <div class="chat-input-container">
+                            <!-- 图片预览区域 -->
+                            <div class="image-preview-area" id="imagePreviewArea" style="display: none;">
+                                <div class="preview-image-container">
+                                    <img id="previewImage" src="" alt="预览图片">
+                                    <button class="remove-image-btn" onclick="removeSelectedImage()">✕</button>
+                                </div>
+                            </div>
                             <textarea id="tutorInput"
                                       class="tutor-textarea"
-                                      placeholder="输入数学问题... 使用 $公式$ 输入LaTeX公式"
+                                      placeholder="输入数学问题... 使用 $公式$ 输入LaTeX公式，或上传题目图片"
                                       rows="3"
                                       oninput="updateFormulaPreview()"></textarea>
                             <div class="input-actions">
-                                <span class="input-hint">按 Ctrl+Enter 发送 | 支持 LaTeX 公式</span>
+                                <div class="input-left-actions">
+                                    <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleImageSelect(event)">
+                                    <button class="btn btn-secondary btn-sm" onclick="document.getElementById('imageUpload').click()" title="上传图片">
+                                        📷 上传图片
+                                    </button>
+                                    <span class="input-hint">按 Ctrl+Enter 发送 | 支持图片识别</span>
+                                </div>
                                 <button class="btn btn-primary" onclick="sendTutorMessage()" id="sendBtn">
                                     📤 发送
                                 </button>
@@ -1363,11 +1499,13 @@ type === 'blank' ?
             return tutorState.messages.map((msg, idx) => {
                 const isUser = msg.role === 'user';
                 const time = new Date(msg.timestamp).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+                const hasImage = msg.image && isUser;
 
                 return `
                     <div class="chat-message-wrapper ${isUser ? 'user' : 'assistant'}">
                         <div class="message-avatar">${isUser ? '👤' : '🤖'}</div>
                         <div class="message-bubble">
+                            ${hasImage ? `<div class="message-image"><img src="${msg.image}" alt="上传的图片"></div>` : ''}
                             <div class="message-content">${formatMessageContent(msg.content)}</div>
                             <div class="message-time">${time}</div>
                         </div>
@@ -1409,8 +1547,10 @@ type === 'blank' ?
         async function sendTutorMessage() {
             const input = document.getElementById('tutorInput');
             const content = input.value.trim();
+            const hasImage = tutorState.selectedImage !== null;
 
-            if (!content || tutorState.isLoading) return;
+            if (!content && !hasImage) return;
+            if (tutorState.isLoading) return;
 
             if (!isAIConfigured()) {
                 alert('请先在设置中配置AI模型');
@@ -1426,13 +1566,16 @@ type === 'blank' ?
             // 添加用户消息
             const userMessage = {
                 role: 'user',
-                content: content,
-                timestamp: new Date().toISOString()
+                content: content || '请分析这张图片中的数学问题',
+                timestamp: new Date().toISOString(),
+                image: hasImage ? tutorState.selectedImage.data : null
             };
             tutorState.messages.push(userMessage);
 
-            // 清空输入框
+            // 清空输入框和图片
             input.value = '';
+            const selectedImageData = tutorState.selectedImage;
+            removeSelectedImage();
             updateFormulaPreview();
 
             // 更新UI
@@ -1442,10 +1585,7 @@ type === 'blank' ?
 
             try {
                 // 构建对话历史（最近10轮）
-                const recentMessages = tutorState.messages.slice(-20).map(m => ({
-                    role: m.role,
-                    content: m.content
-                }));
+                const recentMessages = tutorState.messages.slice(-20);
 
                 // 添加系统提示
                 const systemPrompt = `你是一位专业的考研数学助教，擅长讲解高等数学、线性代数和概率论与数理统计。
@@ -1456,13 +1596,53 @@ type === 'blank' ?
 3. 提供详细的解题步骤
 4. 使用LaTeX格式书写数学公式（用$包裹行内公式，$$包裹独立公式）
 5. 针对考研数学一的考点进行讲解
+6. 如果用户上传了图片，仔细分析图片中的数学内容并解答
 
 请用中文回答，保持专业但友善的语气。`;
 
-                const messages = [
-                    { role: 'user', content: systemPrompt + '\n\n' + recentMessages[0].content },
-                    ...recentMessages.slice(1)
-                ];
+                // 构建消息数组（支持多模态）
+                const messages = recentMessages.map((m, idx) => {
+                    if (idx === 0) {
+                        // 第一条消息附加系统提示
+                        if (m.image) {
+                            return {
+                                role: m.role,
+                                content: [
+                                    { type: 'text', text: systemPrompt + '\n\n' + m.content },
+                                    {
+                                        type: 'image',
+                                        source: {
+                                            type: 'base64',
+                                            media_type: selectedImageData?.type || 'image/png',
+                                            data: m.image.split(',')[1]
+                                        }
+                                    }
+                                ]
+                            };
+                        } else {
+                            return { role: m.role, content: systemPrompt + '\n\n' + m.content };
+                        }
+                    } else {
+                        if (m.image) {
+                            return {
+                                role: m.role,
+                                content: [
+                                    { type: 'text', text: m.content },
+                                    {
+                                        type: 'image',
+                                        source: {
+                                            type: 'base64',
+                                            media_type: 'image/png',
+                                            data: m.image.split(',')[1]
+                                        }
+                                    }
+                                ]
+                            };
+                        } else {
+                            return { role: m.role, content: m.content };
+                        }
+                    }
+                });
 
                 // 调用AI
                 const response = await callAI(messages, { maxTokens: 2000, temperature: 0.7 });
@@ -2481,6 +2661,53 @@ type === 'blank' ?
                         </div>
                     </div>
 
+                    <!-- AI模型配置 -->
+                    <div class="card settings-card ai-config-section">
+                        <div class="card-header">
+                            <div class="card-title">🤖 AI模型配置</div>
+                        </div>
+                        <div class="ai-config-form">
+                            <div class="settings-row">
+                                <label>AI厂商</label>
+                                <select id="settingsAiProvider" onchange="onSettingsProviderChange()">
+                                    <option value="claude">Claude (Anthropic)</option>
+                                    <option value="deepseek">Deepseek</option>
+                                    <option value="zhipu">智谱AI (GLM)</option>
+                                    <option value="openai">OpenAI兼容API</option>
+                                </select>
+                            </div>
+                            <div class="settings-row">
+                                <label>API Key</label>
+                                <input type="password" id="settingsApiKey" placeholder="请输入API Key">
+                            </div>
+                            <div class="settings-row">
+                                <label>Base URL</label>
+                                <input type="text" id="settingsBaseUrl" placeholder="API基础地址">
+                            </div>
+                            <div class="settings-row">
+                                <label>模型</label>
+                                <select id="settingsApiModel">
+                                    <!-- 动态填充 -->
+                                </select>
+                            </div>
+                            <div class="settings-row" id="customModelRow" style="display: none;">
+                                <label>自定义模型ID</label>
+                                <input type="text" id="settingsCustomModelId" placeholder="输入自定义模型ID">
+                            </div>
+                            <div class="settings-row">
+                                <div id="settingsConnectionStatus" class="connection-status"></div>
+                            </div>
+                            <div class="ai-config-buttons">
+                                <button class="btn btn-secondary" onclick="testSettingsAIConnection()">
+                                    🔗 测试连接
+                                </button>
+                                <button class="btn btn-primary" onclick="saveSettingsAIConfig()">
+                                    💾 保存配置
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- 存储空间使用情况 -->
                     <div class="card settings-card">
                         <div class="card-header">
@@ -2594,6 +2821,9 @@ type === 'blank' ?
                     </div>
                 </div>
             `;
+
+            // 加载AI配置到表单
+            setTimeout(loadSettingsAIConfig, 50);
         }
 
         // 获取数据项中文标签
@@ -2856,7 +3086,7 @@ type === 'blank' ?
 
         // ========== 初始化 ==========
         window.onload = function() {
-            console.log('考研数学学习助手 v1.0.0');
+            console.log('考研数学学习助手 v2.0.0');
             console.log('系统初始化中...');
 
             // 注册视图
@@ -2879,8 +3109,249 @@ type === 'blank' ?
                 });
             });
 
+            // 初始化新手引导和AI状态
+            initOnboarding();
+            updateAIStatus();
+
             console.log('系统初始化完成!');
         };
+
+        // ========== 新手引导系统 ==========
+
+        // 初始化新手引导
+        function initOnboarding() {
+            const hasSeenOnboarding = localStorage.getItem('hasSeenOnboarding');
+            if (!hasSeenOnboarding) {
+                showOnboarding();
+            }
+            // 检查AI配置状态，显示提示条
+            checkAndShowAIBanner();
+        }
+
+        // 显示新手引导
+        function showOnboarding() {
+            const overlay = document.getElementById('onboarding-overlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+            }
+        }
+
+        // 关闭新手引导
+        function closeOnboarding() {
+            const overlay = document.getElementById('onboarding-overlay');
+            const dontShowAgain = document.getElementById('dontShowAgain');
+
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+
+            // 如果勾选了不再显示，保存状态
+            if (dontShowAgain && dontShowAgain.checked) {
+                localStorage.setItem('hasSeenOnboarding', 'true');
+            } else {
+                // 即使没勾选，首次使用后也记录已看过
+                localStorage.setItem('hasSeenOnboarding', 'true');
+            }
+        }
+
+        // 跳转到AI设置
+        function goToAISettings() {
+            closeOnboarding();
+            hideAIBanner();
+            viewManager.switchView('settings');
+            // 滚动到AI配置区域（延迟执行以等待视图渲染）
+            setTimeout(() => {
+                const aiConfigSection = document.querySelector('.ai-config-section');
+                if (aiConfigSection) {
+                    aiConfigSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+
+        // 检查并显示AI配置提示条
+        function checkAndShowAIBanner() {
+            const bannerDismissed = sessionStorage.getItem('aiBannerDismissed');
+            if (!bannerDismissed && !isAIConfigured()) {
+                showAIBanner();
+            }
+        }
+
+        // 显示AI配置提示条
+        function showAIBanner() {
+            const banner = document.getElementById('ai-config-banner');
+            if (banner) {
+                banner.style.display = 'block';
+            }
+        }
+
+        // 隐藏AI配置提示条
+        function hideAIBanner() {
+            const banner = document.getElementById('ai-config-banner');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+            // 本次会话内不再显示
+            sessionStorage.setItem('aiBannerDismissed', 'true');
+        }
+
+        // 更新AI状态指示器
+        function updateAIStatus() {
+            const statusDot = document.getElementById('aiStatusDot');
+            const statusText = document.getElementById('aiStatusText');
+            const indicator = document.getElementById('aiStatusIndicator');
+
+            if (!statusDot || !statusText) return;
+
+            const configured = isAIConfigured();
+
+            if (configured) {
+                statusDot.className = 'status-dot connected';
+                statusText.textContent = 'AI已连接';
+                indicator.title = '点击进入AI设置';
+            } else {
+                statusDot.className = 'status-dot disconnected';
+                statusText.textContent = 'AI未配置';
+                indicator.title = '点击配置AI';
+            }
+        }
+
+        // 重新显示新手引导（用于设置页面的"查看引导"按钮）
+        function reopenOnboarding() {
+            showOnboarding();
+        }
+
+        // ========== 设置页面AI配置功能 ==========
+
+        // 设置页面厂商切换处理
+        function onSettingsProviderChange() {
+            const provider = document.getElementById('settingsAiProvider').value;
+            const modelSelect = document.getElementById('settingsApiModel');
+            const baseUrlInput = document.getElementById('settingsBaseUrl');
+            const customModelRow = document.getElementById('customModelRow');
+
+            // 更新模型列表
+            if (modelSelect && AI_PROVIDERS[provider]) {
+                const models = AI_PROVIDERS[provider].models;
+                modelSelect.innerHTML = models.map(m =>
+                    `<option value="${m.id}">${m.name}</option>`
+                ).join('');
+            }
+
+            // 更新Base URL
+            if (baseUrlInput && AI_PROVIDERS[provider]) {
+                baseUrlInput.value = AI_PROVIDERS[provider].baseUrl;
+            }
+
+            // 显示/隐藏自定义模型输入
+            if (customModelRow) {
+                customModelRow.style.display = provider === 'openai' ? 'block' : 'none';
+            }
+        }
+
+        // 测试设置页面的AI连接
+        async function testSettingsAIConnection() {
+            const provider = document.getElementById('settingsAiProvider').value;
+            const key = document.getElementById('settingsApiKey').value.trim();
+            const baseUrl = document.getElementById('settingsBaseUrl').value.trim();
+            let modelId = document.getElementById('settingsApiModel').value;
+            const statusDiv = document.getElementById('settingsConnectionStatus');
+
+            if (provider === 'openai') {
+                const customModel = document.getElementById('settingsCustomModelId').value.trim();
+                if (customModel) modelId = customModel;
+            }
+
+            if (!key) {
+                statusDiv.innerHTML = '<span style="color: #F44336;">请输入API Key</span>';
+                return;
+            }
+
+            statusDiv.innerHTML = '<span style="color: #FF9800;">正在测试连接...</span>';
+
+            try {
+                const testAdapter = new AIModelAdapter(provider, key, modelId, baseUrl);
+                await testAdapter.chat([{ role: 'user', content: '你好，请回复"连接成功"' }], { maxTokens: 50 });
+                statusDiv.innerHTML = '<span style="color: #4CAF50;">✓ 连接成功！</span>';
+            } catch (error) {
+                statusDiv.innerHTML = `<span style="color: #F44336;">✗ 连接失败: ${error.message}</span>`;
+            }
+        }
+
+        // 保存设置页面的AI配置
+        function saveSettingsAIConfig() {
+            const provider = document.getElementById('settingsAiProvider').value;
+            const key = document.getElementById('settingsApiKey').value.trim();
+            const baseUrl = document.getElementById('settingsBaseUrl').value.trim();
+            let modelId = document.getElementById('settingsApiModel').value;
+
+            if (provider === 'openai') {
+                const customModel = document.getElementById('settingsCustomModelId').value.trim();
+                if (customModel) modelId = customModel;
+            }
+
+            if (!key) {
+                alert('请输入API Key');
+                return;
+            }
+
+            // 保存到统一的配置键
+            const config = {
+                provider: provider,
+                apiKey: key,
+                modelId: modelId,
+                baseUrl: baseUrl || AI_PROVIDERS[provider]?.baseUrl
+            };
+            localStorage.setItem('mathHelper_aiConfig', JSON.stringify(config));
+
+            // 初始化适配器
+            initAIAdapter(provider, key, modelId, config.baseUrl);
+
+            // 更新AI状态
+            updateAIStatus();
+            hideAIBanner();
+
+            alert('AI配置已保存！');
+        }
+
+        // 加载设置页面的AI配置（在渲染设置页面后调用）
+        function loadSettingsAIConfig() {
+            try {
+                const configStr = localStorage.getItem('mathHelper_aiConfig');
+                if (configStr) {
+                    const config = JSON.parse(configStr);
+
+                    const providerSelect = document.getElementById('settingsAiProvider');
+                    const keyInput = document.getElementById('settingsApiKey');
+                    const baseUrlInput = document.getElementById('settingsBaseUrl');
+                    const modelSelect = document.getElementById('settingsApiModel');
+                    const customModelInput = document.getElementById('settingsCustomModelId');
+                    const customModelRow = document.getElementById('customModelRow');
+
+                    if (providerSelect) providerSelect.value = config.provider || 'claude';
+
+                    // 先更新模型列表
+                    onSettingsProviderChange();
+
+                    if (keyInput) keyInput.value = config.apiKey || '';
+                    if (baseUrlInput) baseUrlInput.value = config.baseUrl || '';
+                    if (modelSelect && config.provider !== 'openai') {
+                        modelSelect.value = config.modelId || '';
+                    }
+                    if (customModelInput && config.provider === 'openai') {
+                        customModelInput.value = config.modelId || '';
+                    }
+                    if (customModelRow) {
+                        customModelRow.style.display = config.provider === 'openai' ? 'block' : 'none';
+                    }
+                } else {
+                    // 没有配置，初始化默认状态
+                    onSettingsProviderChange();
+                }
+            } catch (error) {
+                console.error('加载AI配置失败:', error);
+                onSettingsProviderChange();
+            }
+        }
     </script>
 
     <!-- 外部脚本 -->
