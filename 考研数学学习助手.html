@@ -24,337 +24,8 @@
     <!-- Chart.js图表库 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
 
-    <style>
-        /* ========== 全局样式 ========== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #2196F3;
-            --primary-dark: #1976D2;
-            --primary-light: #E3F2FD;
-            --success-color: #4CAF50;
-            --warning-color: #FF9800;
-            --danger-color: #F44336;
-            --purple-color: #9C27B0;
-            --sidebar-width: 260px;
-            --header-height: 0px;
-            --border-radius: 10px;
-            --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-            background: #f5f7fa;
-            overflow-x: hidden;
-        }
-
-        /* ========== 主容器布局 ========== */
-        .app-container {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* ========== 左侧导航栏 ========== */
-        .sidebar {
-            width: var(--sidebar-width);
-            background: linear-gradient(180deg, #2196F3 0%, #1976D2 100%);
-            color: white;
-            padding: 0;
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        .sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 3px;
-        }
-
-        .logo {
-            padding: 25px 20px;
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .logo-icon {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-
-        .nav-menu {
-            list-style: none;
-            padding: 15px 0;
-        }
-
-        .nav-menu li {
-            margin: 5px 10px;
-            padding: 12px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 15px;
-        }
-
-        .nav-menu li:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .nav-menu li.active {
-            background: rgba(255, 255, 255, 0.25);
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-icon {
-            font-size: 20px;
-            width: 24px;
-            text-align: center;
-        }
-
-        /* ========== 右侧内容区 ========== */
-        .content-area {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            min-height: 100vh;
-            background: #f5f7fa;
-            padding: 30px;
-        }
-
-        #view-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* ========== 通用卡片样式 ========== */
-        .card {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 25px;
-            margin-bottom: 20px;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .card-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card-subtitle {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        /* ========== 按钮样式 ========== */
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
-        }
-
-        .btn-success {
-            background: var(--success-color);
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
-        }
-
-        .btn-warning {
-            background: var(--warning-color);
-            color: white;
-        }
-
-        .btn-warning:hover {
-            background: #F57C00;
-        }
-
-        .btn-danger {
-            background: var(--danger-color);
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background: #da190b;
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-
-        .btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* ========== 加载动画 ========== */
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-
-        .loading-spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid var(--primary-color);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* ========== 响应式设计 ========== */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-            }
-
-            .content-area {
-                margin-left: 0;
-                padding: 15px;
-            }
-
-            .nav-menu li {
-                padding: 10px;
-            }
-        }
-
-        /* ========== 空状态 ========== */
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
-
-        .empty-state-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
-
-        .empty-state-text {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        /* ========== 工具提示 ========== */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-
-        .tooltip:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 6px 12px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            font-size: 12px;
-            white-space: nowrap;
-            border-radius: 4px;
-            margin-bottom: 5px;
-            z-index: 1000;
-        }
-
-        /* ========== 徽章 ========== */
-        .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .badge-primary {
-            background: var(--primary-light);
-            color: var(--primary-color);
-        }
-
-        .badge-success {
-            background: #E8F5E9;
-            color: var(--success-color);
-        }
-
-        .badge-warning {
-            background: #FFF3E0;
-            color: var(--warning-color);
-        }
-
-        .badge-danger {
-            background: #FFEBEE;
-            color: var(--danger-color);
-        }
-    </style>
+    <!-- 外部样式表 -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- 主容器 -->
@@ -406,235 +77,444 @@
     </div>
 
     <script>
-        // ========== 数据管理模块 ==========
-        const dataManager = {
-            // 保存数据到localStorage
-            save(key, data) {
-                try {
-                    localStorage.setItem(`mathHelper_${key}`, JSON.stringify(data));
-                    return true;
-                } catch (e) {
-                    console.error('保存数据失败:', e);
-                    alert('数据保存失败,可能是存储空间不足');
-                    return false;
-                }
-            },
-
-            // 从localStorage加载数据
-            load(key, defaultValue = null) {
-                try {
-                    const data = localStorage.getItem(`mathHelper_${key}`);
-                    return data ? JSON.parse(data) : defaultValue;
-                } catch (e) {
-                    console.error('加载数据失败:', e);
-                    return defaultValue;
-                }
-            },
-
-            // 导出所有数据
-            exportAllData() {
-                const allData = {
-                    userData: this.load('userData'),
-                    progress: this.load('progress'),
-                    wrongQuestions: this.load('wrongQuestions'),
-                    studyPlans: this.load('studyPlans'),
-                    statistics: this.load('statistics'),
-                    aiConversations: this.load('aiConversations'),
-                    exportTime: new Date().toISOString(),
-                    version: '1.0.0'
-                };
-
-                const blob = new Blob([JSON.stringify(allData, null, 2)],
-                    { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `考研数学学习数据_${new Date().toISOString().split('T')[0]}.json`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            },
-
-            // 导入数据
-            importData(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        try {
-                            const data = JSON.parse(e.target.result);
-                            // 验证数据格式
-                            if (!data.exportTime || !data.version) {
-                                throw new Error('数据格式不正确');
-                            }
-                            // 导入各项数据
-                            if (data.userData) this.save('userData', data.userData);
-                            if (data.progress) this.save('progress', data.progress);
-                            if (data.wrongQuestions) this.save('wrongQuestions', data.wrongQuestions);
-                            if (data.studyPlans) this.save('studyPlans', data.studyPlans);
-                            if (data.statistics) this.save('statistics', data.statistics);
-                            if (data.aiConversations) this.save('aiConversations', data.aiConversations);
-
-                            resolve(data);
-                        } catch (error) {
-                            reject(error);
-                        }
-                    };
-                    reader.onerror = () => reject(new Error('文件读取失败'));
-                    reader.readAsText(file);
-                });
-            },
-
-            // 清空所有数据
-            clearAllData() {
-                const keys = ['userData', 'progress', 'wrongQuestions', 'studyPlans',
-                             'statistics', 'aiConversations', 'currentView'];
-                keys.forEach(key => {
-                    localStorage.removeItem(`mathHelper_${key}`);
-                });
-            }
-        };
-
-        // ========== 视图管理模块 ==========
-        const viewManager = {
-            currentView: 'dashboard',
-
-            // 视图渲染函数映射
-            views: {
-                dashboard: renderDashboard,
-                plan: renderPlanView,
-                knowledge: renderKnowledgeView,
-                practice: renderPracticeView,
-                'ai-tutor': renderAITutorView,
-                statistics: renderStatisticsView,
-                settings: renderSettingsView
-            },
-
-            // 切换视图
-            switchView(viewName) {
-                if (!this.views[viewName]) {
-                    console.error(`视图 ${viewName} 不存在`);
-                    return;
-                }
-
-                this.currentView = viewName;
-                const container = document.getElementById('view-container');
-
-                // 显示加载动画
-                container.innerHTML = `
-                    <div class="loading">
-                        <div class="loading-spinner"></div>
-                        <div>加载中...</div>
-                    </div>
-                `;
-
-                // 延迟渲染以显示加载动画
-                setTimeout(() => {
-                    container.innerHTML = '';
-                    this.views[viewName]();
-                    this.updateActiveNav(viewName);
-                    this.saveCurrentView();
-
-                    // 渲染MathJax公式
-                    if (window.MathJax && window.MathJax.typesetPromise) {
-                        MathJax.typesetPromise([container]).catch((err) =>
-                            console.log('MathJax渲染错误:', err));
-                    }
-                }, 100);
-            },
-
-            // 更新导航激活状态
-            updateActiveNav(viewName) {
-                document.querySelectorAll('.nav-menu li').forEach(li => {
-                    li.classList.remove('active');
-                    if (li.dataset.view === viewName) {
-                        li.classList.add('active');
-                    }
-                });
-            },
-
-            // 保存当前视图
-            saveCurrentView() {
-                dataManager.save('currentView', this.currentView);
-            },
-
-            // 加载上次的视图
-            loadLastView() {
-                const lastView = dataManager.load('currentView', 'dashboard');
-                this.switchView(lastView);
-            }
-        };
-
         // ========== 各视图渲染函数 ==========
 
         // 首页/仪表板
         function renderDashboard() {
             const container = document.getElementById('view-container');
+
+            // 获取数据
+            const examDate = new Date('2026-12-23');
+            const today = new Date();
+            const daysLeft = Math.ceil((examDate - today) / (1000 * 60 * 60 * 24));
+            const dateStr = today.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+
+            // 激励语句
+            const motivations = [
+                '每一道题都是通往成功的阶梯',
+                '坚持就是胜利，今天也要加油！',
+                '千里之行，始于足下',
+                '学习是最好的投资',
+                '今天的努力是明天的收获',
+                '相信自己，你可以的！'
+            ];
+            const motivation = motivations[Math.floor(Math.random() * motivations.length)];
+
+            // 获取学习数据
+            const plan = dataManager.load('studyPlan', null);
+            const progress = dataManager.load('learningProgress', {});
+            const knowledgeTree = dataManager.load('knowledgeTree', getDefaultKnowledgeTree());
+
+            // 计算统计数据
+            const stats = calculateDashboardStats(plan, progress, knowledgeTree);
+
             container.innerHTML = `
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">🎯 欢迎回来!</div>
-                            <div class="card-subtitle">继续你的考研数学学习之旅</div>
+                <div class="dashboard-container">
+                    <!-- 欢迎区域 -->
+                    <div class="welcome-section">
+                        <div class="welcome-content">
+                            <h2>🎓 欢迎回来！</h2>
+                            <div class="date-info">📅 ${dateStr}</div>
+                            <div class="motivation">💬 "${motivation}"</div>
                         </div>
-                        <div>
-                            <span class="badge badge-primary">距离考研还有 <strong id="daysToExam">0</strong> 天</span>
+                        <div class="countdown-box">
+                            <div class="countdown-number">${daysLeft}</div>
+                            <div class="countdown-label">天后考研</div>
                         </div>
                     </div>
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📊</div>
-                        <div class="empty-state-text">仪表板功能开发中...</div>
-                        <div class="empty-state-text" style="font-size: 14px; color: #aaa;">
-                            将显示学习进度、今日任务、统计图表等信息
+
+                    <!-- 统计卡片 -->
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon blue">📋</div>
+                            <div class="stat-info">
+                                <div class="stat-value">${stats.todayTaskCount}</div>
+                                <div class="stat-label">今日任务</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">✅</div>
+                            <div class="stat-info">
+                                <div class="stat-value">${stats.todayCompletionRate}%</div>
+                                <div class="stat-label">今日完成率</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange">🔥</div>
+                            <div class="stat-info">
+                                <div class="stat-value">${stats.streakDays}</div>
+                                <div class="stat-label">连续学习天数</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon purple">📚</div>
+                            <div class="stat-info">
+                                <div class="stat-value">${stats.completedUnits}/${stats.totalUnits}</div>
+                                <div class="stat-label">知识点进度</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 主内容区 -->
+                    <div class="dashboard-main">
+                        <!-- 今日任务 -->
+                        <div class="today-tasks-card">
+                            <div class="card-header-row">
+                                <h3>📋 今日学习任务</h3>
+                                <span class="task-progress-mini">${stats.todayCompletedTasks}/${stats.todayTaskCount} 已完成</span>
+                            </div>
+                            <div class="dashboard-task-list" id="dashboard-task-list">
+                                ${renderDashboardTasks(plan)}
+                            </div>
+                        </div>
+
+                        <!-- 学习进度与快捷入口 -->
+                        <div class="progress-actions-card">
+                            <!-- 进度图表 -->
+                            <div class="progress-charts-section">
+                                <h3>📊 学习进度</h3>
+                                <div class="charts-row">
+                                    <div class="chart-item">
+                                        <div class="chart-wrapper">
+                                            <canvas id="chart-calculus"></canvas>
+                                            <div class="chart-center-text">${stats.subjectProgress.calculus}%</div>
+                                        </div>
+                                        <div class="chart-label">微积分</div>
+                                    </div>
+                                    <div class="chart-item">
+                                        <div class="chart-wrapper">
+                                            <canvas id="chart-linear"></canvas>
+                                            <div class="chart-center-text">${stats.subjectProgress.linearAlgebra}%</div>
+                                        </div>
+                                        <div class="chart-label">线性代数</div>
+                                    </div>
+                                    <div class="chart-item">
+                                        <div class="chart-wrapper">
+                                            <canvas id="chart-prob"></canvas>
+                                            <div class="chart-center-text">${stats.subjectProgress.probability}%</div>
+                                        </div>
+                                        <div class="chart-label">概率论</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 快捷入口 -->
+                            <div class="quick-actions-section">
+                                <h3>🚀 快捷入口</h3>
+                                <div class="quick-actions-grid">
+                                    <button class="quick-action-btn" onclick="viewManager.switchView('knowledge')">
+                                        <span class="action-icon">📖</span>
+                                        <span class="action-text">继续学习</span>
+                                    </button>
+                                    <button class="quick-action-btn" onclick="viewManager.switchView('practice')">
+                                        <span class="action-icon">✍️</span>
+                                        <span class="action-text">开始练习</span>
+                                    </button>
+                                    <button class="quick-action-btn" onclick="viewManager.switchView('plan')">
+                                        <span class="action-icon">📅</span>
+                                        <span class="action-text">学习规划</span>
+                                    </button>
+                                    <button class="quick-action-btn" onclick="viewManager.switchView('ai-tutor')">
+                                        <span class="action-icon">🤖</span>
+                                        <span class="action-text">AI助教</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 最近活动 -->
+                    <div class="recent-activity-card">
+                        <h3>📝 最近学习活动</h3>
+                        <div class="activity-list" id="activity-list">
+                            ${renderRecentActivity(progress)}
                         </div>
                     </div>
                 </div>
             `;
 
-            // 计算距离考研天数(默认2026年12月23日)
-            const examDate = new Date('2026-12-23');
-            const today = new Date();
-            const daysLeft = Math.ceil((examDate - today) / (1000 * 60 * 60 * 24));
-            document.getElementById('daysToExam').textContent = daysLeft;
+            // 初始化图表
+            initDashboardCharts(stats.subjectProgress);
+        }
+
+        // 计算仪表板统计数据
+        function calculateDashboardStats(plan, progress, knowledgeTree) {
+            // 计算知识点统计
+            let totalUnits = 0;
+            let completedUnits = 0;
+            const subjectProgress = { calculus: 0, linearAlgebra: 0, probability: 0 };
+            const subjectTotal = { calculus: 0, linearAlgebra: 0, probability: 0 };
+
+            for (const [subjectKey, subject] of Object.entries(knowledgeTree)) {
+                for (const chapter of subject.chapters) {
+                    for (const unit of chapter.units) {
+                        totalUnits++;
+                        subjectTotal[subjectKey]++;
+                        const status = progress[unit.id]?.status;
+                        if (status === 'completed' || status === 'mastered') {
+                            completedUnits++;
+                            subjectProgress[subjectKey]++;
+                        }
+                    }
+                }
+            }
+
+            // 计算各科目百分比
+            for (const key of Object.keys(subjectProgress)) {
+                subjectProgress[key] = subjectTotal[key] > 0
+                    ? Math.round((subjectProgress[key] / subjectTotal[key]) * 100)
+                    : 0;
+            }
+
+            // 今日任务统计
+            let todayTaskCount = 0;
+            let todayCompletedTasks = 0;
+            if (plan && plan.dailyTasks) {
+                const today = new Date().toISOString().split('T')[0];
+                const todayTasks = plan.dailyTasks.find(dt => dt.date === today);
+                if (todayTasks && todayTasks.tasks) {
+                    todayTaskCount = todayTasks.tasks.length;
+                    todayCompletedTasks = todayTasks.tasks.filter(t => t.status === 'completed').length;
+                }
+            }
+
+            // 连续学习天数 (简化计算)
+            const streakDays = calculateStreakDays(progress);
+
+            return {
+                totalUnits,
+                completedUnits,
+                subjectProgress,
+                todayTaskCount,
+                todayCompletedTasks,
+                todayCompletionRate: todayTaskCount > 0 ? Math.round((todayCompletedTasks / todayTaskCount) * 100) : 0,
+                streakDays
+            };
+        }
+
+        // 计算连续学习天数
+        function calculateStreakDays(progress) {
+            const dates = new Set();
+            for (const data of Object.values(progress)) {
+                if (data.lastStudied) {
+                    dates.add(data.lastStudied.split('T')[0]);
+                }
+            }
+
+            if (dates.size === 0) return 0;
+
+            const sortedDates = Array.from(dates).sort().reverse();
+            const today = new Date().toISOString().split('T')[0];
+
+            // 检查今天或昨天是否学习
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+            if (!dates.has(today) && !dates.has(yesterdayStr)) {
+                return 0;
+            }
+
+            let streak = 0;
+            let checkDate = dates.has(today) ? new Date() : yesterday;
+
+            while (dates.has(checkDate.toISOString().split('T')[0])) {
+                streak++;
+                checkDate.setDate(checkDate.getDate() - 1);
+            }
+
+            return streak;
+        }
+
+        // 渲染今日任务列表
+        function renderDashboardTasks(plan) {
+            if (!plan || !plan.dailyTasks) {
+                return `
+                    <div class="no-tasks-message">
+                        <div class="icon">📋</div>
+                        <div>暂无学习规划</div>
+                        <button class="btn btn-primary" style="margin-top: 15px;" onclick="viewManager.switchView('plan')">
+                            创建学习规划
+                        </button>
+                    </div>
+                `;
+            }
+
+            const today = new Date().toISOString().split('T')[0];
+            const todayTasks = plan.dailyTasks.find(dt => dt.date === today);
+
+            if (!todayTasks || todayTasks.tasks.length === 0) {
+                return `
+                    <div class="no-tasks-message">
+                        <div class="icon">✅</div>
+                        <div>今日没有安排学习任务</div>
+                    </div>
+                `;
+            }
+
+            return todayTasks.tasks.map(task => {
+                const isCompleted = task.status === 'completed';
+                const taskName = task.knowledgeName || task.description || '学习任务';
+                const taskType = task.type === 'knowledge' ? '📖 知识点'
+                    : task.type === 'practice' ? '✍️ 练习'
+                    : '🔄 复习';
+
+                return `
+                    <div class="dashboard-task-item ${isCompleted ? 'completed' : ''}"
+                         onclick="toggleDashboardTask('${task.id}')">
+                        <div class="task-checkbox ${isCompleted ? 'checked' : ''}">
+                            ${isCompleted ? '✓' : ''}
+                        </div>
+                        <div class="task-content">
+                            <div class="task-title">${taskName}</div>
+                            <div class="task-subtitle">${taskType}</div>
+                        </div>
+                        <div class="task-duration">${task.duration}分钟</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 切换任务完成状态
+        function toggleDashboardTask(taskId) {
+            const plan = dataManager.load('studyPlan', null);
+            if (!plan || !plan.dailyTasks) return;
+
+            const today = new Date().toISOString().split('T')[0];
+            const todayTasks = plan.dailyTasks.find(dt => dt.date === today);
+            if (!todayTasks) return;
+
+            const task = todayTasks.tasks.find(t => t.id === taskId);
+            if (!task) return;
+
+            // 切换状态
+            task.status = task.status === 'completed' ? 'pending' : 'completed';
+
+            // 保存并刷新
+            dataManager.save('studyPlan', plan);
+            renderDashboard();
+        }
+
+        // 渲染最近活动
+        function renderRecentActivity(progress) {
+            const activities = [];
+
+            for (const [unitId, data] of Object.entries(progress)) {
+                if (data.lastStudied) {
+                    activities.push({
+                        unitId,
+                        unitName: data.unitName || unitId,
+                        subject: data.subject || 'calculus',
+                        lastStudied: data.lastStudied,
+                        status: data.status
+                    });
+                }
+            }
+
+            if (activities.length === 0) {
+                return `
+                    <div class="no-activity-message">
+                        <div>暂无学习记录</div>
+                        <div style="margin-top: 10px;">开始学习，记录将显示在这里</div>
+                    </div>
+                `;
+            }
+
+            // 按时间排序，取最近5个
+            activities.sort((a, b) => new Date(b.lastStudied) - new Date(a.lastStudied));
+            const recentActivities = activities.slice(0, 5);
+
+            const subjectNames = {
+                calculus: '微积分',
+                linearAlgebra: '线代',
+                probability: '概率论'
+            };
+
+            return recentActivities.map(activity => {
+                const timeAgo = getTimeAgo(activity.lastStudied);
+                const subjectName = subjectNames[activity.subject] || activity.subject;
+
+                return `
+                    <div class="activity-item" onclick="goToKnowledge('${activity.unitId}')">
+                        <div class="activity-icon">📖</div>
+                        <div class="activity-info">
+                            <div class="activity-title">${activity.unitName}</div>
+                            <div class="activity-time">${timeAgo}</div>
+                        </div>
+                        <span class="activity-badge ${activity.subject}">${subjectName}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 计算时间差
+        function getTimeAgo(dateStr) {
+            const date = new Date(dateStr);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+
+            if (diffMins < 60) return `${diffMins}分钟前`;
+            if (diffHours < 24) return `${diffHours}小时前`;
+            if (diffDays < 7) return `${diffDays}天前`;
+            return date.toLocaleDateString('zh-CN');
+        }
+
+        // 跳转到知识点
+        function goToKnowledge(unitId) {
+            // 保存要跳转的知识点ID
+            dataManager.save('targetKnowledgeId', unitId);
+            viewManager.switchView('knowledge');
+        }
+
+        // 初始化仪表板图表
+        function initDashboardCharts(subjectProgress) {
+            const chartConfig = (progress, color) => ({
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [progress, 100 - progress],
+                        backgroundColor: [color, '#e0e0e0'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    cutout: '70%',
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    }
+                }
+            });
+
+            // 微积分图表
+            const ctx1 = document.getElementById('chart-calculus');
+            if (ctx1) new Chart(ctx1, chartConfig(subjectProgress.calculus, '#2196F3'));
+
+            // 线性代数图表
+            const ctx2 = document.getElementById('chart-linear');
+            if (ctx2) new Chart(ctx2, chartConfig(subjectProgress.linearAlgebra, '#4CAF50'));
+
+            // 概率论图表
+            const ctx3 = document.getElementById('chart-prob');
+            if (ctx3) new Chart(ctx3, chartConfig(subjectProgress.probability, '#FF9800'));
         }
 
         // 学习规划
         function renderPlanView() {
-            const container = document.getElementById('view-container');
-            container.innerHTML = `
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">📅 学习规划</div>
-                    </div>
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📅</div>
-                        <div class="empty-state-text">学习规划功能开发中...</div>
-                        <div class="empty-state-text" style="font-size: 14px; color: #aaa;">
-                            将支持基础规划和AI智能规划两种模式
-                        </div>
-                    </div>
-                </div>
-            `;
+            // 检查是否已有规划
+            const savedPlan = dataManager.load('studyPlan', null);
+            if (savedPlan && savedPlan.applied) {
+                renderPlanDisplay(savedPlan);
+            } else {
+                renderPlanConfig();
+            }
         }
 
-        // 知识点学习
-        function renderKnowledgeView() {
-            const container = document.getElementById('view-container');
-            container.innerHTML = `
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">📚 知识点学习</div>
-                    </div>
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📚</div>
-                        <div class="empty-state-text">知识点学习功能开发中...</div>
-                        <div class="empty-state-text" style="font-size: 14px; color: #aaa;">
-                            将包含微积分、线性代数、概率论三大模块的完整知识树
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
 
         // 练习测试
         function renderPracticeView() {
@@ -849,6 +729,13 @@
             console.log('考研数学学习助手 v1.0.0');
             console.log('系统初始化中...');
 
+            // 注册视图
+            viewManager.register('dashboard', renderDashboard);
+            viewManager.register('practice', renderPracticeView);
+            viewManager.register('ai-tutor', renderAITutorView);
+            viewManager.register('statistics', renderStatisticsView);
+            viewManager.register('settings', renderSettingsView);
+
             // 加载上次的视图
             viewManager.loadLastView();
 
@@ -865,5 +752,12 @@
             console.log('系统初始化完成!');
         };
     </script>
+
+    <!-- 外部脚本 -->
+    <script src="js/ai-adapter.js"></script>
+    <script src="js/data-manager.js"></script>
+    <script src="js/knowledge-data.js"></script>
+    <script src="js/knowledge-module.js"></script>
+    <script src="js/plan-module.js"></script>
 </body>
 </html>

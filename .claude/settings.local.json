@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push:*)",
+      "Bash(git stash:*)",
+      "Bash(find:*)",
+      "Bash(dir:*)",
+      "Bash(git -C \"d:\\\\Documents\\\\Coding\\\\Claude Code\\\\math\" log --oneline -10)",
+      "Bash(git -C \"d:\\\\Documents\\\\Coding\\\\Claude Code\\\\math\" status --short)",
+      "Bash(du:*)",
+      "Bash(wc:*)",
+      "Bash(ls -lh \"d:\\\\Documents\\\\Coding\\\\Claude Code\\\\math\\\\js\"\" && ls -lh \"d:DocumentsCodingClaude Codemathcss\"\")",
+      "Bash(git add:*)"
+    ]
+  }
+}
