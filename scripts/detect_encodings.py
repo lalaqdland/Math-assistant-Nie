@@ -9,6 +9,17 @@ import os
 import sys
 import chardet
 from pathlib import Path
+import io
+
+# Ensure stdout is UTF-8 encoded to avoid terminal garbling when printing Unicode.
+# This makes the script more robust when run in terminals whose default encoding is not UTF-8.
+try:
+    stdout_enc = getattr(sys.stdout, "encoding", None)
+    if stdout_enc is None or "utf-8" not in (stdout_enc or "").lower():
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+except Exception:
+    # If we can't wrap stdout for any reason, continue without failing.
+    pass
 
 # 需要检测的文本文件扩展名
 TEXT_EXTENSIONS = {
