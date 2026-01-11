@@ -140,16 +140,26 @@ function startExam() {
  * @returns {string} 筛选界面HTML
  */
 function renderExerciseFilter() {
+    // 生成知识点选项
+    const knowledgePointOptions = generateKnowledgePointOptions();
+
     return `
         <div class="exercise-filter">
             <div class="filter-row">
                 <div class="filter-group">
                     <label>学科：</label>
-                    <select id="filterSubject" class="filter-select">
+                    <select id="filterSubject" class="filter-select" onchange="updateKnowledgePointOptions()">
                         <option value="all">全部</option>
                         <option value="calculus">微积分</option>
                         <option value="linear">线性代数</option>
                         <option value="probability">概率论</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>知识点：</label>
+                    <select id="filterKnowledgePoint" class="filter-select">
+                        <option value="all">全部</option>
+                        ${knowledgePointOptions}
                     </select>
                 </div>
                 <div class="filter-group">
@@ -194,15 +204,20 @@ function renderExerciseFilter() {
 /**
  * 开始专项练习
  */
-function startExercise() {
-    const subject = document.getElementById('filterSubject').value;
-    const difficulty = document.getElementById('filterDifficulty').value;
-    const type = document.getElementById('filterType').value;
-    const count = parseInt(document.getElementById('filterCount').value);
+function startExercise(unitId = null) {
+    const subject = document.getElementById('filterSubject')?.value || 'all';
+    const knowledgePoint = unitId || (document.getElementById('filterKnowledgePoint')?.value || 'all');
+    const difficulty = document.getElementById('filterDifficulty')?.value || 'all';
+    const type = document.getElementById('filterType')?.value || 'all';
+    const count = parseInt(document.getElementById('filterCount')?.value || '10');
 
     // 筛选题目
     let filtered = questionBank.filter(q => {
         if (subject !== 'all' && q.subject !== subject) return false;
+        if (knowledgePoint !== 'all') {
+            const questionPoints = q.knowledgePoints || [];
+            if (!questionPoints.includes(knowledgePoint)) return false;
+        }
         if (difficulty !== 'all' && q.difficulty !== difficulty) return false;
         if (type !== 'all' && q.type !== type) return false;
         return true;
@@ -526,6 +541,14 @@ type === 'blank' ?
         const jsonMatch = response.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
             const newQuestion = JSON.parse(jsonMatch[0]);
+
+            // 推断知识点
+            if (typeof QuestionTemplateSystem !== 'undefined') {
+                newQuestion.knowledgePoints = QuestionTemplateSystem.inferKnowledgePointsForQuestion(newQuestion);
+            } else {
+                newQuestion.knowledgePoints = [];
+            }
+
             exerciseState = {
                 questions: [newQuestion],
                 currentIndex: 0,
@@ -818,6 +841,105 @@ let questionBankState = {
 };
 
 /**
+ * 渲染知识点标签
+ * @param {string[]} knowledgePoints - 知识点ID数组
+ * @returns {string} HTML标签字符串
+ */
+function renderKnowledgePointTags(knowledgePoints) {
+    if (!knowledgePoints || knowledgePoints.length === 0) {
+        return '<span class="tag tag-unlabeled">未标注</span>';
+    }
+
+    // 获取知识点名称映射
+    const knowledgePointNames = getKnowledgePointNames();
+
+    return knowledgePoints.map(pointId => {
+        const pointName = knowledgePointNames[pointId] || pointId;
+        return `<span class="tag tag-knowledge" onclick="jumpToKnowledgePoint('${pointId}')" title="点击跳转到知识点：${pointName}">📖 ${pointName}</span>`;
+    }).join('');
+}
+
+/**
+ * 获取知识点名称映射
+ * @returns {Object} 知识点ID到名称的映射
+ */
+function getKnowledgePointNames() {
+    const tree = dataManager.load('knowledgeTree', getDefaultKnowledgeTree());
+    const names = {};
+
+    for (const subject of Object.values(tree)) {
+        for (const chapter of subject.chapters) {
+            for (const unit of chapter.units) {
+                names[unit.id] = unit.name;
+            }
+        }
+    }
+
+    return names;
+}
+
+/**
+ * 跳转到知识点详情
+ * @param {string} unitId - 知识点ID
+ */
+function jumpToKnowledgePoint(unitId) {
+    viewManager.switchView('knowledge');
+    // 延迟加载以确保视图切换完成
+    setTimeout(() => {
+        loadKnowledgeUnit(unitId);
+    }, 100);
+}
+
+/**
+ * 生成知识点选项HTML
+ * @param {string} subjectFilter - 学科筛选
+ * @returns {string} 选项HTML
+ */
+function generateKnowledgePointOptions(subjectFilter = 'all') {
+    const tree = dataManager.load('knowledgeTree', getDefaultKnowledgeTree());
+    const knowledgePointNames = getKnowledgePointNames();
+    let options = '';
+
+    for (const [subjectKey, subject] of Object.entries(tree)) {
+        if (subjectFilter !== 'all' && subjectFilter !== subjectKey) continue;
+
+        for (const chapter of subject.chapters) {
+            for (const unit of chapter.units) {
+                const fullName = `${subject.name} > ${chapter.name} > ${unit.name}`;
+                options += `<option value="${unit.id}">${fullName}</option>`;
+            }
+        }
+    }
+
+    return options;
+}
+
+/**
+ * 更新知识点选项
+ */
+function updateKnowledgePointOptions() {
+    const subject = document.getElementById('filterSubject').value;
+    const knowledgePointSelect = document.getElementById('filterKnowledgePoint');
+
+    // 保存当前选择
+    const currentValue = knowledgePointSelect.value;
+
+    // 更新选项
+    knowledgePointSelect.innerHTML = `
+        <option value="all">全部</option>
+        ${generateKnowledgePointOptions(subject)}
+    `;
+
+    // 恢复选择（如果仍然有效）
+    if (currentValue && currentValue !== 'all') {
+        const option = knowledgePointSelect.querySelector(`option[value="${currentValue}"]`);
+        if (option) {
+            knowledgePointSelect.value = currentValue;
+        }
+    }
+}
+
+/**
  * 渲染题库管理标签页
  */
 function renderQuestionBankTab() {
@@ -1029,6 +1151,9 @@ function renderQuestionList() {
         const preview = questionText.length > 100 ? questionText.substring(0, 100) + '...' : questionText;
         const isFavorite = questionBankManager.isFavorite(q.id);
 
+        // 生成知识点标签
+        const knowledgePointTags = this.renderKnowledgePointTags(q.knowledgePoints || []);
+
         return `
             <div class="bank-question-item">
                 <div class="bank-question-header">
@@ -1037,6 +1162,7 @@ function renderQuestionList() {
                         <span class="tag tag-${q.difficulty}">${difficultyNames[q.difficulty] || '未知'}</span>
                         <span class="tag">${typeNames[q.type] || '未知'}</span>
                         <span class="tag tag-source">${sourceNames[q.source] || '未知'}</span>
+                        ${knowledgePointTags}
                     </div>
                     <div class="bank-question-actions">
                         <button class="btn btn-icon ${isFavorite ? 'favorited' : ''}" onclick="toggleBankFavorite('${q.id}')" title="${isFavorite ? '取消收藏' : '收藏'}">
@@ -1148,6 +1274,9 @@ function showQuestionDetail(id) {
         optionsHTML = `<div class="detail-options"><strong>选项：</strong><br>${question.options.join('<br>')}</div>`;
     }
 
+    // 生成知识点标签
+    const knowledgePointTags = renderKnowledgePointTags(question.knowledgePoints || []);
+
     const modal = document.createElement('div');
     modal.className = 'modal';
     modal.id = 'question-detail-modal';
@@ -1162,6 +1291,7 @@ function showQuestionDetail(id) {
                     <span class="tag tag-${question.subject}">${subjectNames[question.subject] || '未知'}</span>
                     <span class="tag tag-${question.difficulty}">${difficultyNames[question.difficulty] || '未知'}</span>
                     <span class="tag">${typeNames[question.type] || '未知'}</span>
+                    ${knowledgePointTags}
                 </div>
                 <div class="detail-question"><strong>题目：</strong>${questionText}</div>
                 ${optionsHTML}
@@ -1293,6 +1423,14 @@ ${type === 'choice' ?
             if (jsonMatch) {
                 const newQuestion = JSON.parse(jsonMatch[0]);
                 newQuestion.source = 'ai';
+
+                // 推断知识点
+                if (typeof QuestionTemplateSystem !== 'undefined') {
+                    newQuestion.knowledgePoints = QuestionTemplateSystem.inferKnowledgePointsForQuestion(newQuestion);
+                } else {
+                    newQuestion.knowledgePoints = [];
+                }
+
                 generatedQuestions.push(newQuestion);
                 successCount++;
             }

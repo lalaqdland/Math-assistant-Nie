@@ -6,6 +6,105 @@
  */
 
 const QuestionTemplateSystem = {
+    // ==================== 知识点映射 ====================
+
+    /**
+     * 模板到知识点的映射表
+     * key: 模板函数名, value: 对应的知识点ID数组
+     */
+    templateToKnowledgePoints: {
+        // 微积分模板映射
+        'limitBasic': ['calc-1-3', 'calc-1-4', 'calc-1-5'], // 极限运算、重要极限
+        'derivativeBasic': ['calc-2-1', 'calc-2-2', 'calc-2-3'], // 导数定义、导数运算法则
+        'integralBasic': ['calc-4-1', 'calc-4-2', 'calc-5-1'], // 不定积分、定积分
+
+        // 线代模板映射
+        'determinantBasic': ['la-1-1', 'la-1-2'], // 行列式概念与计算
+        'matrixBasic': ['la-2-1', 'la-2-2', 'la-3-1'], // 矩阵运算、特征值与特征向量
+
+        // 概率论模板映射
+        'probabilityBasic': ['prob-1-1', 'prob-2-1', 'prob-4-1'] // 概率基本概念、分布、数字特征
+    },
+
+    /**
+     * 关键词到知识点的映射表
+     * 用于AI生成题目时推断知识点
+     */
+    keywordToKnowledgePoints: {
+        // 微积分关键词
+        '极限': ['calc-1-3', 'calc-1-4', 'calc-1-5'],
+        '导数': ['calc-2-1', 'calc-2-2'],
+        '微分': ['calc-2-1', 'calc-2-2', 'calc-2-3'],
+        '不定积分': ['calc-4-1', 'calc-4-2'],
+        '定积分': ['calc-5-1', 'calc-5-2'],
+        '微分方程': ['calc-7-1', 'calc-7-2'],
+        '多元微分': ['calc-8-1', 'calc-8-2'],
+        '重积分': ['calc-9-1', 'calc-9-2'],
+        '级数': ['calc-10-1', 'calc-10-2'],
+
+        // 线代关键词
+        '行列式': ['la-1-1', 'la-1-2'],
+        '矩阵': ['la-2-1', 'la-2-2'],
+        '特征值': ['la-3-1', 'la-3-2'],
+        '特征向量': ['la-3-1', 'la-3-2'],
+        '线性方程组': ['la-4-1', 'la-4-2'],
+        '二次型': ['la-5-1', 'la-5-2'],
+        '相似对角化': ['la-6-1', 'la-6-2'],
+
+        // 概率论关键词
+        '概率': ['prob-1-1', 'prob-1-2'],
+        '随机变量': ['prob-2-1', 'prob-2-2'],
+        '分布': ['prob-2-1', 'prob-2-2', 'prob-2-3'],
+        '期望': ['prob-4-1'],
+        '方差': ['prob-4-2'],
+        '大数定律': ['prob-5-1'],
+        '中心极限定理': ['prob-5-2']
+    },
+
+    /**
+     * 为题目推断知识点
+     * @param {Object} question - 题目对象
+     * @param {string} templateName - 模板名称（可选，用于精确映射）
+     * @returns {string[]} 知识点ID数组
+     */
+    inferKnowledgePointsForQuestion(question, templateName = null) {
+        // 1. 如果有模板名，使用精确映射
+        if (templateName && this.templateToKnowledgePoints[templateName]) {
+            return this.templateToKnowledgePoints[templateName];
+        }
+
+        // 2. 从题目内容中提取关键词进行匹配
+        const questionText = (question.question || question.content || '').toLowerCase();
+        const matchedPoints = new Set();
+
+        for (const [keyword, points] of Object.entries(this.keywordToKnowledgePoints)) {
+            if (questionText.includes(keyword.toLowerCase())) {
+                points.forEach(point => matchedPoints.add(point));
+            }
+        }
+
+        // 3. 如果没有匹配到，返回空数组（表示未标注）
+        return Array.from(matchedPoints);
+    },
+
+    /**
+     * 获取模板函数名
+     * @param {Function} templateFn - 模板函数
+     * @returns {string} 函数名
+     */
+    getTemplateName(templateFn) {
+        // 尝试从函数名中提取模板名
+        const funcString = templateFn.toString();
+        const nameMatch = funcString.match(/function\s+(\w+)\s*\(/) ||
+                         funcString.match(/(\w+)\s*\([^)]*\)\s*\{/);
+        if (nameMatch && nameMatch[1]) {
+            return nameMatch[1];
+        }
+
+        // 如果无法提取，返回空字符串
+        return '';
+    },
+
     /**
      * 生成随机整数
      * @param {number} min - 最小值
@@ -421,7 +520,10 @@ const QuestionTemplateSystem = {
 
             question.subject = this.inferSubject(template);
             question.difficulty = difficulty === 'all' ? this.randChoice(['basic', 'intermediate']) : difficulty;
-            question.knowledgePoints = [];
+
+            // 推断知识点
+            const templateName = this.getTemplateName(template);
+            question.knowledgePoints = this.inferKnowledgePointsForQuestion(question, templateName);
 
             questions.push(question);
         }

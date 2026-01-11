@@ -50,6 +50,23 @@ function renderYearSelection() {
     const container = document.getElementById('view-container');
     const years = getAvailableYears();
 
+    // 按年代分组
+    const yearGroups = {
+        '2020s': years.filter(y => y >= 2020 && y <= 2029),
+        '2010s': years.filter(y => y >= 2010 && y <= 2019),
+        '2000s': years.filter(y => y >= 2000 && y <= 2009),
+        '1990s': years.filter(y => y >= 1990 && y <= 1999),
+        '1980s': years.filter(y => y >= 1980 && y <= 1989)
+    };
+
+    const groupNames = {
+        '2020s': '2020年代',
+        '2010s': '2010年代',
+        '2000s': '2000年代',
+        '1990s': '1990年代',
+        '1980s': '1980年代'
+    };
+
     container.innerHTML = `
         <div class="card">
             <div class="card-header">
@@ -66,9 +83,14 @@ function renderYearSelection() {
                 </ul>
             </div>
 
-            <div class="year-grid">
-                ${years.map(year => renderYearCard(year)).join('')}
-            </div>
+            ${Object.entries(yearGroups).filter(([_, y]) => y.length > 0).map(([key, groupYears]) => `
+                <div class="year-group">
+                    <div class="year-group-title">${groupNames[key]}</div>
+                    <div class="year-grid">
+                        ${groupYears.map(year => renderYearCard(year)).join('')}
+                    </div>
+                </div>
+            `).join('')}
         </div>
     `;
 }
@@ -79,10 +101,11 @@ function renderYearSelection() {
  * @returns {string} 卡片HTML
  */
 function renderYearCard(year) {
-    const hasData = hasExamData(year);
+    // 使用同步版本检查数据是否存在
+    const hasData = hasExamDataSync(year);
     const status = getYearStatus(year);
     const scoreLine = getScoreLine(year);
-    const questionCount = getQuestionCount(year);
+    const questionCount = getQuestionCountSync(year);
 
     let statusIcon, statusText, statusClass;
     switch (status) {
@@ -97,22 +120,25 @@ function renderYearCard(year) {
             statusClass = 'status-progress';
             break;
         default:
-            statusIcon = '📋';
+            statusIcon = hasData ? '📋' : '🔒';
             statusText = hasData ? '未开始' : '敬请期待';
             statusClass = hasData ? 'status-pending' : 'status-disabled';
     }
 
+    // 显示题目数量（如果有数据），否则显示"暂无数据"
+    const questionDisplay = hasData ? `📚 ${questionCount}道题` : '暂无数据';
+
     return `
         <div class="year-card ${statusClass} ${!hasData ? 'disabled' : ''}"
-             onclick="${hasData ? `startRealExam(${year})` : ''}">
+             onclick="${hasData ? `startRealExam(${year})` : 'showNoDataMessage()'}">
             <div class="year-card-header">
                 <span class="year-number">${year}</span>
                 <span class="year-status">${statusIcon}</span>
             </div>
             <div class="year-card-body">
                 <div class="year-info">
-                    <span>📚 ${questionCount}道题</span>
-                    <span>💯 150分</span>
+                    <span>${questionDisplay}</span>
+                    ${hasData ? '<span>💯 150分</span>' : ''}
                 </div>
                 <div class="year-score-line">
                     国家线: ${scoreLine.national}分
@@ -123,6 +149,13 @@ function renderYearCard(year) {
             </div>
         </div>
     `;
+}
+
+/**
+ * 显示无数据提示
+ */
+function showNoDataMessage() {
+    alert('该年份真题数据正在录入中，敬请期待！');
 }
 
 /**
@@ -148,8 +181,8 @@ function getYearStatus(year) {
  * 开始真题考试
  * @param {number} year - 年份
  */
-function startRealExam(year) {
-    const exam = getRealExamByYear(year);
+async function startRealExam(year) {
+    const exam = await getRealExamByYear(year);
     if (!exam) {
         alert('该年份真题数据暂未录入');
         return;
@@ -230,7 +263,7 @@ function startRealExam(year) {
  */
 function renderRealExamQuestions() {
     const container = document.getElementById('view-container');
-    const exam = getRealExamByYear(realExamState.currentYear);
+    const exam = getRealExamByYearSync(realExamState.currentYear);
     const currentQ = realExamState.questions[realExamState.currentIndex];
 
     if (!currentQ) {
@@ -473,7 +506,7 @@ function startTimer(isNew) {
         clearInterval(realExamState.timerInterval);
     }
 
-    const exam = getRealExamByYear(realExamState.currentYear);
+    const exam = getRealExamByYearSync(realExamState.currentYear);
     const totalSeconds = exam ? exam.timeLimit * 60 : 10800; // 默认3小时
 
     realExamState.timerInterval = setInterval(() => {
@@ -507,7 +540,7 @@ function updateTimerDisplay() {
     const timerEl = document.getElementById('examTimer');
     if (!timerEl) return;
 
-    const exam = getRealExamByYear(realExamState.currentYear);
+    const exam = getRealExamByYearSync(realExamState.currentYear);
     const totalSeconds = exam ? exam.timeLimit * 60 : 10800;
     const remaining = totalSeconds - realExamState.timeUsed;
 

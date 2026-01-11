@@ -1,0 +1,331 @@
+[
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [],
+    "explanation": "",
+    "question": "(0) 0,",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-2",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [],
+    "explanation": "",
+    "question": "(0) 0,",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-3",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [],
+    "explanation": "",
+    "question": "(0) 0,",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [
+      "calc-10-1",
+      "calc-10-2"
+    ],
+    "explanation": "",
+    "question": "数学试题 第2页（共3 页） 2．已知级数：① 3 2 1 π sin 1 n n n     ；② 3 3 2 2 1 1 1 ( 1) tan n n n n            ，则 A．①与②均条件收敛． B．①条件收敛，②绝对收敛． C．①绝对收敛，②条件收敛． D．①与②均绝对收敛． 【答案】B 【解析】 3 3 2 2 2 2 1 sin sin sin 1 1 1 1 n n n n n n n n n n                      . 1 1 n n   发散不是绝对收敛.   3 3 2 2 2 sin ( 1) sin ( 1) sin 1 1 1 n n n n n n n n n                 ，为交错级数. 2 1 n sin n   递减，条件收敛. 2 3 2 1 3 1 1 ( 1) tan . n n n n              2 2 3 3 2 2 1 1 1 1 1 1 tan . 3 n o n n n n                 2 2 3 2 1 1 3 1 1 1 ( 1) tan n n n n n n                收敛 绝对收敛 更多资料关注微信公众号：考研文库",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [
+      "calc-1-5",
+      "calc-1-3",
+      "calc-1-4"
+    ],
+    "explanation": "",
+    "question": "数学试题 第3页（共3 页） 3．设函数 ( ) f x 在区间  0,上可导，则 A．当  lim x f x  存在时，  lim x f x   存在． B．当  lim x f x   存在时，  lim x f x  存在． C．当  0 d lim x x f t t x  存在时，  lim x f x  存在． D．当  lim x f x  存在时，  0 d lim x x f t t x  存在． 【答案】D 【解析】A 错误，反例： 2 sin ( ) , lim ( ) 0, x x f x f x x    但 2 2 2 2 2 cos sin lim ( ) lim , x x x x x f x x      极限不存在. B 错误，反例： 1 ( ) , ( ) , 2 f x x f x x    lim ( ) 0, x f x    极限存在，但lim ( ) x f x  极限 不存在. C 错误，反例: ( ) cos , f x x  则 0 ( )d sin lim lim x x x f t t x x x     存在，但lim ( ) lim cos x x f x x    不存在. D 正确，用 0 ( )d ( ) lim lim A 1 x x x f t t f x x      ，故选D . 4．设函数 ( , ) f x y 连续，则   2 2 4 2 4 d , d x x f x y y      A．     4 4 2 0 2 4 , d , d d y y f x y x f x y x y              ． B．     4 4 2 0 2 4 , d , d d y y f x y x f x y x y             ． C．     4 4 4 0 2 2 , d , d d y y f x y x f x y x y              ． 更多资料关注微信公众号：考研文库",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [
+      "la-5-2",
+      "calc-9-1",
+      "calc-9-2",
+      "la-5-1"
+    ],
+    "explanation": "",
+    "question": "数学试题 第4页（共3 页） D．   4 2 0 4 2 d , d y y f x y x    ． 【答案】A 【解析】由题易知，此二重积分积分区域为   2 D ( , ) 4 4, 2 2 x y x y x       ，对应图像为上图所示。 记   2 1 ( , ) 4 4, 2 0 D x y x y x       ，   2 2 ( , ) 4 4,0 2 D x y x y x       ，且   2 2 4 2 4 I= d , d x x f x y y     ，则     1 2 I= , d , d D D f x y f x y      ，交换积分次序得         4 4 4 2 0 2 0 4 4 4 2 0 2 4 I= d , d d , d , d , d d y y y y y f x y x y f x y x f x y x f x y x y                        故A 正确。 5．二次型   2 1 2 3 1 1 2 1 3 , , 2 2 f x x x x x x x x    的正惯性指数 A．0． B．1． C．2． D．3． 【答案】B 【解析】 更多资料关注微信公众号：考研文库",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [],
+    "explanation": "",
+    "question": "数学试题 第5页（共3 页）   1 1 1 1 0 0 1 0 0 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 0 1 0 1 0 A= E A                                                                         2 ( 1) 1 1 ( 2) ( 2)( 1)               解得 1 2 3 0, 2, 1       故正惯性指数为1，选B. 6．设 1 2 3 4 , , , 是n 维列向量，1 2 , 线性无关，1 2 3 , , 线性相关，且 1 2 4   0    . 在空间直角坐标系O xyz  中，关于, , x y z 的方程组 1 2 3 4 x y z       的几何图形是 A．过原点的一个平面． B．过原点的一条直线． C．不过原点的一个平面． D．不过原点的一条直线． 【答案】D 【解析】记   1 2 3 , , A   ，由 1 2 , 线性无关， 1 2 3 , , 线性相关，可得 2 r A  。记     4 1 2 3 4 , , , A A     ，再由 1 2 4 0       ，则 2 r A  。于是 4 Ax   有无穷 多解。则 1 2 3 4 x y z        等价于   T 1 2 3 4 , , , , x y z     ，即   T 4 , , A x y z    。 若过原点，则 4 0  与 1 2 , 线性无关矛盾，故不过原点。 11 12 13 14 21 22 23 24 1 2 3 4 1 2 3 4 n n n n a x a y a z a a x a y a z a x y z a x a y a z a                         ，由上述分析可知  2 r A r A   ，故 两平面交于一条直线，且不过原点。故选D。 更多资料关注微信公众号：考研文库",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "linear",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [
+      "prob-2-3",
+      "prob-2-1",
+      "la-2-1",
+      "la-2-2",
+      "prob-2-2"
+    ],
+    "explanation": "",
+    "question": "数学试题 第6页（共3 页） 7．设n 阶矩阵 , , A B C 满足     2 r r r r n     A B C ABC ，给出下列四个结论： ①    ; r n r r    ABC AB C ②   ; r n r r    AB A B ③   ; r r r n    A B C ④    . r r n   AB BC 其中正确结论的序号是 A．①②． B．①③． C．②④． D．③④． 【答案】A 【解析】 1 0 0 0 , , 0 0 0 1                A B C E ，满足( ) ( ) ( ) ( ) 2 r r r r n     A B C ABC ，则 ( ) 1, ( ) 1, ( ) 2 r r r    A B C ，排除结论③④，故选A. 8．设二维随机变量  , X Y 服从正态分布   0,0;1,1; N  ，其中   1,1  .若,a b 为满足 2 2 1 a b   的任意实数，则   D aX bY  的最大值为 A．1． B．2． C．1   ． D． 2 1   ． 【答案】C 【解析】 2 2 ( ) 2 1 1 D aX bY a DX b DY ab      2 2 2 a b ab    2 1 2 1 2 1 ( ) ab a a f a       2 2 ( ) 2 1 2 1 a f a a a a              2 2 2 2 1 0 1 a a a            更多资料关注微信公众号：考研文库",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "probability",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-2-3",
+      "prob-2-2"
+    ],
+    "explanation": "",
+    "question": "数学试题 第7页（共3 页） 即 2 2 2 1 2 0 1 a a a       ， 2 2 2 1 1 2 1 , 2 2 a a b    ，于是 1 1 , 2 2 a b   。所以最大 值为1 | |   ，故选C。 9．设 1 2 20 , , , X X X  是来自总体   1,0.1 B 的简单随机样本.令 20 1 i i T X   ，利用泊松分布近 似表示二项分布的方法可得  1 P T   A． 2 1 e ． B． 2 2 e ． C． 2 3 e ． D． 2 4 e ． 【答案】C 【解析】由题意可知 ~ (20,0.1). 20 0.1 2 T B np    0 1 2 2 2 2 2 2 2 3 { 1} { 0} { 1} 2 0! 1! P T P T P T e e e e e               10．设 1 2 , , , n X X X  为来自正态总体   ,2 N  的简单随机样本.记 1 1 n i i X X n   ，Z表示标 准正态分布的上侧分位数.假设检验问题： 0 1 1 1 H H   ：≤， ： 的显著性水平为的检 验的拒绝域为 A．  1 2 2 1 n X X X X Z n          ， ，， ． B．  1 2 2 1 n X X X X Z n              ， ，， ． C．  1 2 2 1 n X X X X Z n          ， ，， ． D．  1 2 2 1 n X X X X Z n              ， ，， ． 更多资料关注微信公众号：考研文库",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-b-1",
+    "type": "blank",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [
+      "calc-10-1",
+      "calc-10-2"
+    ],
+    "explanation": "",
+    "question": "数学试题 第8页（共3 页） 【答案】D 【解析】 1 2 / X z X z n n         ，故选D 二、填空题：11～16 小题，每小题5 分，共30 分． 11． 0 1 ln ln( ) m 1 li x x x x x      ______. 【答案】1  【解析】 ln 0 0 1 1 ln lim lim ln ln x x x x e x x x x x x         12.已知函数 2 1 0, 0 , 2 ( ) 1 , 1 2 x f x x x          的傅里叶级数为 1 sin π , n n b n x   ( ) S x 为 1 sin π n n b n x   的和函数，则 7 2 S         ______. 【答案】1 8 【解析】 7 1 7 1 4 2 2 2 8 s s s                         . 13. 已知函数 2 3 ( , , ) , u x y z xy z  向量 (2,2, 1),   n 则 (1,1,1) u   n ______. 【答案】1 更多资料关注微信公众号：考研文库",
+    "answer": "",
+    "acceptedAnswers": []
+  },
+  {
+    "id": "real-exam-2025-2025-b-1",
+    "type": "blank",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "explanation": "",
+    "question": "数学试题 第9页（共3 页） 【解析】由题易知， 2 3 3 2 2 , 2 , 3 u u u y z xyz xy z x y z          则在 1, 1 x y   , 1 z 处有 , , (1,2,3) u u u x y z              对于向量 (2,2, 1) n    ，归一化可得 0 2 2 1 , , 3 3 3 n          故 0 (1,1,1) , , u u u u n n x y z                   2 2 1 2 2 1 (1,2,3) , , 1 2 3 1 3 3 3 3 3 3                    14. 已知有向曲线L 是沿抛物线 2 1 y x  从点(1,0) 到点( 1,0)  的一段，则曲线积分 ( cos )d (2 cos )d L y x x x y y      ______. 【答案】4 2sin1 3  【解析】由题易知可作曲线如右图所示. 记 0L 是从 1 x 到 1 x  的直线, 并记曲线积 ( cos ) (2 cos ) L I y x dx x y dy      则在 0L 与L 所围的封闭区域可用格林公式 即 0 1 ( cos ) (2 cos ) L L I y x dx x y dy       2 1 1 1 2 1 0 1 4 2 1 (1 ) 3 x D d dx dy x dx               又 0 1 2 1 ( cos ) (2 cos ) cos 2sin1 L I y x dx x y dy xdx          ,故 4 2sin1 3 I   15. 设矩阵 4 2 3 3 4 , 5 7 a b               A 若方程组 2 0 A x 与 0 Ax 不同解，则a b  ______. 【答案】4  更多资料关注微信公众号：考研文库",
+    "answer": "",
+    "acceptedAnswers": []
+  },
+  {
+    "id": "real-exam-2025-2025-b-1",
+    "type": "blank",
+    "subject": "linear",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [
+      "la-1-1",
+      "prob-1-2",
+      "prob-1-1",
+      "la-1-2"
+    ],
+    "explanation": "",
+    "question": "数学试题 第10页（共3 页） 【解析】由题知， 4 2 3 3 4 5 7 A a b               ，若 2 0 A x  与 0 Ax  同解，则三秩相同，即    2 2 A r A r A r A         。如果A 可逆，三秩显然相同，则 2 0 A x  与 0 Ax  同解，于 是要想 2 0 A x  与 0 Ax  不同解，即A 不可逆，于是 0 A  。根据行列式的倍加性质易得    4 2 3 4 2 1 4 0 1 3 4 3 1 1 1 4 2 1 5 7 5 2 1 2 A a a a a b b b b                                               ，令 0 A  ， 有 4 a b  。 16. 设 , A B 为两个随机事件，且A 与B 相互独立，已知 5 ( ) 2 ( ), ( ) , 8 P A P B P A B    则在 事件 , A B 至少有一个发生的条件下， , A B 中恰有一个发生的概率为______. 【答案】4 5 【解析】 ( ) ( ) ( ) ( ) ( ) ( ) P AB P AB P A P AB P B P AB      ( ) ( ) 2 ( ) ( ) P A P B P A P B    5 ( ) ( ) ( ) ( ) 8 P A B P A P B P AB      ， 2 5 3 ( ) 2 ( ) 8 P B P B    2 2 24 ( ) 16 ( ) 5,16 ( ) 24 ( ) 5 0 P B P B P B P B      (4 ( ) 1)(4 ( ) 5) 0 1 1 ( ) , ( ) 4 2 P B P B P B P A       ( ) ( ) ( ) ( ) ( ) ( ) ( ) ( ) 2 ( ) ( ) 1 1 1 1 1 2 2 4 4 2 2 1 1 8 4 2 5 2 5 5 8 P AB P AB P A P AB P B P AB P A P B P A P B P                  更多资料关注微信公众号：考研文库",
+    "answer": "",
+    "acceptedAnswers": []
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [
+      "calc-2-2",
+      "calc-2-1"
+    ],
+    "explanation": "",
+    "question": "数学试题 第11页（共3 页） 三、解答题：17～22 小题，共70 分．解答应写出文字说明、证明过程或演算步骤． 17．（本题满分10 分） 计算    1 2 0 1 d . 1 2 2 x x x x     17．解：   1 1 2 2 0 0 1 1 2 2 ( 1) 2 2 A Bx C dx dx x x x x x x                  1 2 0 1 1 3 5 3 5 1 2 2 x dx x x x                   1 1 1 2 0 0 0 2 3 1 ln 2 π 1 1 ln |1 | ln 2 2 a 0 rctan( 1) 5 10 5 10 x x x x          . 18.（本题满分10 分） 已知函数 u f 在区间    ， 0 内具有2 阶导数，记  , ,        y x f y x g 若  y x g , 满足 ,1 2 2 2 2 2 2 2           y g y y x g xy x g x 且   , 2 ,1 ) , ( , x x g y x g x x     求 ) (u f . 解：   2 1 , , x g g x u f u f u y x y y y                 令 则 又   , 1 1 x g x x f f x          ，   ( , ) 1 2 1 , 1 2 x x g f f x x x        故 更多资料关注微信公众号：考研文库",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [],
+    "explanation": "",
+    "question": "(1)     2 2 2 3 2 1 1 1 g x x f u f u f u f u x y y y y y y                         ..",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-2",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [],
+    "explanation": "",
+    "question": "(2)     2 2 2 2 2 4 3 2 2 g x x x x x f u f u f u f u y y y y y y                        ...",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [],
+    "explanation": "",
+    "question": "数学试题 第13页（共3 页） 则在 ( , ) a b 内取任意的 1 2 3 4 5 x x x x x     ，有                 2 1 3 2 4 3 5 4 2 1 3 2 4 3 5 4 f x f x f x f x f x f x f x f x x x x x x x x x            在         2 1 3 2 2 1 3 2 f x f x f x f x x x x x      两边同时令 2 1 x x   ，得       3 1 1 3 1 f x f x f x x x      ，两边同时令 2 3 x x   ，得       3 1 3 3 1 f x f x f x x x      ，即         3 1 1 3 3 1 f x f x f x f x x x         ，同理可得         3 1 3 5 3 1 f x f x f x f x x x         .因为         3 1 5 3 3 1 5 3 f x f x f x f x x x x x      ，所以    1 5 f x f x      .由 1 5 , x x 的任意性，可得  f x  在   ,a b 内严格单调递增，充分性得证。 再证必要性，即已知  f x  单调递增，在   1 2 2 3 , , , x x x x 上分别使用拉格朗日中值定理， 知存在     1 1 2 2 2 3 , , , x x x x     ，使       2 1 1 2 1 f x f x f x x      ，       3 2 2 3 2 f x f x f x x      ， 又由  f x  单调递增，且 1 2    知，    1 2 f f      ，即         2 1 3 2 2 1 3 2 f x f x f x f x x x x x      ，必要性得证。 综上所述，充要条件得证。 更多资料关注微信公众号：考研文库",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [],
+    "explanation": "",
+    "question": "数学试题 第14页（共3 页） 20.（本题满分10 分） 设Σ 是由直线      0 ,0 y x 绕直线   为参数 t t z t y t x       , , 旋转一周得到的曲面， 1 Σ 是Σ 介于平面 0    z y x 与平面 1    z y x 之间部分的外侧，计算曲面侧积分       1 . d d ) 2 ( d d )1 ( d d Σ y x z x z y z y x I 解：由题意可知直线 0 0 x y      , 记为 1l ； x t y t z t        , 记为 2l ，则直线1l 绕直线2l 旋转所得曲 面为 2 2 2 2 ( ) ( ) ( ) 3 x t y t z t t       。已知 1 是介于平面 0 x y z    和平面 1 x y z    之间的外侧，则补面 0 : 1 x y z     ，方向指向外侧。则 0 与 1 所围为封闭 区域，则由高斯公式可知 1 0 1 d d ( 1)d d ( 2)d d I x y z y z x z x y        2 1 2 2 2 (1 1 1)d 3 d 3 π π 3 2 2 4 v v                      (注：为圆锥体) 。 记 xy D 为 0 在xoy 面上的投影，   ( , )0 1, 0, 0 xy D x y x y x y     ∣  又 0 2 d d ( 1)d d ( 2)d d I x y z y z x z x y        d dy ( 1)d d (3 )d d xy D x x y x y x y x y        1 2d dy 2 1 1 1 2 xy D x      更多资料关注微信公众号：考研文库",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "linear",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "explanation": "",
+    "question": "数学试题 第15页（共3 页） 故 1 2 2 π 1 4 I I I    . 21.（本题满分10 分） 设矩阵 , 1 1 2 0 1 2 1 0                a A 已知1 是A 的特征多项式的重根.",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-b-2",
+    "type": "blank",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [],
+    "explanation": "",
+    "question": "(1)求a 的值； （2）求所有满足       2 , 2     A A 的非零列向量 .  ， 解：（1） ( ) | | (1 )[( )( 1) 4] f a             A E 可得(1 )(1 1) 4 0, 3 a a      （2）由（1）可知 0 1 2 1 0 2 ,| | 0 1 1 3                  A A E ,得 A 中 1 2 3 1       ，   ,     2 2 Aα α β.A α = α + 2β (A - E)α β A - E α = 2β = 2(A - E)α   2 2 ,    其中（ ）= A 0 A E α E 0 ,故 α 为任意的非零向量，   T 1 2 3 1 2 3 , , , 0 a a a a a a   α 1 3 1 2 2 3 1 2 3 3 1 2 1 1 2 2 ( ) 1 1 2 2 1 1 2 2 a a a a a a a a a a a a                                          β A E α 其中 1 2 3 2 a a a   则综上   1 3 1 2 2 3 1 2 1 2 3 1 2 3 3 3 1 2 2 , 2 , 0, 2 2 a a a a a a a a a a a a a a a a a a                                α β 22．（本题满分12 分） 更多资料关注微信公众号：考研文库",
+    "answer": "",
+    "acceptedAnswers": []
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [],
+    "explanation": "",
+    "question": "(2) 8 1 ~",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "real-exam-2025-2025-s-1",
+    "type": "solve",
+    "subject": "calculus",
+    "difficulty": "intermediate",
+    "source": "real-exam",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "knowledgePoints": [],
+    "explanation": "",
+    "question": "数学试题 第17页（共3 页） 更多资料关注微信公众号：考研文库",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  }
+]

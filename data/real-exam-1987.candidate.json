@@ -1,0 +1,3948 @@
+[
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "1987-2009 真题汇总 【编者注】1987年到1996年的数学试卷 I , II 均为现在的数学一． 一",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 1,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(2)当X= 时，函数y= x2 x 取得极小值",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 2,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)设在一次试验中，事件A发生的概率为p.现进行n次独立试验，则A至少发生一次的概率为 ；而事件A至多发生一次的概率为",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-1-2",
+      "prob-1-1"
+    ],
+    "page_num": 3,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(2)三个箱子，第一个箱子中有4个黑球1个臼球，第二个箱子中有3个黑球3个自球，第三个箱子 中有3个黑球5个自球现随机地取一个箱子，再从这个箱子中取出1个球，这个球为自球的概",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 3,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "1987年真题 率等于 ．已知取出的球是自球，此球属于第二个箱子的概率为 ．",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-1-2",
+      "prob-1-1"
+    ],
+    "page_num": 4,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(7) = .",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 5,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "1988年真题",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 6,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(4)若I an (x -I) n 在X = -I处收敛，则此级数在X = 2 处（ ） n = I",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-10-1",
+      "calc-10-2"
+    ],
+    "page_num": 6,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 条件收敛.",
+      "B. 绝对收敛．",
+      "C. 发散.",
+      "D. 收敛性不能确定"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-3",
+    "type": "choice",
+    "content": "(5) n维向最组a1 ,a2 '…，a, (3 ::::; s ::::; n)线性无关的充分必要条件是（ ）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 6,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 存在一组不全为零的数kl ,k2 ' …，k., '使k1 a1+ k2 a2 + …+ k., a., ¥= 0.",
+      "B. a1 ,a2 , …，q中任意两个向量都线性尤关．",
+      "C. a1 ,a2 , …，q中存在一个向量，它不能用其余向量线性表出．",
+      "D. a1 ,a2 , …，q中任意一个向最都不能用其余向鼠线性表出． 四、（本题满分6分） 设u = yf(王)+ xg(L), 其中函数f,g具有二阶连续导数，求X +y 矿U a2 u y X 如2 a妞y 五、（本题满分8分） 设函数y = y(x)满足微分方程y\" - 3y'+ 2y = 2e x , 且其图形在点(O,1)处的切线与曲线y = x 2 - x + I在该点的切线重合，求函数y = y(x). 六、（本题满分9分） k 设位于点(0,1)的质点A对质点M的引力大小为了(k > 0为常数，r为质点A与M之间的距离）， r 质点M沿曲线y =迈：二了自B(2 ,0)运动到0(0,0),求在此运动过程中质点A对质点M的引 力所作的功． 七、（本题满分6分） 1 0 0 1 0 0 已知AP=PB,其中B=[  óJP=[ô õ I ö}求A及A'. 八、（本题满分8分） 2 0 0 2 0 0 已知矩阵A[o O IJ与B[o y O J相似 0 1 x O O -I"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)设三次独立试验中，事件A出现的概率相等．若已知A至少出现一次的概率等于—，则事件A在 27 一次试验中出现的概率为 6",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-1-2",
+      "prob-1-1"
+    ],
+    "page_num": 7,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)【同试卷I 第四题】 4 2",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 7,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(2)计算二次积分J dx J sin 空dy + J 叫sin 空dy. 石 2y 2 石 2y X 6",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 7,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)已知f '",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 8,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(3) h----+O 2h",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 8,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1) 1 、 入为A的特征值； IA I",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-3-2",
+      "la-3-1"
+    ],
+    "page_num": 9,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(2)甲、乙两人独立地对同一目标射击一次，其命中率分别为0.6和0.5. 现已知目标被命中，则它 是甲射中的概率为",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-1-2",
+      "prob-1-1"
+    ],
+    "page_num": 10,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)【同试卷I 第四题】",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 10,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(2)求八分之一的球面x 2 + y 2 + z 2 = R2 , x±0 , y±0, z±0的边界曲线的重心，设曲线的线密度 p = I.",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 10,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(4)积分L dx l e -r 2 dy的值等于",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 11,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)求r In (1 + X) dx . 。 (2 - x) 扩z",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 12,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(2)设z = f (2x - y, ysin x) , 其中八u,v)具有连续的二阶偏导数，求a垃y\"",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-2-2",
+      "calc-2-1"
+    ],
+    "page_num": 12,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)【同试卷I 第四题】",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 13,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)设{x=l+t ,则d y = . y = cost, dx2",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 14,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(3)已知两条直线的方程是L卢 X - I = y -2 = z -3 ,L2 : X + 2 = y -I 1 0 -1 2 1 ＝三，则过L1 且平行于 1 L2的平面方程是",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 14,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)若随机变量X服从均值为2, 方差为矿的正态分布，且Pj 2 < X < 4 l = 0. 3 , 则PjX<O! =",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-4-2",
+      "prob-2-3",
+      "prob-2-2"
+    ],
+    "page_num": 15,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)求lim e -sm x -l x---->O 1 -尸．",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 18,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(1)将P 用f1 ,f 2 ,f 3 线性表出；",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 18,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)【同试卷I 第三、",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 19,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)题】",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 19,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(2)【同试卷I 第三、",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 19,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(2)题】",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 19,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-6",
+    "type": "solve",
+    "content": "(1)【同试卷I 第四题】",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 19,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(2)求f xe dx. 尸",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 21,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1) 一批产品共有10个正品和2个次品，任意抽取两次，每次抽一个，抽出后不再放回，则第二次抽 出的是次品的概率为",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-1-2",
+      "prob-1-1"
+    ],
+    "page_num": 22,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(2)求X与I 们的协方差，并问X与飞I 是否不相关？",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-4-2"
+    ],
+    "page_num": 22,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(2)【同试卷I 第四题】",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 22,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1) lim cot x (. 1 - +) = x刊 Slll X",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 23,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(2)曲面z - e'+ 2xy = 3在点(1,2,0)处的切平面方程为",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 23,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(3)设u = e 六sinÇ'则a:;Y在点(2上）处的值为",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 23,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-5",
+    "type": "solve",
+    "content": "(4)设区域D为x2 + y 2 ::::; R 2, 则』(\u0004 十È)dxdy =",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 23,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-7",
+    "type": "choice",
+    "content": "(1)设M = 2 cos4xdx ,N =号(sin3x + cos4x)dx,P = f子(x2sin3x - cos4x)dx, 则有（ ） 号1 + X",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 23,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. N < P < M.",
+      "B. M<P<N.",
+      "C. N < M < P.",
+      "D. P < M < N."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-8",
+    "type": "choice",
+    "content": "(2)二元函数八x,y)在点(x。,y。)处两个偏导数fx'(x。,y。) ，J;(x。,y。)存在是八x,y)在该点连续的 （ ）",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-2-2",
+      "calc-2-1"
+    ],
+    "page_num": 23,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 充分条件而非必要条件",
+      "B. 必要条件而非充分条件．",
+      "C. 充分必要条件",
+      "D. 既非充分条件又非必要条件"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-9",
+    "type": "choice",
+    "content": "(3)设常数入> 0'且级数三正收敛，则级数I<-1) n < ) I an I n=l n=l «+A",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-10-1",
+      "calc-10-2"
+    ],
+    "page_num": 23,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 发散",
+      "B. 条件收敛",
+      "C. 绝对收敛",
+      "D. 收敛性与入有关"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-10",
+    "type": "choice",
+    "content": "(4) lim atan x + b(I - cos x) = 2, 其中a2 + c2 =ft O, 则必有（ x---->() cln (I - 2x) + d (I - e 一 x2 )",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 23,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. b = 4d.",
+      "B. b = - 4d.",
+      "C. a = 4c."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-11",
+    "type": "choice",
+    "content": "(5)已知向量组ll'1 年也立线性无关，则向量组（",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 23,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. a1 十生立+ ll'3 , ll'3 十也立+ ll'1 线性无关．",
+      "B. ll'1 一生,ll'2 - ll'3 , ll'3 一也立- ll'1 线性尤关 (C厄+ ll'2 , ll'2 十四也+ ll'4 , ll'4 一ll'1 线性尤关．",
+      "D. ll'1 十也立＋也立－也立- a1 线性无关",
+      "D. a = - 4c. ）"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(0)= 0, f'",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 24,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(2)求X与Z的相关系数Pxz;",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 25,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(1)在椭圆x 2 + 4y2 = 4上求一点，使其到直线2x + 3y -6 = 0的距离最短",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 25,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(0) > f",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 26,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(1) -f",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 26,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(1) -f",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 26,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-5",
+    "type": "solve",
+    "content": "(0) > f'",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 26,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-6",
+    "type": "solve",
+    "content": "(1) > f'",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 26,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)计算曲面积分ff zdS, 其中2为锥面z=五了三了在柱体x 2 + y 2 ::::; 2x内的部分．",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 27,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)【同试卷I 第三、",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 28,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)题】",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 28,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(2)求曲面z = 王+y2平行于平面2x + 2y - z = 0的切平面方程 2",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 28,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)设 F : :: : :: : x H1I 1 , x 1 + 2x 2 + 3x 4 = 3 , 问a为何值时方程组有解，并在有解时求出方程组的通解．",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 29,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(3)微分方程y \"- 2y '+ 2y = e 无的通解为 ．",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-7-2",
+      "calc-2-1",
+      "calc-2-3",
+      "calc-7-1",
+      "calc-2-2"
+    ],
+    "page_num": 30,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "历年考研数学真题解析及复习思路（数学一） a1 0 0 b1",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 31,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(5)四阶行列式 0 a2 b2 0 0 b3 a3 0 的值等于（ b4 0 0 a4",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-1-1",
+      "la-1-2"
+    ],
+    "page_num": 31,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. a1 a2a3a4 - b1 b2b3b4.",
+      "C. (a1a2 -b1b2)(a3a4 -b3b4). ）",
+      "B. a1a2a3a4 + b1b2b3b4.",
+      "D. (a2a3 -b2从）(a1 a4 -b1伈）． 三、（本题共2小题，每小题5分，满分10分）"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(1)求心形线r = a(1 + cos 0)的全长，其中a > 0是常数",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 31,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-5",
+    "type": "solve",
+    "content": "(1)计算曲面积分』(2x+ z) dydz + zdxdy, 其中S为有向曲面z = x2 十y2(0 ::::;; z :::;; 1)' 其法向掀与 z轴正向的夹角为锐角．",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 31,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-7",
+    "type": "solve",
+    "content": "(1)写出f(x)在点X = C处带拉格朗日型余项的一阶泰勒公式；",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 31,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)求参数c及此二次型对应矩阵的特征值；",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-5-1",
+      "la-3-2",
+      "la-2-1",
+      "la-2-2",
+      "la-5-2",
+      "la-3-1"
+    ],
+    "page_num": 32,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)设工厂A和工厂B的产品的次品率分别为1%和2%'现从巾A厂和B厂的产品分别占60% 和40%的一批产品中随机抽取一件，发现是次品，则该次品是A厂生产的概率是 ． 1 2",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-1-2",
+      "prob-1-1"
+    ],
+    "page_num": 32,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(2)【同试卷I 第三、",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 32,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(1)题】",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 32,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(3)【同试卷I 第三、",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 33,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(2)设幕级数La n矿的收敛半径为 3 , 则幕级数三na n (X - I) n+l的收敛区间为 n=O n=l (3 )对数螺线p = e。在点(p,0) = (e于弓一） 处的切线的直角坐标方程为 1 2 - 2",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-10-1",
+      "calc-10-2"
+    ],
+    "page_num": 34,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-3",
+    "type": "choice",
+    "content": "(4)设A = [4 t 3 ,B 为3阶非零矩阵 ， 且AB = 0, 则l = (5 )袋中有5 : 个;\u0004\u0005:l中20个是黄球， 3 0个是白球今有两人依次随机地从袋中各取一球 后不放回，则第二人取得黄球的概率是 二、选择题（本题共5小题， 每小题3分 ， 满分15分） (I )二元函数J( x ,y )= //: r'' 0, (A )连续， 偏导数存在",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-2-1",
+      "la-2-1",
+      "la-2-2",
+      "prob-1-2",
+      "prob-1-1",
+      "calc-2-2"
+    ],
+    "page_num": 34,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "C. 不连续，偏导数 存在 ( x ,y ) =/c (O,O) ＇在点(O ,O)处（） ( x ,y) = (O, O) (B )连续， 偏导数不存在 (D )不连续， 偏导数不存在"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-4",
+    "type": "choice",
+    "content": "(2) 设在区间[ a ,b] 上J( x ) > 0, J'( x ) < 0, f\"( x ) > 0. 令S 1= fJ(x) d x ,S 2 = J(b) (b - a), a 1 S 3 = —[J(a) + f (b) ] (b - a) , 贝UC 2 (A ) S 1 < S 2 < S 3. 、 丿 (B ) 52 < 51 < 53.",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 34,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "C. 53 < 51 < 52. (D )52 < 53 < 51. (3 )设F( x )= f +21r esin1sin tdt , 则F( x )() (A )为正常数 (B )为负常数",
+      "C. 恒为零 (D )不为常数"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-5",
+    "type": "choice",
+    "content": "(4) 设a,= [勹立 ＝［勹， a , = [:: , 则三条直线a 1 x + b I y + c 1 = 0 , a 2 x + b 2 y + c 2 = 0 , a, x + b,y + c, = 0(其中矿+ b'. Û 伤丿i = I ,2 ,3 )交于一点 的充要条件是 （ ） (A )叫归a3 线性相关 (B )叫归a3 线性无关",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 34,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "C. 秩 r( a1, 也, a3)=秩r( a1, a2). (D ) a1 , a2 , a3 线性相关， 叫a2 线性无关"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(1) lim an 存在； n---+oo 00",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 35,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(2) 级数口产- 1)收敛． 七、（本题共2小题，第",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-10-1",
+      "calc-10-2"
+    ],
+    "page_num": 35,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)证明B可逆；",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 36,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1) lim J厂言＋汀二-2 x气, x2 I a分",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 37,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)ª 叫7- xta 1 n x) = ·",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 40,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(3) y\" -4y =泸的通解为y =",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 40,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(4)设n阶矩阵A的元素全为1'则A的n个特征值是 1",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-3-2",
+      "la-2-1",
+      "la-3-1"
+    ],
+    "page_num": 40,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "历年考研数学真题解析及复习思路（数学一）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 41,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(5)设两个相互独立的随机变量X和Y分别服从正态分布N(O,1)和N(l,1),则（ ） 1",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-2-3",
+      "prob-2-2"
+    ],
+    "page_num": 41,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. PjX+Y::;;;;O\\ = — 2 . 1",
+      "B. P1X+Y:;;;;If = — 2·",
+      "C. P1X-YĖOi = — 2 1 .",
+      "D. PjX-Y::s;If = — 2 1 . 三、（本题满分5分） 设y = y(x) ,z = z(x)是由方程z = xf(x + y)和F(x,y,z)= 0 所确定的函数，其中J和F分别具 有一阶连续导数和一阶连续偏导数，求— . dz dx 四、（本题满分5分） 求I = f [ ex sin y -b (x + y) ] dx + (ex cos y -ax) dy, 其中a,b为正的常数，L为从点A(2a,O)沿曲 L 线y = ./2ax -x 2 到点0(0,0)的弧 五、（本题满分6分） 设函数y(x)(x;:: O)二阶可导且y'(x)> O,y(O) = 1 . 过曲线y = y(x)上任意一点P(x,y)作该 曲线的切线及x轴的垂线，上述两直线与x轴所围成的三角形的面积记为S1'区间[O,x]上以 y = y(x)为曲边的曲边梯形面积记为S2,并设25 1 -5 2 恒为1'求此曲线y = y(x)的方程 六、（本题满分6分） 试证：当X > 0时，(x 2 -1) ln x ;:: (x - I) 2 . 七、（本题满分6分） 为清除井底的污泥，用缆绳将抓斗放入井底，抓起污泥后提出井口．已知井深 30m, 抓斗自重400N,缆绳每米重50N, 抓斗抓起的污泥重2000N, 提升速度为 3m/s, 在提升过程中，污泥以20N/s 的速率从抓斗缝隙中漏掉．现将抓起污泥的 抓斗提升至井口，问克服重力需作多少焦耳的功？ （说明：(DIN X lm = 1J ;m,N ,s,J分别表示米，牛顿，秒，焦耳．＠抓斗的高度及 位于井口上方的缆绳长度忽略不计．） 八、（本题满分7分） 2 2 设S为椭球面王十L +z 2 =1 的上半部分，点P(x,y,z)E 5,7T为S在点P处的切平面，p(x,y,z) 2 2 为点0(0,0,0)到平面T 的距离，求』 z dS. 5 p(x,y,z) 九、（本题满分7分） 设a n = J 于 n tan xdx 0 '"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)求0的矩估计量0;",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 42,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)『丘二了dx= .",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 43,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(3)微分方程xy\"+ 3y'= 0 的通解为 ．",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-7-2",
+      "calc-2-1",
+      "calc-2-3",
+      "calc-7-1",
+      "calc-2-2"
+    ],
+    "page_num": 43,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(2)验证'1/1 = ( 4 1)''1/2 =勹）是A的两个线性无关的特征向量，并求出相应的特征值；",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-3-2",
+      "la-3-1"
+    ],
+    "page_num": 45,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)设J = ex (C1 sin X + C2COS x) (cl ,C2 为任意常数）为某二阶常系数齐次线性微分方程的通解， 则该方程为",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-7-2",
+      "calc-2-1",
+      "calc-2-3",
+      "calc-7-1",
+      "calc-2-2"
+    ],
+    "page_num": 46,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(2)设r = J x 2 + y 2 + l , 则div(grad r) I o,-2,2) =",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 46,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(3)交换二次积分的积分次序：J dy r-yf(x ,y) dx = -1 2",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 46,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-5",
+    "type": "solve",
+    "content": "(4)设矩阵A满足A2+ A -4E = 0, 其中E 为单位矩阵，则(A -E) -i =",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 46,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-7",
+    "type": "choice",
+    "content": "(1)设函数f(x)在定义域内可导，y = f(x)的图形如右图所示，则导函 数y = f'(x)的图形为（ ） X y y y y X // X X // X",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 46,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. ",
+      "B. ",
+      "C. ",
+      "D. "
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-8",
+    "type": "choice",
+    "content": "(2)设函数f(x,y)在点(O,O)附近有定义，且1:co,o) =3,J;co,o) =1, 则（ ）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 46,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. dz =3dx+dy. (0,0)",
+      "B. 曲面z = f(x ,y)在点(0, 0 , f (0 , 0))的法向鼠为(3,1,1).",
+      "C. 曲线t = f(x,y), 在点(0, 0 , f (0 , 0))的切向最为(1,0,3). y = 0",
+      "D. 曲线t = f(x,y), 在点(0, 0 , f (0 , 0))的切向量为(3,0,1). y = 0"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-9",
+    "type": "choice",
+    "content": "(3)设f(O) = 0, 则八x)在点X = 0可导的充要条件为（ ） 1",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 46,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. lim —J(I - cos h)存在． h---->() 矿 1",
+      "C. lim — J(h - sin h)存在． h---->() 矿 1",
+      "B. lim — /(1 - eh)存在 h---->{) h 1",
+      "D. lim —[J(2h) - J(h) ]存在． h叫）h"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-1",
+    "type": "choice",
+    "content": "历年考研数学真题解析及复习思路（数学一） 数 系 关 甘 木 的y 廿 禾x.”“ J 贝， 数 次 勺 甘 似 上 ） 似 相 向 相 不 面 不 且 反 （ 但 同 和 同 合 上 B 合 不 向 与A ) ） 面 B D 正 （ （ 则 示 ， 0 0 0 0 表 o o o o jjI- 分y o o o o 4 0 0 0 利x ／ 以 ＝ B , \\ ＇ ) 次 l l l l t ． 似 掷 似 相 复 l l l l l l l l 相 但 重 l l l l 且 同 币 ） — 同 合 硬 ＝ 合 不 枚 ( A ) ） 一 于 设 cA CC 将 等 、 ċ 、 丿 4 5 （ （",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 47,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. -1.",
+      "B. O. ．l_ 2 、 丿c （",
+      "D. 1. 三、（本题满分6分） 求I arctan ex 2x dx. 四、（本题满分6分） 设函数z= J(x , y)在点(1,1)处可微，且f(1,1) = 1 — — 听 = 2, 听 ， 如 = 3 , 中(x)=f(x,f(x,x)). < 1, 1) ay o, 1) 求j矿(x) . dx 冗=1 五、（本题满分8分） 设八x)= r : x'arctan x, 1 ， X =;i= 0 00 '试将八x)展开成x的幕级数，并求级数三(-1) 2 的和 n=l 1 - 4n X = 0, 六、（本题满分7分） 计算I= f ( y 2 - l) dx + (2l - x勹d y + (3x 2 - y 2 )山，其中L是平面x+y +z=2与柱面 L lxl +lrl=l的交线，从z轴正向看去，L为逆时针方向 七、（本题满分7分） 设y= f(x)在(-1,1)内具有二阶连续导数且j\"(X) # 0 , 试证："
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)对于(-1,1)内的任一x#O, 存在唯一的0(x) E ( 0,1), 使J(X)= f (Q) + xf 1 (0 (X) X)成立；",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 47,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1) r co dø= e xln X",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 49,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(0) =ft O, f I",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 50,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)证明曲线积分I与路径L尤关；",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 50,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(2)利用",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 50,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(2)现欲利用此小山开展攀岩活动，为此需要在山脚寻找一上山坡度最大的点作为攀登的起点． 也就是说，要在D的边界线x 2 + y 2 - xy = 75上找出使",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 51,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)如果A,B相似，试证A,B的特征多项式相等．",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 51,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(2)举一个2阶方阵的例子说明",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 51,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(1)的逆命题不成立．",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 51,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-5",
+    "type": "solve",
+    "content": "(3)当A,B均为实对称矩阵时，试证",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 51,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1) lim ( cos x) ln(l+x2) = . x---->() ( 2) 曲面z = x 2 + y 2 与平面2x+ 4y -z = 0平行的切平面的方程是 ． ( 3) 设x 2 =三a ncos nx(-'ITx'IT), 则a 2 = . n=O",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 52,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(4)从R 2 的基a1 = (đ)立 ＝（＿＼）到基/J1 = G), 化 = (Ē)的过渡矩阵为",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 52,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(5)设二维随机变量(X,Y)的概率密度为 f( x ,y) = { 6x , 0 =:S; x =:S; y =:S; I , 0, 其他， 则PjX+Y=:S;If =",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-2-2",
+      "prob-1-2",
+      "prob-1-1"
+    ],
+    "page_num": 52,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-6",
+    "type": "choice",
+    "content": "(1)设函数f( x) 在(-oo,+oo)内连续，其导函数的图形如图所示，则 f(x) 有（ ）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 52,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 一个极小值点和两个极大值点 ( B ) 两个极小值点和一个极大值点 ( C ) 两个极小值点和两个极大值点 ( D) 三个极小值点和一个极大值点 ( 2) 设1 aJ , 1 bJ , 1 cJ均为非负数列，且lim a n = 0, lim b n = I , lim en = oo , 则必有（ ） n--+oo n--+oo n--+oo y X ( A) a n < b n 对任意n成立. ( B ) 从< en 对任意n成立． ( C ) 极限lim a nc n 不存在 ( D) 极限lim b nc n 不存在 n---->oo n---->oo ( 3) 已知函数J( x,y)在点( O,O) 的某个邻域内连续，且lim f(x; r) 二飞! = I, 则（ ） 芦 ( x + y ( A) 点( O,O) 不是J(x,y) 的极值点 ( B ) 点( O,O) 是八x,y) 的极大值点 ( C ) 点( 0,0) 是f(x,y) 的极小值点 ( D) 根据所给条件无法判别点( O,O)是否为J(x,y) 的极值点"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-7",
+    "type": "choice",
+    "content": "(4)设向單组I :a1 ,a2 , …，q可由向侬组II :P 1 ,P2 , …, P, 线性表示，则（ ） ( A) 当r < s时，向阰组1I 必线性相关. ( B ) 当r > s时，向阰组1I 必线性相关． ( C ) 呏r < s时，向阰组l必线性相关 ( D)ēr >s时，向阰组l必线性相关 ( 5)设有齐次线性方程组Ax= 0和Bx= 0, 其中A,B 均为m xn矩阵，现有4个命题： 心若Ax= 0的解均是Bx= 0的解，则秩",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-4-2",
+      "la-4-1",
+      "la-2-1"
+    ],
+    "page_num": 52,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. ;::=秩( B) ;"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1) f xesiny dy -ye-sinxdx = f xe-siny dy -yesinxdx; L",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 53,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)汽锤击打桩3次后，可将桩打进地下多深？",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 53,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)乙箱中次品件数X的数学期望；",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-4-1"
+    ],
+    "page_num": 54,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(3)如果用0 作为0的估计鼠，讨论它是否具有尤偏性．",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 54,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1) 曲线y= In x上与直线X+ y = l垂直的切线方程为 ．",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 55,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(3)设L为正向圆周x 2 + y2 = 2在第一象限中的部分，则曲线积分fxdy -2ydx的值为",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 55,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(5)设矩阵A= [1 2 0 , 矩阵B满足ABA'=2BA'+ E, 其中A为A的伴随矩阵，E是单位",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 55,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-1",
+    "type": "choice",
+    "content": "2004年真题 足 若 ＂ 满l ＝ 贝 ， c ! 得 ua 仆1 > 歹 3 X 第 Pl 到 足 满 廿 力 J ”} u 夕 数 2 ． ． ＼ 丿 ＼ 第 O l l l O l ) ） l 的 ＜ l O O l O O B 把 ( a ＜ ） 必 关 兑 关 兑 0 佣 丿 丿 有 ） l B D l 相 相 相 相 贞 ， 性 性 性 性 的 得 （ （ 贝 换 阵 线 线 线 线 定 矩 组 组 组 组 给 交 零 鼠 量 量 量 对 J 夕2 非 向 向 向 向 ， 第 入I 行 列 行 列 j ) 卢 ） 两 的 的 的 的 O 歹 意 （ 于 B B B B N ( l 任 的 关 关 关 关 布 等 为 0 相 相 相 相 分 第 （ 勺 态 x 廿 u 正 贝 性 性 性 性 ＝ A Q 将 归 AB 麟 麟 麟 醮 从 a, 阵 逆 ＼ — — 丿 ＼ — | 丿 己 最 量 掀 量 服 ＝ O O l O O l 向 向 向 向 x i 满 x 方 可阶 的 l O O l O l 为 列 列 行 行 量 ＜ 3 C 的 的 的 的 变 — 是 ＿＿ P h \\ 7 lI B, A A A A 机 X ) ） ) ） ) ) 随 — A B C D 设 Pl A 0~ A A c 设 A ( （ 设 ( ( ( ( 、＼ 丿 ） ） l 2 3 l l l ( （ (",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 56,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. u军 2",
+      "B. U1-f·",
+      "C. u宁·",
+      "D. U1_矿"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(14)设随机变 量 X X 1 1 , 2 , …，Xn(n>I)独立同分 布 ，且其方差为矿>0. 令Y=—三xi , 则（ ） n i=l",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-4-2"
+    ],
+    "page_num": 56,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. Cov(X1 , Y) 。 一2 ＝ ． n",
+      "C. D(X + Y) = n + 2 2 1 u. n",
+      "B. Cov(X1 ,Y) =矿．",
+      "D. D(X - Y) n + I 2 = u. 三、解答题（本题共9小题，满分94分解答应写出文字说明、证明过程或演算步骤）"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "历年考研数学真题解析及复习思路（数学一）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 57,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-6",
+    "type": "choice",
+    "content": "(22) (本题满分9分） 设A,B 为随机事件，且P",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 57,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. = 1 1 1 — P(B I A) =— — P(A I B) = 4' 3' 2 X = { I ,A 发生， O,A不发生； 求：(I)二维随机变量(X,Y)的概率分布； (II)X与Y的相关系数Pxr y = {I ,B 发生， O,B不发生 ，令"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)曲线y= X 2x + 1 的斜渐近线方程为",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 58,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(2)微分方程xy'+2y = xln x满足y",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-7-2",
+      "calc-2-1",
+      "calc-2-3",
+      "calc-7-1",
+      "calc-2-2"
+    ],
+    "page_num": 58,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(1)= -点的解为",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 58,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(4)设D是由锥面z= J; 了厂尸与半球面z= J R 2 -x 2 -y 2 围成的空间区域，2 是0的整个边界 的外侧，则ff xdydz + ydzdx + zdxdy = .",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 58,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "历年考研数学真题解析及复习思路（数学一）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 59,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(11)设入1 ' 入2 是矩阵A的两个不同的特征值，对应的特征向量分别为a1 ,a2'则a1 ,A (a1 + a2)线 性无关的充分必要条件是（ ）",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-3-2",
+      "la-2-1",
+      "la-3-1"
+    ],
+    "page_num": 59,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 入1 ]0.",
+      "B. 入2 ]0.",
+      "C. 入1= 0.",
+      "D. 入2= 0."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-3",
+    "type": "choice",
+    "content": "(12)设A为n(n=2)阶可逆矩阵，交换A的第1行与第2行得矩阵B,A* ,B*分别为A,B的伴 随矩阵，则（ ）",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 59,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 交换A*的第1列与第2列得B*.",
+      "B. 交换A的第1行与第2行得B*.",
+      "C. 交换A的第1列与第2列得-B*.",
+      "D. 交换A*的第1行与第2行得-B*."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-4",
+    "type": "choice",
+    "content": "(13)设二维随机变鼠(X,Y)的概率分布为 。 l O l 。b 4 a 0. 1 已知随机事件jX= Ol与jX+Y=ll相互独立，则（ ）",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-3",
+      "prob-2-1",
+      "prob-1-2",
+      "prob-2-2",
+      "prob-1-1"
+    ],
+    "page_num": 59,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. a = 0. 2,b = 0. 3.",
+      "B. a = 0. 4 , b = 0. 1.",
+      "C. a = 0. 3 , b = 0. 2.",
+      "D. a = 0. 1 , b = 0. 4."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-5",
+    "type": "choice",
+    "content": "(14)设X1 ,X2'…，凡(n;:::2)为来自总体N(O,1)的简单随机样本，X为样本均值，5 2为样本方差， 则（ ）",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-4-2"
+    ],
+    "page_num": 59,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. nX -N (0 , 1) .",
+      "C. (n - I) X s -t(n-I).",
+      "B. nS 2 -x 2 (n) . (n -1)对",
+      "D. -F( l,n-1). ix: ,=2 三、解答题（本题共9小题，满分94分解答应写出文字说明、证明过程或演算步骤）"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "2005年真题",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 60,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(0) = 0 , J(l) = 1. 证明： (I)存在g E (0,1), 使得J传）= 1 - t; (II)存在两个不同的点7/,? E (0,1), 使得f'(YJ)f'(?)=l.",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 60,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "2006年真题",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 62,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(11)设妇a2'…，q均为n维列向量，A是mxn矩阵，下列选项正确的是（）",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 62,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 若a1 ,a2'…，q线性相关，则Aa1 ,Aa2 , …, Aas 线性相关．",
+      "B. 若a1 ,a2 ,…，q线性相关，则Aa1 ,Aa2 , …，Aas 线性无关",
+      "C. 若a1 ,a2 ,…,q线性无关，则Aa1 ,Aa2 , …，Aas 线性相关．",
+      "D. 若a1 ,a2 , …，＂，线性无关，则Aa1 ,Aa2 , …，Aas 线性无关"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-3",
+    "type": "choice",
+    "content": "(12)设A为3阶矩阵，将A的第2行加到第1行得B ,再将B的第1列的-1倍加到第2列得C, 记pè[é ê ë'则（） ( 13 ) i?B一为。三：! 且P",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 62,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "B. > O ,P(A 10}\u0007 ;,\u0007:l;: 有（）",
+      "A. P(A U B) > P",
+      "A. .",
+      "B. P(A U B) > P"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-4",
+    "type": "choice",
+    "content": "(14)设随机变址X服从正态分布N(µ1 ,矿），Y服从正态分布N(µ2 ,吐），且 p 1 I X -µI I < 1 l > p 1 I y -µ2 I < 1 l' 则必有（",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-2-3",
+      "prob-2-2"
+    ],
+    "page_num": 62,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. u1 <贮·",
+      "C. µ1 <µ2. 、 ＼ 丿",
+      "B. 0\"1 >贮·",
+      "D. µ1 >µ2. 三、解答题（本题共9小题，满分94分解答应写出文字说明、证明过程或演算步骤）"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "历年考研数学真题解析及复习思路（数学一） j(tx , ty) = t - 2j(X , y) . 证明：对D内的任意分段光滑的有向简单闭曲线L,都有i计(x,y)dx -xf(x,y)dy = 0.",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 63,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(20) (本题满分9分） X1 + X2 + x3 + X4 = - 1 , 已知非齐次线性方程组｛伍+ 3x, + 5x, - x, = - I , 有3个线性尤关的解 ax1 + x2 + 3x3 + bx4 = l (I)证明方程组系数矩阵A的秩r",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-4-2",
+      "la-4-1",
+      "la-2-1"
+    ],
+    "page_num": 63,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. =2; (II)求a,b的值及方程组的通解"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(3) =—F",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 64,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(11) f 2 1 1... e x dx =",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 65,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(13)二阶常系数非齐次线性微分方程y\"-4y'+3y = 2产的通解为y = .",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-7-2",
+      "calc-2-1",
+      "calc-2-3",
+      "calc-7-1",
+      "calc-2-2"
+    ],
+    "page_num": 65,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(0) = 0, y'",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 65,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "2007年真题",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 66,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(1)设函数j(X) = f 2 ln (2 + t) dt , 则f '(x)的零点个数为（）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 67,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. O.",
+      "B. l.",
+      "C. 2."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-3",
+    "type": "choice",
+    "content": "(2) 函数八x,y) = arctan 王在点(O,1)处的梯度等于（） y",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 67,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "D. 3.",
+      "A. i.",
+      "B. -i.",
+      "C. j."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-4",
+    "type": "choice",
+    "content": "(3)在下列微分方程中，以y = C1 ex + C2cos 2x + C3sin 2x (C1, C2, C3 为任意常数）为通解的是 （）",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-7-2",
+      "calc-2-1",
+      "calc-2-3",
+      "calc-7-1",
+      "calc-2-2"
+    ],
+    "page_num": 67,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. y11 1 + y\" -4y'-4y =0.",
+      "B. y111 + y\" +4y'+4y =0.",
+      "C. y11 1 -y\" -4y'+4y =0.",
+      "D. y111 -y\" +4y'-4y =0."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-5",
+    "type": "choice",
+    "content": "(4)设函数f(x)在( -oo, +oo)内单调有界，飞｝为数列，下列命题正确的是（）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 67,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 若jxJ收敛，则lJ(X n)f收敛",
+      "B. 若飞｝单调，则仇xJf收敛．",
+      "C. 若lJ(xn) i 收敛，则飞｝收敛",
+      "D. 若订(xJ l 单调，则飞｝收敛"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-6",
+    "type": "choice",
+    "content": "(5)设A为n阶非零矩阵，E为n阶单位矩阵，若A3 =0, 则（）",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 67,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. E -A不可逆，E+A不可逆",
+      "B. E-A不可逆，E+A可逆．",
+      "C. E-A可逆，E+A可逆.",
+      "D. E-A可逆，E+A不可逆．"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-7",
+    "type": "choice",
+    "content": "(6)设A为3阶实对称矩阵，如果二次曲面方程 z' (x,y,z)A[ëJ = 1 在正交变换下的标准方程的图形如图所示，则A的正特征值 的个数为（）",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-3-2",
+      "la-2-1",
+      "la-3-1"
+    ],
+    "page_num": 67,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. O.",
+      "B. l.",
+      "C. 2.",
+      "D. 3. y ，"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-8",
+    "type": "choice",
+    "content": "(7)设随机变址X,Y独立同分布，且X 的分布函数为F(x),则Z = maxjX,Yf的分布函数为（）",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-2-3",
+      "prob-2-2"
+    ],
+    "page_num": 67,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. F 2(x).",
+      "B. F(x)F(y).",
+      "C. l - [1 -F(x) ] 2.",
+      "D. [1 -F(x)] [1 -F(y)]."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-9",
+    "type": "choice",
+    "content": "(8)设随机变量X-N(0,1),Y-N(l ,4), 且相关系数PxY = 1, 则（）",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-2-2"
+    ],
+    "page_num": 67,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. P j Y = -2X -1 f = 1.",
+      "B. P j Y = 2X -1 f = 1.",
+      "C. P 1 Y = -2X + If = 1.",
+      "D. P j Y = 2X + If = 1. 二、填空题（本题共6小题，每小题4分，满分24分）"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-10",
+    "type": "solve",
+    "content": "(9) 微分方程xy'+y =0满足条件y(l) = 1 的解是y = .",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-7-2",
+      "calc-2-1",
+      "calc-2-3",
+      "calc-7-1",
+      "calc-2-2"
+    ],
+    "page_num": 67,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-11",
+    "type": "solve",
+    "content": "(10)曲线sin(xy) + ln (y -x) = x 在点(0,1)处的切线方程是 ．",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 67,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-12",
+    "type": "solve",
+    "content": "(11)巳知幕级数L an(x +2) n 在X =0 处收敛，在X = -4 处发散，则幕级数L an(x -3尸的收 敛域为 n=O n=O",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-10-1",
+      "calc-10-2"
+    ],
+    "page_num": 67,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(12)设曲面2是z= J4二ó了的上侧，则§xydydz+ xdzdx + x2 dxdy =",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 68,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(13)设A为2阶矩阵，＂口a2为线性无关的2维列向最，Aa1 = 0 ,Aa2 = 2a1 十a2 '则A的非零特征 值为",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 68,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "历年考研数学真题解析及复习思路（数学一）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 69,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(1)当x----+O时，f(x) = x -sin ax与g(x) = x 2ln(l -bx)是等价无穷小量，则（",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 70,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. a = l,b = -—. 1 6",
+      "B. a = l,b = —. 1 6 1 1",
+      "C. a = -1,b = -— 6\"",
+      "D. a = -1,b = — 6\""
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-3",
+    "type": "choice",
+    "content": "(2)如图，正方形l(x,y)llxl::::;I,lyl:=::;If被其对角线划分为四个区 域Dk(k = I,2,3,4),lk = ff ycosxdxdy, 则阱 4 jlk f = ( ) Dk",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 70,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. /1 .",
+      "B. /2.",
+      "C. /3.",
+      "D. /4."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-4",
+    "type": "choice",
+    "content": "(3)设函数y = f(X)在区间[ -1,3]上的图形如右图所示，则函数 F (X) = J f (t) dt的图形为（ ） F(x)+ F(x) 、 ＼ 丿 f(x) 2 1",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 70,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. F(x)",
+      "B. F(x) l 3 X -1 01 1",
+      "C. I",
+      "D. "
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-5",
+    "type": "choice",
+    "content": "(4)设有两个数列1 a n \\, 1 b n \\, 若lim a n = 0, 则（ ） n---+oo",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 70,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 当Ib 收敛时，L a nb n 收敛",
+      "B. 当I b n 发散时，三a nb n 发散． n =l n =l n =l",
+      "C. 当I I b n I收敛时，I a¨ 忙收敛",
+      "D. 当I I b n I发散时，I a¨ 忙发散． n =l n =l 1 1"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-6",
+    "type": "choice",
+    "content": "(5)设回归也是3维向鼠空间R 3的一组基，则由基a巨2a2,3a3 到基a1 十生立＋也,a3 + a1 的过渡矩阵为（ ） 1 。 1 1 2 0",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 70,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 2 2 0",
+      "B. 0 2 3 0 3 3 1 。 3"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(13)若3维列向扯a,/J满足a T/J =2, 其中a T 为a 的转置，则矩阵/Ja T 的非零特征值为",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-3-2",
+      "la-2-1",
+      "la-3-1"
+    ],
+    "page_num": 71,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "2009年真题",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 72,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 99 * ( ) )) : 8 9 99 * ( ) )) 33 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 77,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(12)设L是柱面x2 + y2 = 1与平面z =x +y的交线，从z 轴正向往z 轴负向看去为逆时针方向，则 f 曲线积分xzdx +xdy +Ldz = . 2",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 78,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(13)若二次曲面的方程x2 + 3y2 + z 2 + 2axy + 2xz + 2yz = 4经正交变换化为外+4zi = 4, 则 a=",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 78,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 * ( 35 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 79,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 99 * ( ) )) : 8 9 99 * ( ) )) 36 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 80,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 99 * ( ) )) : 8 9 99 * ( ) )) : 8 9 99 * ( ) )) : 8 9 99 * ( ) )) : 8 9 99 * ( ) )) : 8 9 99 * ( ) )) : 8 9 99 * ( ) )) : 8 9 99 * ( ) )) : 8 9 99 * ( ) )) 29 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 81,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 * ( 30 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 82,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 9 99 * ( ) ) )) : 8 9 9 99 * ( ) ) )) 31 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 83,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 9 99 * ( ) ) )) 32 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 84,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 * ( : 8 * ( : 8 * ( : 8 9 99 * ( ) )) : 8 9 99 * ( ) )) 25 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 85,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 * ( : 8 * ( 26 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 86,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 * ( : 8 * ( 27 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 87,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 99 * ( ) )) : 8 9 99 * ( ) )) 4 2 3 11 11 28 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 88,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(1)下列曲线中有渐近线的是（",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 89,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. y = x + sin x.",
+      "B. y = x2 + sin x. 1",
+      "C. y = x + sin —. X 1",
+      "D. y = x2 + sin —. X"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(2)设函数f(x)具有2阶导数，g(X) = /",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-2-2",
+      "calc-2-1"
+    ],
+    "page_num": 89,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(0) (I -X) + /",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 89,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-5",
+    "type": "choice",
+    "content": "(1) X , 则在区间[0, 1]上（ ）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 89,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 当f'(x);;:O时，f(X) ;:: g (X) .",
+      "B. 当f'(x);;:O时，f(x)àg(x).",
+      "C. 当f\"(X) ;,::Q时，f(X) ;:: g (X) .",
+      "D. 当f\"(X) ;,::Q时，f(x) 冬g(x)."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-6",
+    "type": "choice",
+    "content": "(3)设J(x,y)是连续函数，则［叫 0 - f (X , y) dx = ( )",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 89,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. L dxL 无一1 /(x,y)dy+ l1dxf 卢 八x,y)dy",
+      "B. L dxL 一无 f(X , y) dy + ll dx l 歹f(x,y) dy. 厂 f os/J\bsin/J",
+      "C. 0 d0 0 /(rcos 0, rsin 0) dr + ff d0 L /(rcos 0, rsin 0) dr. 广厂/J\bsin/J",
+      "D. d0 /(rcos 0, rsin 0) rdr + f 叫 1 /(rcos 0 , rsin 0) rdr. 0 0"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-7",
+    "type": "choice",
+    "content": "(4)若f ir (x -a1 cos x -b1 sin x) 2 dx = min { f ir (x -acos x -bsin x) 2 dx } , 则a 1cos x + b 1 sin x = ( ) a bER",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 89,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 2sin x.",
+      "B. 2cos x.",
+      "C. 27rsin x.",
+      "D. 27rcos x. 0 a b O·"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-8",
+    "type": "choice",
+    "content": "(5)行列式 a O O b 0 C d 0 I = c > C O O d,",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-1-1",
+      "la-1-2"
+    ],
+    "page_num": 89,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. (ad-bc) 2.",
+      "B. -(ad-bc) 2.",
+      "C. a2d2 -b2c2.",
+      "D. b2c2 -a2d气"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-9",
+    "type": "choice",
+    "content": "(6)设归生，U'3 均为3维向量，则对任意常数k'l, 向量组a1+ k也立尸厄线性无关是向量组a1' a2 ,a3 线性尤关的（ ）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 89,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 必要非充分条件.",
+      "B. 充分非必要条件．",
+      "C. 充分必要条件",
+      "D. 既非充分也非必要条件"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-10",
+    "type": "choice",
+    "content": "(7)设随机事件A 与B相互独立，且P",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 89,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "B. =0.5,P(A-B) =0.3, 则P(B-A) = ( )",
+      "A. 0.1.",
+      "B. O. 2.",
+      "C. O. 3."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-11",
+    "type": "choice",
+    "content": "(8)设连续型随机变蜕X1 与X2相互独立且方差均存在，X1 与X2 概率密度分别为/1(x)与儿(X)' 随机变量yl的概率密度为/ ( Y1 y) =— 2",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-4-2",
+      "prob-1-2",
+      "prob-2-2",
+      "prob-1-1"
+    ],
+    "page_num": 89,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. E (Y1) > E (凡），D(Y1) > D (Y2) .",
+      "C. E (Y1) = E (Y2) , D (Y1) < D (Y2) . [/1 Cr) +/2 Cr) J, 随机变量Y2 =—（凡＋凡），则（ 2",
+      "B. E (Y1) = E (Y2) , D (Y1) = D (Y2) .",
+      "D. E (Y1) = E (凡），D(Y1) > D (Y2) . 21 淘宝店铺：筑梦教育"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(7) = .",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 90,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(12)设L是柱面x 2+ y 2 = 1与平面y+z =0的交线，从z轴正向往z轴负向看去为逆时针方向，则 曲线积分fzdx +ydz =",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 90,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 99 * ( ) )) 23 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 91,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 9 99 * ( ) ) )) : 8 9 9 99 * ( ) ) )) 24 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 92,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 * ( : 8 9 99 * ( ) )) : 8 9 99 * ( ) )) 17 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 93,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 * ( 18 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 94,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 99 * ( ) )) : 8 9 99 * ( ) )) 20 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 96,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(1)若反常积分J +oo 1 xa(l +x)",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 97,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. a< I且b>l. bdx收敛，则（ ）",
+      "B. a>l且b> l.",
+      "C. a<l且a+b>l.",
+      "D. a>l且a+b>l."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-3",
+    "type": "choice",
+    "content": "(2)已知函数f(X) = l2 (X -I)' X <I'则八x)的一个原函数是（ ） lnx, xél,",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 97,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. F(x) =r x-1)', x<l, x(ln x -l), x;::1.",
+      "B. F(x) = I (x-1) 2, x(lnx+I) -1, X < l, xél.",
+      "C. F(x) =\\ (x-1)', x<l,",
+      "D. F(x) =\\ (x-1)气 X<1, x(ln x + l) + 1 , x; 三:1. x(ln x -1 ) + 1 , x; 三三1."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-4",
+    "type": "choice",
+    "content": "(3)若y= (1 +x甲- Ji了了，y= (1 + x 2 尸+ Ji了了是微分方程y'+p (X) y = q (X)的两个解，则 q(x) =( ) X X",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-7-2",
+      "calc-2-1",
+      "calc-2-3",
+      "calc-7-1",
+      "calc-2-2"
+    ],
+    "page_num": 97,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 3x(l +x2).",
+      "B. -3x(I +x2).",
+      "C. l +x 2·",
+      "D. -1 +x2·"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-5",
+    "type": "choice",
+    "content": "(4)已知函数瓜）= C1' X了 0, I …则（ ） — <x=:::; —, n=l,2, , n n + I n",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 97,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. x=O 是f(x)的第一类间断点",
+      "B. x =0是f(x)的第二类间断点．",
+      "C. f(x)在X=0处连续但不可导",
+      "D. f(x)在X=0处可导"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-6",
+    "type": "choice",
+    "content": "(5)设A,B是可逆矩阵，且A 与B相似，则下列结论错误的是（ ）",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 97,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. AT 与BT 相似",
+      "B. A -i 与B- 1相似",
+      "C. A +AT 与B+B T 相似",
+      "D. A+A - 1 与B+B- 1相似"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-7",
+    "type": "choice",
+    "content": "(6)设二次型f(XI , Xz , X3) =式+x;+式+4x1 x2 + 4x1 x3 + 4x2x3 , 则/(XI, Xz , X3) = 2 在空间直角坐标 下表示的二次曲面为（ ）",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-5-2",
+      "la-5-1"
+    ],
+    "page_num": 97,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 单叶双曲面",
+      "B. 双叶双曲面",
+      "C. 椭球面",
+      "D. 柱面"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-8",
+    "type": "choice",
+    "content": "(7)设随机变量X-N(µ, 矿）(cr>O), 记p=PjXêµ+er勹，则（ ）",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-2-2"
+    ],
+    "page_num": 97,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. p随着µ 的增加而增加",
+      "B. p随着6 的增加而增加",
+      "C. p随着µ 的增加而减少.",
+      "D. p随着6 的增加而减少．"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-9",
+    "type": "choice",
+    "content": "(8)随机试验E有三种两两不相容的结果A 1,Az ,A 3, 且三种结果发生的概率均为—，将试验E独立 3 重复做2次，X表示2次试验中结果A I 发生的次数，Y表示2次试验中结果Az发生的次数，则 X与Y的相关系数为（ ）",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-1-2",
+      "prob-1-1"
+    ],
+    "page_num": 97,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 1 -—. 2 1",
+      "B. -—. 3 1",
+      "C. —. 3 1",
+      "D. —. 2 13 淘宝店铺：筑梦教育"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(9) lim 0 x---->O 1 - COS X",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 98,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(13)行列式0 入 。 。 l 0 I 入 1 O O I ＝ 4 3 2 入+1'",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-1-1",
+      "la-1-2"
+    ],
+    "page_num": 98,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 99 * ( ) )) : 8 9 99 * ( ) )) 15 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 99,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 99 * ( ) )) 16 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 100,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 9 * ( ) ) : 8 9 9 * ( ) ) : 8 9 9 * ( ) ) 9 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 101,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 99 * ( ) )) : 8 * ( : 8 * ( 10 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 102,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-3",
+    "type": "choice",
+    "content": "(20) (本题满分11分） 设3阶矩阵A = («1 , «2 , «3)有3个不同的特征值，且也=«1 + 2也· (I)证明r",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-3-2",
+      "la-2-1",
+      "la-3-1"
+    ],
+    "page_num": 103,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. =2; (II)设/3=«1 +«2 十也，求方程组Ax =/3的通解． 11 淘宝店铺：筑梦教育"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 9 * ( ) ) : 8 9 9 * ( ) ) : 8 9 9 * ( ) ) : 8 9 9 * ( ) ) : 8 9 9 * ( ) ) 6 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 105,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(12)设L为球面x2+ y 2 + z 2 = 1与平面x+y+z=O的交线，则fxyds = .",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 106,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(13)设2阶矩阵A有两个不同特征值，a1,a2是A的线性无关的特征向量，且满足A气a1+ a2) = a1 十a2'则IA I = .",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-3-2",
+      "la-2-1",
+      "la-3-1"
+    ],
+    "page_num": 106,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": ": 8 9 9 * ( ) ) : 8 9 9 * ( ) ) 8 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 107,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-1",
+    "type": "choice",
+    "content": "2019年全国硕士研究生招生考试试题 一、选择题（本题共8小题，每小题4分，共32分．在每小题给出的四个选项中，只有一项符合题目 要求，把所选项前的字母填在题后的括号内．） (I)当X ----+ 0时，若x - tan x与x k 是同阶无穷小，则k = (",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 108,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. l.",
+      "B. 2.",
+      "C. 3. 、丿",
+      "D. 4."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(2)设函数f(x) = { XIX I'X 冬O ＇则X = 0 是f(x)的（ ） xln x, x > 0,",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 108,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 可导点，极值点",
+      "B. 不可导点，极值点",
+      "C. 可导点，非极值点",
+      "D. 不可导点，非极值点"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-3",
+    "type": "choice",
+    "content": "(3)设飞｝是单调增加的有界数列，则下列级数中收敛的是（ ） CB) Ic-1 尸—1 \"\"' u;",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-10-1",
+      "calc-10-2"
+    ],
+    "page_num": 108,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "C. \u0017(i-2:;)·",
+      "D. \u0017(u!., 一式）．"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-4",
+    "type": "choice",
+    "content": "(4)设函数Q(x,y) =今．如果对上半平面( y > O)内的任意有向光滑封闭曲线C都有 乎P(x,y)dx + Q(x,y)d y = 0, 那么函数P(X,y)可取为（ ）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 108,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. y -子 1 x 2",
+      "B. — - — 1 1",
+      "C. — - —. 1",
+      "D. x - —. y y"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-5",
+    "type": "choice",
+    "content": "(5)设A是3阶实对称矩阵，E 是3阶单位矩阵．若A 2 + A = 2 E, 且IA I = 4, 则二次型x TAx的 规范形为（ ） 00 u",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-5-2",
+      "la-5-1",
+      "la-2-1"
+    ],
+    "page_num": 108,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. I 二 n=l n",
+      "A. Yi + y; + y; ·",
+      "B. Yi + y; - y; ·",
+      "C. Yi - y; - Yi·"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-6",
+    "type": "choice",
+    "content": "(6)如图所示，有3张平面两两相交，交线相互平行，它们的方程 ail x + ai2 y + ai3z = d;(i = l , 2 , 3) 组成的线性方程组的系数矩阵和增广矩阵分别记为A,A, 则（",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-4-2",
+      "la-4-1",
+      "la-2-1"
+    ],
+    "page_num": 108,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. r",
+      "A. = 2, r",
+      "A. = 3.",
+      "B. r"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-7",
+    "type": "choice",
+    "content": "(7)设A,B为随机事件，则P",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 108,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. = P",
+      "B. 的充分必要条件是（ ）",
+      "A. P (A U B) = P",
+      "A. + P"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-8",
+    "type": "choice",
+    "content": "(8)设随机变豐X与Y相互独立，且都服从正态分布N(µ,矿），则Pl IX - YI < 1 f ( )",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-2-3",
+      "prob-2-2"
+    ],
+    "page_num": 108,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 与µ 无关，而与矿有关.",
+      "B. 与µ 有关，而与矿无关",
+      "C. 与µ,矿都有关",
+      "D. 与µ,矿都无关 2 淘宝店铺：筑梦教育"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(9)设函数八u)可导，z = /(sin y -sin x) + xy, 则一—- . -+ . 一 1加1加 COS X 彻 cosy切",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 109,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(10)微分方程2yy'- r 2 - 2 = 0满足条件y(O) = 1的特解y =",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-7-2",
+      "calc-2-1",
+      "calc-2-3",
+      "calc-7-1",
+      "calc-2-2"
+    ],
+    "page_num": 109,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(11)幕级数2 (- 1)\" 几=O (2n) ! x\"在(0, +oo)内的和函数S(x) =",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-10-1",
+      "calc-10-2"
+    ],
+    "page_num": 109,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-5",
+    "type": "solve",
+    "content": "(12)设凶设为曲面x2 + y 2 + 4z2 = 4 (z¸0)的上侧，则ff J4 - x2 - 4z2dxdy =",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 109,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-6",
+    "type": "solve",
+    "content": "(13)设A = (a1 , a2 , a3)为3阶矩阵．若a1'a2 线性无关，且a3 = - a1 + 2a2 , 则线性方程组 Ax =0的通解为",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-4-2",
+      "la-4-1",
+      "la-2-1"
+    ],
+    "page_num": 109,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "2020 年数一真题 一、选择题",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 112,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(1) 当x →0+ 时，下列无穷小量中阶最高的是( )",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 112,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. ´ x 0 (et2 −1)dt.",
+      "B. ´ x 0 ln(1 + √ t3)dt.",
+      "C. ´ sin x 0 sin t2dt.",
+      "D. ´ 1−cos x 0 √ sin3 tdt."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-3",
+    "type": "choice",
+    "content": "(2) 设函数f(x) 在区间(−1, 1) 内有定义，且lim x→0 f(x) = 0，则( )",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 112,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 当lim x→0 f(x) √ |x| = 0 时，f(x) 在x = 0 处可导.",
+      "B. 当lim x→0 f(x) √ x2 = 0 时，f(x) 在x = 0 处可导.",
+      "C. 当f(x) 在x = 0 处可导时，lim x→0 f(x) √ |x| = 0.",
+      "D. 当f(x) 在x = 0 处可导时，lim x→0 f(x) √ x2 = 0."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-4",
+    "type": "choice",
+    "content": "(3) 设函数f(x, y) 在点(0, 0) 处可微，f(0, 0) = 0，n = ( ∂f ∂x, ∂f ∂y , −1 ) (0,0)，非零向量α 与n 垂直， 则( )",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 112,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. lim (x,y)→(0,0) |n·(x,y,f(x,y))| √ x2+y2 存在.",
+      "B. lim (x,y)→(0,0) |n×(x,y,f(x,y))| √ x2+y2 存在.",
+      "C. lim (x,y)→(0,0) |α·(x,y,f(x,y))| √ x2+y2 存在.",
+      "D. lim (x,y)→(0,0) |α×(x,y,f(x,y))| √ x2+y2 存在."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-5",
+    "type": "choice",
+    "content": "(4) 设R 为幂级数 ∞ ∑ n=1 anxn 的收敛半径，r 是实数，则( )",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-10-1",
+      "calc-10-2"
+    ],
+    "page_num": 112,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 当 ∞ ∑ n=1 a2nr2n 发散时，|r| ≥R.",
+      "B. 当 ∞ ∑ n=1 a2nr2n 收敛时，|r| ≤R.",
+      "C. 当|r| ≥R 时， ∞ ∑ n=1 a2nr2n 发散.",
+      "D. 当|r| ≤R 时， ∞ ∑ n=1 a2nr2n 收敛."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-6",
+    "type": "choice",
+    "content": "(5) 若矩阵A 经过初等列变换化成B，则( )",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 112,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 存在矩阵P ，使得P A = B.",
+      "B. 存在矩阵P ，使得BP = A.",
+      "C. 存在矩阵P ，使得P B = A.",
+      "D. 方程组Ax = 0 与Bx = 0 同解."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-7",
+    "type": "choice",
+    "content": "(6) 已知直线l1 : x−a2 a1 = y−b2 b1 = z−c2 c1 与直线l2 : x−a3 a2 = y−b3 b2 = z−c3 c2 相交于一点，记向量 αi =     ai bi ci    ，i = 1, 2, 3，则( )",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 112,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. α1 可由α2，α3 线性表示.",
+      "B. α2 可由α1，α3 线性表示.",
+      "C. α3 可由α1，α2 线性表示.",
+      "D. α1，α2，α3 线性无关."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-8",
+    "type": "choice",
+    "content": "(7) 设A，B，C 为三个随机事件，且P",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 112,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. = P",
+      "B. = P",
+      "C. = 1 4，P(AB) = 0，P(AC) = P(BC) = 1 12， 则A，B，C 中恰有一个事件发生的概率为( ) 1 淘宝店铺：筑梦教育"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(0) = m，f ′",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 113,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(13) 行列式 a 0 −1 1 0 a 1 −1 −1 1 a 0 1 −1 0 a = .",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-1-1",
+      "la-1-2"
+    ],
+    "page_num": 113,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(16) 计算I = ¸ L 4x−y 4x2+y2 dx + x+y 4x2+y2 dy，其中L 为x2 + y2 = 2，方向为逆时针方向.",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 113,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(0) = f",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 113,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(I) 求二维随机变量(X1, Y ) 的分布函数，结果用标准正态分布函数Φ(x) 表示. (II) 证明随机变量Y 服从标准正态分布.",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-2-3",
+      "prob-2-2"
+    ],
+    "page_num": 114,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(23) 设某种元件的使用寿命T 的分布函数为 F(t) =    1 −e−( t θ) m , t ≥0, 0, 其他. 其中θ，m 为参数且均大于零. (I) 求概率P{T > t} 与P{T > s + t|T > s}，其中s > 0，t > 0. (II) 任取n 个这种元件做寿命试验，测得它们的寿命分别为t1，t2，· · · ，tn，若m 已知，求θ 的 最大似然估计值ˆθ. 淘宝店铺：筑梦教育",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-3",
+      "prob-2-1",
+      "prob-1-2",
+      "prob-2-2",
+      "prob-1-1"
+    ],
+    "page_num": 114,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "1 2021 考研数学真题试卷(数学一) 数学（一） 一、选择题（本题共10 小题，每小题5 分，共50 分.每小题给出的四个选项中，只 有一个选项是符合题目要求，把所选选项前的字母填在答题卡指定位置上.）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 115,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-c-2",
+    "type": "choice",
+    "content": "(1)函数 1, 0 ( )= 1, 0 xe x f x x x        ,在 0 x  处",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 115,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 连续且取极大值.",
+      "B. 连续且取极小值.",
+      "C. 可导且导数为0.",
+      "D. 可导且导数不为0."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-3",
+    "type": "choice",
+    "content": "(2)设函数   , f x y 可微，且 2 ( 1, ) ( 1) x f x e x x    ， 2 2 ( , ) 2 ln f x x x x  ，则 (1,1) df ",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 115,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. dx dy  .",
+      "B. dx dy  .",
+      "C. dy .",
+      "D. dy  ."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-4",
+    "type": "choice",
+    "content": "(3)设函数 2 sin ( ) 1 x f x x  在 0 x  处的3 次泰勒多项式为 2 3 ax bx cx   ，则",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 115,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 7 1, 0, 6 a b c    .",
+      "B. 7 1, 0, 6 a b c    .",
+      "C. 7 1, 1, 6 a b c    .",
+      "D. 7 1, 1, 6 a b c    ."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-5",
+    "type": "choice",
+    "content": "(4) 设函数  f x 在区间  0,1 上连续，则  1 0 f x dx  ",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 115,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 1 2 1 1 lim 2 2 n n k k f n n           .",
+      "B. 1 2 1 1 lim 2 n n k k f n n           .",
+      "C. 2 1 1 1 lim 2 n n k k f n n           .",
+      "D. 2 0 1 2 lim 2 n x k k f n n          ."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-6",
+    "type": "choice",
+    "content": "(5)二次型 2 2 2 1 2 3 1 2 2 3 3 1 ( , , ) ( ) ( ) ( ) f x x x x x x x x x       的正惯性指数与负惯性指数依次为",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-5-2",
+      "la-5-1"
+    ],
+    "page_num": 115,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 2,0 .",
+      "B. 1,1.",
+      "C. 2,1.",
+      "D. 1,2 ."
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-7",
+    "type": "choice",
+    "content": "(6)已知 1 1 0 1       ， 2 1 2 1       ， 3 3 1 2       ，记 1 1    ， 2 2 1 k      ， 3 3 1 1 2 2 l l        ， 若 1 ， 2 ， 3 两两正交，则1l ，2l 依次为",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 115,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 5 1 , . 2 2",
+      "B. 5 1 , . 2 2 ",
+      "C. 5 1 , . 2 2 ",
+      "D. 5 1 , . 2 2  "
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-c-8",
+    "type": "choice",
+    "content": "(7)设 , A B 为n 阶实矩阵，下列不成立的是",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 115,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A.  2 T A O r r A O A A      ",
+      "B.  2 T A AB r r A O A      "
+    ],
+    "answer": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(11) 2 0 2 2 dx x x      .",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 116,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(13)欧拉方程 2 4 0 x y xy y      满足条件",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 116,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(1) 1,",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 116,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(1) 2 y y   得解为y  .",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 116,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-5",
+    "type": "solve",
+    "content": "(15)设 ij A a  为3 阶矩阵， ij A 为代数余子式，若A 的每行元素之和均为2，且 3 A  ， 11 21 31 A A A   = .",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 116,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-6",
+    "type": "solve",
+    "content": "(16)甲乙两个盒子中各装有2 个红球和2 个白球，先从甲盒中任取一球，观察颜色后放入乙盒中， 再从乙盒中任取一球.令X , Y 分别表示从甲盒和乙盒中取到的红球个数，则X 与Y 的相关系",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 116,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-1",
+    "type": "solve",
+    "content": "(1)求正交矩阵P ,使得 T P AP 为对角矩阵；",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 117,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-2",
+    "type": "solve",
+    "content": "(1)求X 的概率密度；",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-1-2",
+      "prob-1-1"
+    ],
+    "page_num": 117,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-3",
+    "type": "solve",
+    "content": "(2)求Z 的概率密度.",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-1-2",
+      "prob-1-1"
+    ],
+    "page_num": 117,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "1987-s-4",
+    "type": "solve",
+    "content": "(3)求 X E Y       .",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 117,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  }
+]

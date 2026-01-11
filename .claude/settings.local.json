@@ -17,7 +17,9 @@
       "Bash(claude plugin:*)",
       "Bash(set CLAUDE_CODE_GIT_BASH_PATH=\"C:\\\\Program Files\\\\Git\\\\bin\\\\bash.exe\")",
       "Bash(git branch:*)",
-      "Bash(git rev-parse:*)"
+      "Bash(git rev-parse:*)",
+      "Bash(git checkout:*)",
+      "Bash(pip install:*)"
     ]
   }
 }

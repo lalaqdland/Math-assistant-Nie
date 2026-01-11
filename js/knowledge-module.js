@@ -374,8 +374,39 @@ function updateStatus(unitId, newStatus) {
  * 跳转到练习
  */
 function gotoPractice(unitId) {
+    // 切换到练习视图
     viewManager.switchView('practice');
-    // TODO: 根据知识点ID筛选相关题目
+
+    // 延迟执行以确保视图加载完成
+    setTimeout(() => {
+        // 切换到专项练习标签页
+        document.querySelectorAll('.practice-tab').forEach(tab => {
+            tab.style.background = '#f0f0f0';
+            tab.style.color = '#666';
+            tab.classList.remove('active');
+        });
+        const exerciseTab = document.querySelector('.practice-tab[data-tab="exercise"]');
+        if (exerciseTab) {
+            exerciseTab.style.background = 'var(--primary-color)';
+            exerciseTab.style.color = 'white';
+            exerciseTab.classList.add('active');
+        }
+
+        // 重新渲染筛选界面
+        loadPracticeTab('exercise');
+
+        // 再次延迟以确保筛选界面渲染完成
+        setTimeout(() => {
+            // 设置筛选条件为指定知识点
+            const knowledgePointSelect = document.getElementById('filterKnowledgePoint');
+            if (knowledgePointSelect) {
+                knowledgePointSelect.value = unitId;
+            }
+
+            // 开始练习
+            startExercise(unitId);
+        }, 100);
+    }, 100);
 }
 
 // ========== AI增强功能 ==========

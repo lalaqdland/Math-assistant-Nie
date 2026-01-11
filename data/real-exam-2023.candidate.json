@@ -1,0 +1,275 @@
+[
+  {
+    "id": "2023-s-1",
+    "type": "solve",
+    "content": "2023 数学一 2023 年数学一试题 一、选择题（1~10 小题，每小题5 分，共50 分.下列每题给出的四个选项中， 只有一个选项时最符合题目要求的.）",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 1,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "2023-c-2",
+    "type": "choice",
+    "content": "(1)曲线 的斜渐近线为",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 1,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. ",
+      "B. ",
+      "C. ",
+      "D. "
+    ],
+    "answer": ""
+  },
+  {
+    "id": "2023-c-3",
+    "type": "choice",
+    "content": "(2)若微分方程 的解在 上有界，则",
+    "explanation": "",
+    "knowledgePoints": [
+      "calc-7-2",
+      "calc-2-1",
+      "calc-2-3",
+      "calc-7-1",
+      "calc-2-2"
+    ],
+    "page_num": 1,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. ",
+      "B. ",
+      "C. ",
+      "D. "
+    ],
+    "answer": ""
+  },
+  {
+    "id": "2023-c-4",
+    "type": "choice",
+    "content": "(3)设函数 是由 确定，则",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 1,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 连续， 不存在",
+      "B. 存在， 在 处不连续",
+      "C. 连续， 不存在",
+      "D. 存在， 在 处不连续"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "2023-c-5",
+    "type": "choice",
+    "content": "(4)已知 ，若 都收敛，则“ 绝对收敛”是“ 绝对收敛”的",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 1,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. 充分必要条件",
+      "B. 充分不必要条件",
+      "C. 必要不充分条件",
+      "D. 既非充分也非必要条件"
+    ],
+    "answer": ""
+  },
+  {
+    "id": "2023-c-6",
+    "type": "choice",
+    "content": "(5) 已知 阶矩阵 满足 ， 是 阶单位矩阵，记矩阵 的秩分别为 ，则",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 1,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. ",
+      "B. ",
+      "C. ",
+      "D. "
+    ],
+    "answer": ""
+  },
+  {
+    "id": "2023-c-7",
+    "type": "choice",
+    "content": "(6)下列矩阵中不能相似于对角矩阵的是",
+    "explanation": "",
+    "knowledgePoints": [
+      "la-2-2",
+      "la-2-1"
+    ],
+    "page_num": 1,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "options": [
+      "A. ",
+      "B. ",
+      "C. ",
+      "D. "
+    ],
+    "answer": ""
+  },
+  {
+    "id": "2023-b-1",
+    "type": "blank",
+    "content": "(11)当 时，函数 与 是等价无穷小，则 ________. ",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 2,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "answer": "",
+    "acceptedAnswers": []
+  },
+  {
+    "id": "2023-b-2",
+    "type": "blank",
+    "content": "(12)曲面 在点 处的切平面方程为_______.",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 2,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "answer": "",
+    "acceptedAnswers": []
+  },
+  {
+    "id": "2023-b-1",
+    "type": "blank",
+    "content": "(13) 设 是周期为 2 的周期函数，且 ，若 ，则 ________. ",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 3,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "answer": "",
+    "acceptedAnswers": []
+  },
+  {
+    "id": "2023-b-2",
+    "type": "blank",
+    "content": "(14) 设连续函数 满足 ，则 ________. ",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 3,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "answer": "",
+    "acceptedAnswers": []
+  },
+  {
+    "id": "2023-b-3",
+    "type": "blank",
+    "content": "(15)已知向量 ，若 ，则 _______. ",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 3,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "answer": "",
+    "acceptedAnswers": []
+  },
+  {
+    "id": "2023-b-4",
+    "type": "blank",
+    "content": "(16) 设随机变量 相互独立，且 ，则 ________. 三、解答题（17~22 小题，共70 分.解答应写出文字说明、证明过程或演算 步骤.） ",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-2-2"
+    ],
+    "page_num": 3,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "answer": "",
+    "acceptedAnswers": []
+  },
+  {
+    "id": "2023-s-5",
+    "type": "solve",
+    "content": "(18)（本题满分12 分） 求函数 的极值.",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 3,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "2023-s-1",
+    "type": "solve",
+    "content": "(19)（本题满分12 分） 设空间有界区域 由柱面 与平面 和 围成，为 边界的外侧， 计算曲面积分 .",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 4,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "2023-s-2",
+    "type": "solve",
+    "content": "(21)（本题满分12 分） 已 知 二 次 型 ， .",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 4,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "2023-s-1",
+    "type": "solve",
+    "content": "2023 数学一 (I)求可逆变换 ，将 化为 ； (II)是否存在正交变换 将 化为 .",
+    "explanation": "",
+    "knowledgePoints": [],
+    "page_num": 5,
+    "confidence": 0.5,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  },
+  {
+    "id": "2023-s-2",
+    "type": "solve",
+    "content": "(22)（本题满分12 分） 设二维随机变量 的概率密度为 . (I)求 与 的协方差； (II) 与 是否相互独立？ (III)求 的概率密度.",
+    "explanation": "",
+    "knowledgePoints": [
+      "prob-2-1",
+      "prob-4-2",
+      "prob-1-2",
+      "prob-2-2",
+      "prob-1-1"
+    ],
+    "page_num": 5,
+    "confidence": 0.7,
+    "parsing_notes": "自动解析，需要人工审核",
+    "score": 10,
+    "answer": "",
+    "solution": ""
+  }
+]

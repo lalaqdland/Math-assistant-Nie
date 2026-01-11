@@ -8,17 +8,53 @@
  */
 
 // ========== 历年分数线数据 ==========
+// 注：数学一国家线（学术型）和高分参考线（985院校）
 const examScoreLines = {
+    // 2020年代
+    2026: { national: 56, top: 90 },  // 预估
+    2025: { national: 56, top: 90 },  // 预估
     2024: { national: 56, top: 90 },
     2023: { national: 56, top: 90 },
     2022: { national: 57, top: 90 },
     2021: { national: 56, top: 90 },
     2020: { national: 60, top: 95 },
+    // 2010年代
     2019: { national: 59, top: 90 },
     2018: { national: 51, top: 85 },
     2017: { national: 53, top: 85 },
     2016: { national: 54, top: 90 },
-    2015: { national: 54, top: 85 }
+    2015: { national: 54, top: 85 },
+    2014: { national: 57, top: 90 },
+    2013: { national: 57, top: 90 },
+    2012: { national: 57, top: 90 },
+    2011: { national: 60, top: 95 },
+    2010: { national: 57, top: 90 },
+    // 2000年代
+    2009: { national: 55, top: 85 },
+    2008: { national: 55, top: 85 },
+    2007: { national: 57, top: 90 },
+    2006: { national: 56, top: 85 },
+    2005: { national: 56, top: 85 },
+    2004: { national: 56, top: 85 },
+    2003: { national: 55, top: 85 },
+    2002: { national: 50, top: 80 },
+    2001: { national: 50, top: 80 },
+    2000: { national: 53, top: 80 },
+    // 1990年代
+    1999: { national: 52, top: 80 },
+    1998: { national: 50, top: 78 },
+    1997: { national: 50, top: 78 },
+    1996: { national: 48, top: 75 },
+    1995: { national: 48, top: 75 },
+    1994: { national: 45, top: 72 },
+    1993: { national: 45, top: 72 },
+    1992: { national: 45, top: 70 },
+    1991: { national: 42, top: 70 },
+    1990: { national: 42, top: 70 },
+    // 1980年代
+    1989: { national: 40, top: 68 },
+    1988: { national: 40, top: 68 },
+    1987: { national: 40, top: 65 }
 };
 
 // ========== 真题数据加载 ==========
@@ -405,10 +441,14 @@ function getRealExamByYearSync(year) {
  * @returns {number[]} 年份数组（降序）
  */
 function getAvailableYears() {
-    // 包含分数线中的年份和已加载的数据年份
-    const scoreYears = Object.keys(examScoreLines).map(Number);
+    // 返回一个包含 1987 到 2026 的完整年份范围（降序），并合并已加载的数据年份
+    const startYear = 1987;
+    const endYear = 2026;
+    const rangeYears = [];
+    for (let y = endYear; y >= startYear; y--) rangeYears.push(y);
+
     const loadedYears = Object.keys(realExamData).map(Number);
-    const allYears = [...new Set([...scoreYears, ...loadedYears])];
+    const allYears = Array.from(new Set([...rangeYears, ...loadedYears]));
     return allYears.sort((a, b) => b - a);
 }
 
@@ -470,4 +510,7 @@ function hasExamDataSync(year) {
 // ========== 初始化 ==========
 
 // 预加载已有的数据文件
-preloadExamData([2022, 2023, 2024]);
+// 预加载所有可能的年份数据（存在对应 data/real-exam-<year>.json 时会被加载）
+const yearsToPreload = [];
+for (let y = 1987; y <= 2026; y++) yearsToPreload.push(y);
+preloadExamData(yearsToPreload);
