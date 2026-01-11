@@ -146,6 +146,10 @@
                     <span class="nav-icon">📝</span>
                     <span>模拟考试</span>
                 </li>
+                <li data-view="real-exam" data-tooltip="历年真题">
+                    <span class="nav-icon">📜</span>
+                    <span>历年真题</span>
+                </li>
             </ul>
             <!-- AI状态指示器 -->
             <div class="ai-status-indicator" id="aiStatusIndicator" onclick="goToAISettings()">
@@ -177,6 +181,9 @@
     <script src="js/statistics-module.js"></script>
     <script src="js/settings-module.js"></script>
     <script src="js/exam-module.js"></script>
+    <script src="js/review-scheduler.js"></script>
+    <script src="js/real-exam-data.js"></script>
+    <script src="js/real-exam-module.js"></script>
 
     <!-- 初始化脚本 -->
     <script>
@@ -212,7 +219,7 @@
 
         // ========== 系统初始化 ==========
         window.onload = function() {
-            console.log('考研数学学习助手 v3.0.0');
+            console.log('考研数学学习助手 v3.3.0');
             console.log('系统初始化中...');
 
             // 加载侧边栏状态
@@ -225,6 +232,7 @@
             viewManager.register('statistics', renderStatisticsView);
             viewManager.register('settings', renderSettingsView);
             viewManager.register('exam', renderExamView);
+            viewManager.register('real-exam', renderRealExamView);
 
             // 处理 URL hash 导航（支持从其他页面跳转）
             if (window.location.hash === '#exam') {

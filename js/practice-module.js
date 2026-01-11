@@ -522,13 +522,16 @@ function saveWrongQuestion(question, userAnswer) {
     const qHash = JSON.stringify({ q: question.question, t: question.type });
     const existing = wrongQuestions.find(w => JSON.stringify({ q: w.question.question, t: w.question.type }) === qHash);
 
+    let questionId;
     if (existing) {
         existing.wrongCount++;
         existing.lastWrongTime = new Date().toISOString();
         existing.userAnswer = userAnswer;
+        questionId = existing.id;
     } else {
+        questionId = 'wrong-' + Date.now();
         wrongQuestions.push({
-            id: 'wrong-' + Date.now(),
+            id: questionId,
             question: question,
             userAnswer: userAnswer,
             correctAnswer: question.answer,
@@ -538,6 +541,12 @@ function saveWrongQuestion(question, userAnswer) {
         });
     }
     dataManager.save('wrongQuestions', wrongQuestions);
+
+    // 将错题添加到复习队列
+    if (typeof ReviewScheduler !== 'undefined') {
+        const shortQuestion = question.question.substring(0, 30) + (question.question.length > 30 ? '...' : '');
+        ReviewScheduler.addToReview(questionId, 'wrongQuestion', shortQuestion, question.subject || 'calculus');
+    }
 }
 
 /**

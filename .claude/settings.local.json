@@ -13,7 +13,9 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: Phase 3-5 完成 - 知识点学习、规划、仪表板模块\n\nPhase 3: 知识点学习模块\n- 创建 js/knowledge-data.js \\(50个核心知识点\\)\n- 创建 js/knowledge-module.js \\(知识点学习功能\\)\n- 创建 js/ai-adapter.js \\(多模型AI适配器\\)\n- 创建 js/data-manager.js \\(数据和视图管理\\)\n\nPhase 4: 学习规划模块\n- 创建 js/plan-module.js \\(基础规划+AI智能规划\\)\n- 三阶段学习规划（基础/强化/冲刺）\n- AI对话调整功能\n\nPhase 5: 首页仪表板\n- 考研倒计时和欢迎信息\n- 今日学习任务（从规划提取）\n- 学习进度可视化（Chart.js环形图）\n- 统计卡片和快捷入口\n- 最近学习活动\n\n代码统计: +8000行 \\(JS 5800行 + CSS 1370行 + 其他\\)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: Phase 6-9 完成 - 考研数学学习助手 v2.0.0 全部功能完成\n\n新增功能:\n- Phase 6: 练习测试增强 - 专项练习、错题本管理、AI生成题目\n- Phase 7: AI助教 - 多轮对话、公式输入、对话历史、导出功能\n- Phase 8: 学习统计 - 多维图表、热力图、学习报告、数据导出\n- Phase 9: 设置管理 - 学习偏好、分类导出、分类清空、存储空间显示\n\n代码统计:\n- 考研数学学习助手.html: +2200行\n- css/styles.css: +1400行\n- README.md: 新增项目文档\n\n项目总计: ~16000行代码\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(claude plugin:*)",
+      "Bash(set CLAUDE_CODE_GIT_BASH_PATH=\"C:\\\\Program Files\\\\Git\\\\bin\\\\bash.exe\")"
     ]
   }
 }

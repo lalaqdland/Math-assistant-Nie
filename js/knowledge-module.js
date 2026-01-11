@@ -342,6 +342,28 @@ function updateStatus(unitId, newStatus) {
     progress[unitId].lastStudyTime = new Date().toISOString();
     dataManager.save('learningProgress', progress);
 
+    // 如果状态为"已完成"或"已掌握"，加入复习队列
+    if ((newStatus === 'completed' || newStatus === 'mastered') && typeof ReviewScheduler !== 'undefined') {
+        // 查找知识点信息
+        const tree = dataManager.load('knowledgeTree', getDefaultKnowledgeTree());
+        let unitName = unitId;
+        let subject = 'calculus';
+
+        for (const [subjectKey, subjectData] of Object.entries(tree)) {
+            for (const chapter of subjectData.chapters) {
+                const unit = chapter.units.find(u => u.id === unitId);
+                if (unit) {
+                    unitName = unit.name;
+                    subject = subjectKey;
+                    break;
+                }
+            }
+        }
+
+        // 添加到复习队列
+        ReviewScheduler.addToReview(unitId, 'knowledge', unitName, subject);
+    }
+
     // 重新加载当前知识点
     loadKnowledgeUnit(unitId);
 

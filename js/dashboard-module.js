@@ -85,6 +85,11 @@ function renderDashboard() {
 
             <!-- 主内容区 -->
             <div class="dashboard-main">
+                <!-- 今日待复习 -->
+                <div id="review-reminder-container">
+                    ${typeof renderReviewReminder === 'function' ? renderReviewReminder() : ''}
+                </div>
+
                 <!-- 今日任务 -->
                 <div class="today-tasks-card">
                     <div class="card-header-row">
