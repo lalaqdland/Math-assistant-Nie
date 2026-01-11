@@ -555,6 +555,11 @@ function checkExamAnswer(index) {
         }
     }
 
+    // 记录尝试（仅在有答案时记录）
+    if (examUserAnswers[index] && examUserAnswers[index].trim() !== '') {
+        recordExamAttempt(index, isCorrect);
+    }
+
     updateExamAnswerCard();
 }
 
@@ -574,6 +579,29 @@ function checkExamAnswerCorrect(index) {
     } else {
         return false;
     }
+}
+
+/**
+ * 记录考试题目尝试
+ * @param {number} index - 题目索引
+ * @param {boolean} isCorrect - 是否正确
+ */
+function recordExamAttempt(index, isCorrect) {
+    const question = examQuestions[index];
+    const userAnswer = examUserAnswers[index];
+
+    if (!userAnswer || userAnswer.trim() === '') {
+        return; // 不记录空答案
+    }
+
+    // 记录尝试
+    dataManager.recordAttempt(
+        question.id,
+        userAnswer,
+        isCorrect,
+        question.knowledgePoints || [],
+        'exam'
+    );
 }
 
 /**
@@ -639,11 +667,17 @@ function submitExam() {
     examIsSubmitted = true;
     clearInterval(examTimerInterval);
 
-    // 计算分数
+    // 计算分数并记录尝试
     let totalScore = 0;
     examQuestions.forEach((q, index) => {
-        if (q.type !== 'solve' && checkExamAnswerCorrect(index)) {
+        const isCorrect = checkExamAnswerCorrect(index);
+        if (q.type !== 'solve' && isCorrect) {
             totalScore += q.score;
+        }
+
+        // 记录所有有答案的题目尝试
+        if (examUserAnswers[index] && examUserAnswers[index].trim() !== '') {
+            recordExamAttempt(index, isCorrect);
         }
     });
 

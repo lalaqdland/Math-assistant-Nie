@@ -15,7 +15,9 @@
       "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: Phase 6-9 完成 - 考研数学学习助手 v2.0.0 全部功能完成\n\n新增功能:\n- Phase 6: 练习测试增强 - 专项练习、错题本管理、AI生成题目\n- Phase 7: AI助教 - 多轮对话、公式输入、对话历史、导出功能\n- Phase 8: 学习统计 - 多维图表、热力图、学习报告、数据导出\n- Phase 9: 设置管理 - 学习偏好、分类导出、分类清空、存储空间显示\n\n代码统计:\n- 考研数学学习助手.html: +2200行\n- css/styles.css: +1400行\n- README.md: 新增项目文档\n\n项目总计: ~16000行代码\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git commit:*)",
       "Bash(claude plugin:*)",
-      "Bash(set CLAUDE_CODE_GIT_BASH_PATH=\"C:\\\\Program Files\\\\Git\\\\bin\\\\bash.exe\")"
+      "Bash(set CLAUDE_CODE_GIT_BASH_PATH=\"C:\\\\Program Files\\\\Git\\\\bin\\\\bash.exe\")",
+      "Bash(git branch:*)",
+      "Bash(git rev-parse:*)"
     ]
   }
 }

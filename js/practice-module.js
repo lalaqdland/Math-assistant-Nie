@@ -60,6 +60,9 @@ function renderPracticeView() {
                 <button class="practice-tab" data-tab="wrong" style="padding: 10px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 5px; cursor: pointer;">
                     错题本
                 </button>
+                <button class="practice-tab" data-tab="bank" style="padding: 10px 20px; background: #f0f0f0; color: #666; border: none; border-radius: 5px; cursor: pointer;">
+                    题库管理
+                </button>
             </div>
 
             <!-- 标签页内容 -->
@@ -94,7 +97,7 @@ function renderPracticeView() {
 
 /**
  * 加载练习测试标签页内容
- * @param {string} tabType - 标签页类型 (exam/exercise/wrong)
+ * @param {string} tabType - 标签页类型 (exam/exercise/wrong/bank)
  */
 function loadPracticeTab(tabType) {
     const contentDiv = document.getElementById('practice-content');
@@ -117,6 +120,8 @@ function loadPracticeTab(tabType) {
         if (window.MathJax && window.MathJax.typesetPromise) {
             MathJax.typesetPromise([contentDiv]);
         }
+    } else if (tabType === 'bank') {
+        renderQuestionBankTab();
     }
 }
 
@@ -378,6 +383,9 @@ function checkCurrentAnswer() {
         saveWrongQuestion(q, userAns);
     }
 
+    // 记录尝试
+    recordPracticeAttempt(q, userAns, isCorrect);
+
     if (window.MathJax && window.MathJax.typesetPromise) {
         MathJax.typesetPromise([expDiv]);
     }
@@ -394,6 +402,27 @@ function normalizeExerciseAnswer(answer) {
 }
 
 /**
+ * 记录练习题目尝试
+ * @param {Object} question - 题目对象
+ * @param {string} userAnswer - 用户答案
+ * @param {boolean} isCorrect - 是否正确
+ */
+function recordPracticeAttempt(question, userAnswer, isCorrect) {
+    if (!userAnswer || userAnswer.trim() === '') {
+        return; // 不记录空答案
+    }
+
+    // 记录尝试
+    dataManager.recordAttempt(
+        question.id || `practice-${Date.now()}`, // 为AI生成题目创建临时ID
+        userAnswer,
+        isCorrect,
+        question.knowledgePoints || [],
+        'practice'
+    );
+}
+
+/**
  * 提交练习
  */
 function submitExercise() {
@@ -404,6 +433,10 @@ function submitExercise() {
         const isCorrect = normalizeExerciseAnswer(userAns) === normalizeExerciseAnswer(q.answer);
         if (isCorrect) correct++;
         if (!isCorrect && userAns) saveWrongQuestion(q, userAns);
+
+        // 记录尝试
+        recordPracticeAttempt(q, userAns, isCorrect);
+
         return { question: q, userAnswer: userAns, isCorrect };
     });
 
@@ -765,3 +798,615 @@ function savePracticeRecord(record) {
 
 // ========== 视图注册 ==========
 // 在主页面中通过 viewManager.register('practice', renderPracticeView) 注册
+
+// ========== 题库管理功能 ==========
+
+// 题库管理状态
+let questionBankState = {
+    filter: {
+        subject: 'all',
+        difficulty: 'all',
+        type: 'all',
+        source: 'all',
+        keyword: '',
+        favoriteOnly: false
+    },
+    pagination: {
+        page: 1,
+        pageSize: 10
+    }
+};
+
+/**
+ * 渲染题库管理标签页
+ */
+function renderQuestionBankTab() {
+    const contentDiv = document.getElementById('practice-content');
+    const stats = questionBankManager.getStats();
+
+    contentDiv.innerHTML = `
+        <div class="question-bank-container">
+            <!-- 题库统计 -->
+            <div class="bank-stats-row">
+                <div class="bank-stat-item">
+                    <span class="bank-stat-value">${stats.total}</span>
+                    <span class="bank-stat-label">总题数</span>
+                </div>
+                <div class="bank-stat-item">
+                    <span class="bank-stat-value">${stats.bySubject.calculus}</span>
+                    <span class="bank-stat-label">微积分</span>
+                </div>
+                <div class="bank-stat-item">
+                    <span class="bank-stat-value">${stats.bySubject.linear}</span>
+                    <span class="bank-stat-label">线代</span>
+                </div>
+                <div class="bank-stat-item">
+                    <span class="bank-stat-value">${stats.bySubject.probability}</span>
+                    <span class="bank-stat-label">概率论</span>
+                </div>
+                <div class="bank-stat-item">
+                    <span class="bank-stat-value">${stats.favorites}</span>
+                    <span class="bank-stat-label">收藏</span>
+                </div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="bank-actions-row">
+                <button class="btn btn-primary" onclick="showBatchGenerateModal()">
+                    🤖 批量生成题目
+                </button>
+                <button class="btn btn-secondary" onclick="generateTemplateQuestions()">
+                    📝 模板生成
+                </button>
+                <button class="btn btn-secondary" onclick="initializeDefaultBank()">
+                    🔄 初始化题库
+                </button>
+                <button class="btn btn-secondary" onclick="exportQuestionBank()">
+                    📤 导出题库
+                </button>
+                <label class="btn btn-secondary" style="cursor: pointer;">
+                    📥 导入题库
+                    <input type="file" accept=".json" style="display: none;" onchange="importQuestionBank(event)">
+                </label>
+            </div>
+
+            <!-- 筛选器 -->
+            <div class="bank-filter-row">
+                <select id="bankFilterSubject" class="filter-select" onchange="updateBankFilter()">
+                    <option value="all">全部学科</option>
+                    <option value="calculus">微积分</option>
+                    <option value="linear">线性代数</option>
+                    <option value="probability">概率论</option>
+                </select>
+                <select id="bankFilterDifficulty" class="filter-select" onchange="updateBankFilter()">
+                    <option value="all">全部难度</option>
+                    <option value="basic">基础</option>
+                    <option value="intermediate">中等</option>
+                    <option value="advanced">困难</option>
+                </select>
+                <select id="bankFilterType" class="filter-select" onchange="updateBankFilter()">
+                    <option value="all">全部题型</option>
+                    <option value="choice">选择题</option>
+                    <option value="blank">填空题</option>
+                    <option value="solve">解答题</option>
+                </select>
+                <select id="bankFilterSource" class="filter-select" onchange="updateBankFilter()">
+                    <option value="all">全部来源</option>
+                    <option value="template">模板生成</option>
+                    <option value="ai">AI生成</option>
+                    <option value="imported">导入</option>
+                </select>
+                <input type="text" id="bankFilterKeyword" class="filter-input" placeholder="搜索关键词..." onkeyup="debounceSearch()">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="bankFavoriteOnly" onchange="updateBankFilter()">
+                    仅收藏
+                </label>
+            </div>
+
+            <!-- 题目列表 -->
+            <div id="question-list-container">
+                <!-- 动态渲染 -->
+            </div>
+
+            <!-- 分页 -->
+            <div id="bank-pagination">
+                <!-- 动态渲染 -->
+            </div>
+        </div>
+
+        <!-- 批量生成模态框 -->
+        <div id="batch-generate-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>🤖 AI批量生成题目</h3>
+                    <button class="modal-close" onclick="closeBatchGenerateModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>学科：</label>
+                        <select id="batchSubject" class="filter-select">
+                            <option value="calculus">微积分</option>
+                            <option value="linear">线性代数</option>
+                            <option value="probability">概率论</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>难度：</label>
+                        <select id="batchDifficulty" class="filter-select">
+                            <option value="basic">基础</option>
+                            <option value="intermediate" selected>中等</option>
+                            <option value="advanced">困难</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>题型：</label>
+                        <select id="batchType" class="filter-select">
+                            <option value="choice">选择题</option>
+                            <option value="blank">填空题</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>数量：</label>
+                        <select id="batchCount" class="filter-select">
+                            <option value="5">5题</option>
+                            <option value="10" selected>10题</option>
+                            <option value="20">20题</option>
+                        </select>
+                    </div>
+                    <div id="batch-progress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="batch-progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div id="batch-progress-text">正在生成...</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeBatchGenerateModal()">取消</button>
+                    <button class="btn btn-primary" id="batch-generate-btn" onclick="startBatchGenerate()">开始生成</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // 渲染题目列表
+    renderQuestionList();
+}
+
+/**
+ * 更新筛选条件
+ */
+function updateBankFilter() {
+    questionBankState.filter = {
+        subject: document.getElementById('bankFilterSubject').value,
+        difficulty: document.getElementById('bankFilterDifficulty').value,
+        type: document.getElementById('bankFilterType').value,
+        source: document.getElementById('bankFilterSource').value,
+        keyword: document.getElementById('bankFilterKeyword').value,
+        favoriteOnly: document.getElementById('bankFavoriteOnly').checked
+    };
+    questionBankState.pagination.page = 1;
+    renderQuestionList();
+}
+
+// 搜索防抖
+let searchTimeout = null;
+function debounceSearch() {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(updateBankFilter, 300);
+}
+
+/**
+ * 渲染题目列表
+ */
+function renderQuestionList() {
+    const container = document.getElementById('question-list-container');
+    const result = questionBankManager.getQuestions(
+        questionBankState.filter,
+        questionBankState.pagination
+    );
+
+    const subjectNames = { calculus: '微积分', linear: '线代', probability: '概率论' };
+    const difficultyNames = { basic: '基础', intermediate: '中等', advanced: '困难' };
+    const typeNames = { choice: '选择题', blank: '填空题', solve: '解答题' };
+    const sourceNames = { template: '模板', ai: 'AI', imported: '导入', manual: '手动' };
+
+    if (result.questions.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">📚</div>
+                <div class="empty-state-text">题库为空</div>
+                <div class="empty-state-text" style="font-size: 14px; color: #aaa;">
+                    点击"初始化题库"生成初始题目，或使用"批量生成"添加新题
+                </div>
+            </div>
+        `;
+        document.getElementById('bank-pagination').innerHTML = '';
+        return;
+    }
+
+    const listHTML = result.questions.map(q => {
+        const questionText = q.question || q.content || '';
+        const preview = questionText.length > 100 ? questionText.substring(0, 100) + '...' : questionText;
+        const isFavorite = questionBankManager.isFavorite(q.id);
+
+        return `
+            <div class="bank-question-item">
+                <div class="bank-question-header">
+                    <div class="bank-question-tags">
+                        <span class="tag tag-${q.subject}">${subjectNames[q.subject] || '未知'}</span>
+                        <span class="tag tag-${q.difficulty}">${difficultyNames[q.difficulty] || '未知'}</span>
+                        <span class="tag">${typeNames[q.type] || '未知'}</span>
+                        <span class="tag tag-source">${sourceNames[q.source] || '未知'}</span>
+                    </div>
+                    <div class="bank-question-actions">
+                        <button class="btn btn-icon ${isFavorite ? 'favorited' : ''}" onclick="toggleBankFavorite('${q.id}')" title="${isFavorite ? '取消收藏' : '收藏'}">
+                            ${isFavorite ? '⭐' : '☆'}
+                        </button>
+                        <button class="btn btn-icon" onclick="showQuestionDetail('${q.id}')" title="查看详情">👁️</button>
+                        <button class="btn btn-icon" onclick="practiceFromBank('${q.id}')" title="练习此题">✏️</button>
+                        <button class="btn btn-icon btn-danger" onclick="deleteBankQuestion('${q.id}')" title="删除">🗑️</button>
+                    </div>
+                </div>
+                <div class="bank-question-content">${preview}</div>
+            </div>
+        `;
+    }).join('');
+
+    container.innerHTML = `<div class="bank-question-list">${listHTML}</div>`;
+
+    // 渲染分页
+    renderBankPagination(result);
+
+    // 渲染MathJax
+    if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise([container]);
+    }
+}
+
+/**
+ * 渲染分页
+ */
+function renderBankPagination(result) {
+    const paginationDiv = document.getElementById('bank-pagination');
+
+    if (result.totalPages <= 1) {
+        paginationDiv.innerHTML = `<div class="pagination-info">共 ${result.total} 道题目</div>`;
+        return;
+    }
+
+    let pagesHTML = '';
+    const maxVisible = 5;
+    let start = Math.max(1, result.page - Math.floor(maxVisible / 2));
+    let end = Math.min(result.totalPages, start + maxVisible - 1);
+    start = Math.max(1, end - maxVisible + 1);
+
+    if (start > 1) {
+        pagesHTML += `<button class="page-btn" onclick="goToBankPage(1)">1</button>`;
+        if (start > 2) pagesHTML += `<span class="page-ellipsis">...</span>`;
+    }
+
+    for (let i = start; i <= end; i++) {
+        pagesHTML += `<button class="page-btn ${i === result.page ? 'active' : ''}" onclick="goToBankPage(${i})">${i}</button>`;
+    }
+
+    if (end < result.totalPages) {
+        if (end < result.totalPages - 1) pagesHTML += `<span class="page-ellipsis">...</span>`;
+        pagesHTML += `<button class="page-btn" onclick="goToBankPage(${result.totalPages})">${result.totalPages}</button>`;
+    }
+
+    paginationDiv.innerHTML = `
+        <div class="pagination-container">
+            <button class="page-btn" onclick="goToBankPage(${result.page - 1})" ${result.page === 1 ? 'disabled' : ''}>上一页</button>
+            ${pagesHTML}
+            <button class="page-btn" onclick="goToBankPage(${result.page + 1})" ${result.page === result.totalPages ? 'disabled' : ''}>下一页</button>
+            <span class="pagination-info">共 ${result.total} 道题目</span>
+        </div>
+    `;
+}
+
+/**
+ * 跳转到指定页
+ */
+function goToBankPage(page) {
+    const result = questionBankManager.getQuestions(questionBankState.filter, { page: 1, pageSize: questionBankState.pagination.pageSize });
+    if (page < 1 || page > result.totalPages) return;
+    questionBankState.pagination.page = page;
+    renderQuestionList();
+}
+
+/**
+ * 切换收藏
+ */
+function toggleBankFavorite(id) {
+    questionBankManager.toggleFavorite(id);
+    renderQuestionList();
+}
+
+/**
+ * 删除题目
+ */
+function deleteBankQuestion(id) {
+    if (!confirm('确定要删除这道题目吗？')) return;
+    questionBankManager.deleteQuestion(id);
+    renderQuestionBankTab();
+}
+
+/**
+ * 查看题目详情
+ */
+function showQuestionDetail(id) {
+    const question = questionBankManager.getQuestion(id);
+    if (!question) return;
+
+    const subjectNames = { calculus: '微积分', linear: '线性代数', probability: '概率论' };
+    const difficultyNames = { basic: '基础', intermediate: '中等', advanced: '困难' };
+    const typeNames = { choice: '选择题', blank: '填空题', solve: '解答题' };
+
+    const questionText = question.question || question.content || '';
+    let optionsHTML = '';
+    if (question.options && question.options.length > 0) {
+        optionsHTML = `<div class="detail-options"><strong>选项：</strong><br>${question.options.join('<br>')}</div>`;
+    }
+
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.id = 'question-detail-modal';
+    modal.innerHTML = `
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3>📝 题目详情</h3>
+                <button class="modal-close" onclick="closeQuestionDetailModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-tags">
+                    <span class="tag tag-${question.subject}">${subjectNames[question.subject] || '未知'}</span>
+                    <span class="tag tag-${question.difficulty}">${difficultyNames[question.difficulty] || '未知'}</span>
+                    <span class="tag">${typeNames[question.type] || '未知'}</span>
+                </div>
+                <div class="detail-question"><strong>题目：</strong>${questionText}</div>
+                ${optionsHTML}
+                <div class="detail-answer"><strong>答案：</strong>${question.answer}</div>
+                <div class="detail-explanation"><strong>解析：</strong>${question.explanation || '暂无解析'}</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="practiceFromBank('${id}'); closeQuestionDetailModal();">练习此题</button>
+                <button class="btn btn-secondary" onclick="closeQuestionDetailModal()">关闭</button>
+            </div>
+        </div>
+    `;
+    modal.style.display = 'flex';
+    document.body.appendChild(modal);
+
+    if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise([modal]);
+    }
+}
+
+function closeQuestionDetailModal() {
+    const modal = document.getElementById('question-detail-modal');
+    if (modal) modal.remove();
+}
+
+/**
+ * 从题库选题练习
+ */
+function practiceFromBank(id) {
+    const question = questionBankManager.getQuestion(id);
+    if (!question) return;
+
+    // 转换为练习格式
+    const practiceQuestion = {
+        type: question.type,
+        subject: question.subject,
+        difficulty: question.difficulty,
+        question: question.question || question.content,
+        options: question.options,
+        answer: question.answer,
+        explanation: question.explanation,
+        id: question.id,
+        knowledgePoints: question.knowledgePoints || []
+    };
+
+    exerciseState = {
+        questions: [practiceQuestion],
+        currentIndex: 0,
+        userAnswers: [null],
+        startTime: Date.now(),
+        isFinished: false
+    };
+
+    // 切换到专项练习标签页并显示题目
+    document.querySelectorAll('.practice-tab').forEach(t => {
+        t.style.background = '#f0f0f0';
+        t.style.color = '#666';
+        t.classList.remove('active');
+    });
+    const exerciseTab = document.querySelector('.practice-tab[data-tab="exercise"]');
+    if (exerciseTab) {
+        exerciseTab.style.background = 'var(--primary-color)';
+        exerciseTab.style.color = 'white';
+        exerciseTab.classList.add('active');
+    }
+
+    renderExerciseQuestions();
+}
+
+// ========== 批量生成功能 ==========
+
+function showBatchGenerateModal() {
+    const modal = document.getElementById('batch-generate-modal');
+    modal.style.display = 'flex';
+    document.getElementById('batch-progress').style.display = 'none';
+    document.getElementById('batch-generate-btn').disabled = false;
+}
+
+function closeBatchGenerateModal() {
+    document.getElementById('batch-generate-modal').style.display = 'none';
+}
+
+/**
+ * 开始AI批量生成
+ */
+async function startBatchGenerate() {
+    if (!isAIConfigured()) {
+        alert('请先在设置中配置AI模型');
+        return;
+    }
+
+    const subject = document.getElementById('batchSubject').value;
+    const difficulty = document.getElementById('batchDifficulty').value;
+    const type = document.getElementById('batchType').value;
+    const count = parseInt(document.getElementById('batchCount').value);
+
+    const progressDiv = document.getElementById('batch-progress');
+    const progressFill = document.getElementById('batch-progress-fill');
+    const progressText = document.getElementById('batch-progress-text');
+    const generateBtn = document.getElementById('batch-generate-btn');
+
+    progressDiv.style.display = 'block';
+    generateBtn.disabled = true;
+
+    const subjectNames = { calculus: '微积分', linear: '线性代数', probability: '概率论' };
+    const difficultyNames = { basic: '基础', intermediate: '中等', advanced: '困难' };
+    const typeNames = { choice: '选择题', blank: '填空题' };
+
+    const generatedQuestions = [];
+    let successCount = 0;
+
+    for (let i = 0; i < count; i++) {
+        progressFill.style.width = `${((i + 1) / count) * 100}%`;
+        progressText.textContent = `正在生成第 ${i + 1}/${count} 题...`;
+
+        const prompt = `请生成一道考研数学一${subjectNames[subject]}的${typeNames[type]}，难度为${difficultyNames[difficulty]}。
+
+要求：
+1. 题目符合考研数学一标准
+2. 包含详细解析
+3. 返回严格的JSON格式（不要有多余文字）:
+${type === 'choice' ?
+`{"type":"choice","subject":"${subject}","difficulty":"${difficulty}","question":"题目内容","options":["A. 选项1","B. 选项2","C. 选项3","D. 选项4"],"answer":"正确选项字母","explanation":"解析"}` :
+`{"type":"blank","subject":"${subject}","difficulty":"${difficulty}","question":"题目内容____","answer":"答案","explanation":"解析"}`}`;
+
+        try {
+            const response = await callAI([{ role: 'user', content: prompt }], { maxTokens: 2000 });
+            const jsonMatch = response.match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+                const newQuestion = JSON.parse(jsonMatch[0]);
+                newQuestion.source = 'ai';
+                generatedQuestions.push(newQuestion);
+                successCount++;
+            }
+        } catch (error) {
+            console.error(`生成第 ${i + 1} 题失败:`, error);
+        }
+
+        // 避免请求过快
+        await new Promise(resolve => setTimeout(resolve, 500));
+    }
+
+    // 保存生成的题目
+    if (generatedQuestions.length > 0) {
+        questionBankManager.saveQuestions(generatedQuestions);
+    }
+
+    progressText.textContent = `完成！成功生成 ${successCount}/${count} 道题目`;
+    generateBtn.disabled = false;
+
+    setTimeout(() => {
+        closeBatchGenerateModal();
+        renderQuestionBankTab();
+    }, 1500);
+}
+
+/**
+ * 使用模板生成题目
+ */
+function generateTemplateQuestions() {
+    const count = prompt('请输入要生成的题目数量（建议10-50）：', '20');
+    if (!count) return;
+
+    const num = parseInt(count);
+    if (isNaN(num) || num < 1 || num > 100) {
+        alert('请输入1-100之间的数字');
+        return;
+    }
+
+    if (typeof QuestionTemplateSystem === 'undefined') {
+        alert('模板系统未加载，请刷新页面重试');
+        return;
+    }
+
+    const questions = QuestionTemplateSystem.generateBatch({
+        subject: 'all',
+        difficulty: 'all',
+        type: 'all',
+        count: num
+    });
+
+    questionBankManager.saveQuestions(questions);
+    alert(`成功生成 ${questions.length} 道题目！`);
+    renderQuestionBankTab();
+}
+
+/**
+ * 初始化默认题库
+ */
+function initializeDefaultBank() {
+    const stats = questionBankManager.getStats();
+    if (stats.total > 0) {
+        if (!confirm(`题库已有 ${stats.total} 道题目，是否继续初始化？（将添加更多题目）`)) {
+            return;
+        }
+    }
+
+    if (typeof QuestionTemplateSystem === 'undefined') {
+        alert('模板系统未加载，请刷新页面重试');
+        return;
+    }
+
+    const questions = QuestionTemplateSystem.initializeQuestionBank(200);
+    questionBankManager.saveQuestions(questions);
+    alert(`题库初始化完成！已生成 ${questions.length} 道题目。`);
+    renderQuestionBankTab();
+}
+
+/**
+ * 导出题库
+ */
+function exportQuestionBank() {
+    const stats = questionBankManager.getStats();
+    if (stats.total === 0) {
+        alert('题库为空，无法导出');
+        return;
+    }
+
+    const data = questionBankManager.export();
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `题库_${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+/**
+ * 导入题库
+ */
+function importQuestionBank(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const count = questionBankManager.import(e.target.result, true);
+            alert(`成功导入 ${count} 道题目！`);
+            renderQuestionBankTab();
+        } catch (error) {
+            alert('导入失败：' + error.message);
+        }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+}

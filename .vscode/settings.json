@@ -8,6 +8,10 @@
       "args": ["-NoExit","-Command","chcp 65001"]
     }
   },
+  "terminal.integrated.env.windows": {
+    "PYTHONUTF8": "1",
+    "PYTHONIOENCODING": "utf-8"
+  },
   "git.autofetch": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode"

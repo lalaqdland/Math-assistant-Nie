@@ -10,12 +10,16 @@ const path = require('path');
 
 // ========== 配置 ==========
 const DATA_DIR = path.join(__dirname, '..', 'data');
-const EXPECTED_YEARS = [2022, 2023, 2024];
+const REVIEW_DIR = path.join(__dirname, '..', 'review');
+const EXPECTED_YEARS = [2022, 2023, 2024, 2025, 2026];
 const EXPECTED_QUESTION_COUNTS = {
     choice: 10,  // 选择题
     blank: 6,    // 填空题
     solve: 9     // 解答题
 };
+
+// 支持的文件扩展名
+const SUPPORTED_EXTENSIONS = ['.json', '.candidate.json'];
 
 // ========== 验证规则 ==========
 
@@ -34,10 +38,12 @@ function validateQuestionId(id, expectedPrefix) {
  * 验证选择题格式
  * @param {Object} question - 题目对象
  * @param {number} year - 年份
- * @returns {Object} 验证结果 {valid: boolean, errors: string[]}
+ * @param {boolean} isCandidate - 是否为候选文件
+ * @returns {Object} 验证结果 {valid: boolean, errors: string[], warnings: string[]}
  */
-function validateChoiceQuestion(question, year) {
+function validateChoiceQuestion(question, year, isCandidate = false) {
     const errors = [];
+    const warnings = [];
     const yearPrefix = year.toString();
 
     // 基本字段检查
@@ -51,36 +57,57 @@ function validateChoiceQuestion(question, year) {
         errors.push('题目内容不能为空');
     }
     if (!Array.isArray(question.options) || question.options.length !== 4) {
-        errors.push('选择题必须有4个选项');
+        if (isCandidate) {
+            warnings.push(`选择题选项数量不正确: 期望4个, 实际${question.options ? question.options.length : 0}个`);
+        } else {
+            errors.push('选择题必须有4个选项');
+        }
     } else {
         // 检查选项格式
         question.options.forEach((option, index) => {
             if (!/^A\.|B\.|C\.|D\.|A |B |C |D /.test(option)) {
-                errors.push(`选项 ${index + 1} 格式不正确: ${option}`);
+                warnings.push(`选项 ${index + 1} 格式不正确: ${option}`);
             }
         });
     }
     if (!['A', 'B', 'C', 'D'].includes(question.answer)) {
-        errors.push(`答案必须是A/B/C/D之一, 实际为: ${question.answer}`);
-    }
-    if (!question.explanation || question.explanation.trim().length === 0) {
-        errors.push('解析内容不能为空');
-    }
-    if (!Array.isArray(question.knowledgePoints) || question.knowledgePoints.length === 0) {
-        errors.push('知识点不能为空');
+        if (isCandidate) {
+            warnings.push(`答案格式不正确: ${question.answer}`);
+        } else {
+            errors.push(`答案必须是A/B/C/D之一, 实际为: ${question.answer}`);
+        }
     }
 
-    return { valid: errors.length === 0, errors };
+    // 候选文件可以没有解析和知识点
+    if (!isCandidate) {
+        if (!question.explanation || question.explanation.trim().length === 0) {
+            errors.push('解析内容不能为空');
+        }
+        if (!Array.isArray(question.knowledgePoints) || question.knowledgePoints.length === 0) {
+            errors.push('知识点不能为空');
+        }
+    } else {
+        if (!question.explanation || question.explanation.trim().length === 0) {
+            warnings.push('解析内容为空');
+        }
+        if (!Array.isArray(question.knowledgePoints) || question.knowledgePoints.length === 0) {
+            warnings.push('知识点为空');
+        }
+    }
+
+    return { valid: errors.length === 0, errors, warnings };
 }
 
 /**
  * 验证填空题格式
  * @param {Object} question - 题目对象
  * @param {number} year - 年份
- * @returns {Object} 验证结果 {valid: boolean, errors: string[]}
+ * @param {boolean} isCandidate - 是否为候选文件
+ * @returns {Object} 验证结果 {valid: boolean, errors: string[], warnings: string[]}
  */
-function validateBlankQuestion(question, year) {
+function validateBlankQuestion(question, year, isCandidate = false) {
     const errors = [];
+    const warnings = [];
     const yearPrefix = year.toString();
 
     // 基本字段检查
@@ -94,26 +121,43 @@ function validateBlankQuestion(question, year) {
         errors.push('题目内容不能为空');
     }
     if (!question.answer || question.answer.toString().trim().length === 0) {
-        errors.push('答案不能为空');
-    }
-    if (!question.explanation || question.explanation.trim().length === 0) {
-        errors.push('解析内容不能为空');
-    }
-    if (!Array.isArray(question.knowledgePoints) || question.knowledgePoints.length === 0) {
-        errors.push('知识点不能为空');
+        if (isCandidate) {
+            warnings.push('答案为空');
+        } else {
+            errors.push('答案不能为空');
+        }
     }
 
-    return { valid: errors.length === 0, errors };
+    // 候选文件可以没有解析和知识点
+    if (!isCandidate) {
+        if (!question.explanation || question.explanation.trim().length === 0) {
+            errors.push('解析内容不能为空');
+        }
+        if (!Array.isArray(question.knowledgePoints) || question.knowledgePoints.length === 0) {
+            errors.push('知识点不能为空');
+        }
+    } else {
+        if (!question.explanation || question.explanation.trim().length === 0) {
+            warnings.push('解析内容为空');
+        }
+        if (!Array.isArray(question.knowledgePoints) || question.knowledgePoints.length === 0) {
+            warnings.push('知识点为空');
+        }
+    }
+
+    return { valid: errors.length === 0, errors, warnings };
 }
 
 /**
  * 验证解答题格式
  * @param {Object} question - 题目对象
  * @param {number} year - 年份
- * @returns {Object} 验证结果 {valid: boolean, errors: string[]}
+ * @param {boolean} isCandidate - 是否为候选文件
+ * @returns {Object} 验证结果 {valid: boolean, errors: string[], warnings: string[]}
  */
-function validateSolveQuestion(question, year) {
+function validateSolveQuestion(question, year, isCandidate = false) {
     const errors = [];
+    const warnings = [];
     const yearPrefix = year.toString();
 
     // 基本字段检查
@@ -127,34 +171,53 @@ function validateSolveQuestion(question, year) {
         errors.push('题目内容不能为空');
     }
     if (!question.solution || question.solution.trim().length === 0) {
-        errors.push('解题步骤不能为空');
-    }
-    if (!Array.isArray(question.knowledgePoints) || question.knowledgePoints.length === 0) {
-        errors.push('知识点不能为空');
-    }
-    if (typeof question.score !== 'number' || question.score <= 0) {
-        errors.push(`分数必须是正数, 实际为: ${question.score}`);
+        if (isCandidate) {
+            warnings.push('解题步骤为空');
+        } else {
+            errors.push('解题步骤不能为空');
+        }
     }
 
-    return { valid: errors.length === 0, errors };
+    // 分数检查
+    if (typeof question.score !== 'number' || question.score <= 0) {
+        if (isCandidate) {
+            warnings.push(`分数格式不正确: ${question.score}`);
+        } else {
+            errors.push(`分数必须是正数, 实际为: ${question.score}`);
+        }
+    }
+
+    // 候选文件可以没有知识点
+    if (!isCandidate) {
+        if (!Array.isArray(question.knowledgePoints) || question.knowledgePoints.length === 0) {
+            errors.push('知识点不能为空');
+        }
+    } else {
+        if (!Array.isArray(question.knowledgePoints) || question.knowledgePoints.length === 0) {
+            warnings.push('知识点为空');
+        }
+    }
+
+    return { valid: errors.length === 0, errors, warnings };
 }
 
 /**
  * 验证单个题目
  * @param {Object} question - 题目对象
  * @param {number} year - 年份
- * @returns {Object} 验证结果 {valid: boolean, errors: string[]}
+ * @param {boolean} isCandidate - 是否为候选文件
+ * @returns {Object} 验证结果 {valid: boolean, errors: string[], warnings: string[]}
  */
-function validateQuestion(question, year) {
+function validateQuestion(question, year, isCandidate = false) {
     switch (question.type) {
         case 'choice':
-            return validateChoiceQuestion(question, year);
+            return validateChoiceQuestion(question, year, isCandidate);
         case 'blank':
-            return validateBlankQuestion(question, year);
+            return validateBlankQuestion(question, year, isCandidate);
         case 'solve':
-            return validateSolveQuestion(question, year);
+            return validateSolveQuestion(question, year, isCandidate);
         default:
-            return { valid: false, errors: [`未知的题目类型: ${question.type}`] };
+            return { valid: false, errors: [`未知的题目类型: ${question.type}`], warnings: [] };
     }
 }
 
@@ -162,16 +225,18 @@ function validateQuestion(question, year) {
  * 验证整个年份的数据文件
  * @param {Object[]} questions - 题目数组
  * @param {number} year - 年份
+ * @param {boolean} isCandidate - 是否为候选文件
  * @returns {Object} 验证结果
  */
-function validateYearData(questions, year) {
+function validateYearData(questions, year, isCandidate = false) {
     const results = {
         year,
         valid: true,
         totalQuestions: questions.length,
         questionCounts: { choice: 0, blank: 0, solve: 0 },
         errors: [],
-        warnings: []
+        warnings: [],
+        isCandidate
     };
 
     // 统计题目类型
@@ -181,21 +246,26 @@ function validateYearData(questions, year) {
         }
     });
 
-    // 检查题目数量
-    Object.keys(EXPECTED_QUESTION_COUNTS).forEach(type => {
-        const expected = EXPECTED_QUESTION_COUNTS[type];
-        const actual = results.questionCounts[type];
-        if (actual !== expected) {
-            results.warnings.push(`${type}题数量不匹配: 期望${expected}题, 实际${actual}题`);
-        }
-    });
+    // 检查题目数量（仅对正式文件）
+    if (!isCandidate) {
+        Object.keys(EXPECTED_QUESTION_COUNTS).forEach(type => {
+            const expected = EXPECTED_QUESTION_COUNTS[type];
+            const actual = results.questionCounts[type];
+            if (actual !== expected) {
+                results.warnings.push(`${type}题数量不匹配: 期望${expected}题, 实际${actual}题`);
+            }
+        });
+    }
 
     // 验证每个题目
     questions.forEach((question, index) => {
-        const questionResult = validateQuestion(question, year);
+        const questionResult = validateQuestion(question, year, isCandidate);
         if (!questionResult.valid) {
             results.valid = false;
             results.errors.push(`第${index + 1}题 (${question.id}): ${questionResult.errors.join(', ')}`);
+        }
+        if (questionResult.warnings && questionResult.warnings.length > 0) {
+            results.warnings.push(`第${index + 1}题 (${question.id}): ${questionResult.warnings.join(', ')}`);
         }
     });
 
@@ -226,19 +296,49 @@ function validateFile(filePath, year) {
                 year,
                 valid: false,
                 errors: ['文件内容必须是题目数组'],
-                warnings: []
+                warnings: [],
+                isCandidate: false
             };
         }
 
-        return validateYearData(questions, year);
+        // 检查是否为候选文件
+        const isCandidate = filePath.endsWith('.candidate.json');
+        return validateYearData(questions, year, isCandidate);
     } catch (error) {
         return {
             year,
             valid: false,
             errors: [`文件解析失败: ${error.message}`],
-            warnings: []
+            warnings: [],
+            isCandidate: false
         };
     }
+}
+
+/**
+ * 查找指定年份的所有相关文件
+ * @param {number} year - 年份
+ * @returns {Object} 文件路径对象
+ */
+function findYearFiles(year) {
+    const files = {
+        final: null,
+        candidate: null
+    };
+
+    // 检查正式文件
+    const finalPath = path.join(DATA_DIR, `real-exam-${year}.json`);
+    if (fs.existsSync(finalPath)) {
+        files.final = finalPath;
+    }
+
+    // 检查候选文件
+    const candidatePath = path.join(DATA_DIR, `real-exam-${year}.candidate.json`);
+    if (fs.existsSync(candidatePath)) {
+        files.candidate = candidatePath;
+    }
+
+    return files;
 }
 
 /**
@@ -247,9 +347,10 @@ function validateFile(filePath, year) {
  */
 function validateAll() {
     const summary = {
-        totalFiles: EXPECTED_YEARS.length,
+        totalFiles: 0,
         validFiles: 0,
         invalidFiles: 0,
+        candidateFiles: 0,
         totalErrors: 0,
         totalWarnings: 0,
         results: []
@@ -258,23 +359,34 @@ function validateAll() {
     console.log('🔍 开始验证历年真题数据...\n');
 
     EXPECTED_YEARS.forEach(year => {
-        const filePath = path.join(DATA_DIR, `real-exam-${year}.json`);
-        console.log(`📄 验证 ${year} 年数据文件: ${filePath}`);
+        const yearFiles = findYearFiles(year);
 
-        if (!fs.existsSync(filePath)) {
-            console.log(`❌ 文件不存在: ${filePath}\n`);
+        if (!yearFiles.final && !yearFiles.candidate) {
+            console.log(`❌ ${year} 年数据文件不存在`);
             summary.invalidFiles++;
             summary.results.push({
                 year,
                 valid: false,
-                errors: ['文件不存在'],
-                warnings: []
+                errors: ['数据文件不存在'],
+                warnings: [],
+                isCandidate: false
             });
             return;
         }
 
-        const result = validateFile(filePath, year);
+        // 优先验证候选文件（如果存在）
+        const fileToValidate = yearFiles.candidate || yearFiles.final;
+        const isCandidate = !!yearFiles.candidate;
+
+        console.log(`📄 验证 ${year} 年${isCandidate ? '候选' : ''}数据文件: ${fileToValidate}`);
+
+        const result = validateFile(fileToValidate, year);
         summary.results.push(result);
+        summary.totalFiles++;
+
+        if (isCandidate) {
+            summary.candidateFiles++;
+        }
 
         if (result.valid) {
             summary.validFiles++;
@@ -303,6 +415,73 @@ function validateAll() {
 }
 
 /**
+ * 生成候选文件审核报告
+ * @param {Object} summary - 验证结果汇总
+ */
+function generateReviewReport(summary) {
+    const candidateResults = summary.results.filter(r => r.isCandidate);
+
+    if (candidateResults.length === 0) {
+        return;
+    }
+
+    console.log('\n📋 生成候选文件审核报告...\n');
+
+    candidateResults.forEach(result => {
+        const reportPath = path.join(REVIEW_DIR, `${result.year}_review_report.txt`);
+
+        try {
+            let report = `考研数学一 ${result.year} 年真题候选数据审核报告\n`;
+            report += '='.repeat(50) + '\n\n';
+            report += `生成时间: ${new Date().toLocaleString()}\n`;
+            report += `验证状态: ${result.valid ? '✅ 通过' : '❌ 失败'}\n`;
+            report += `题目总数: ${result.totalQuestions}\n`;
+            report += `题目统计: ${result.questionCounts.choice}选择 + ${result.questionCounts.blank}填空 + ${result.questionCounts.solve}解答\n\n`;
+
+            if (result.errors.length > 0) {
+                report += '🔴 错误列表:\n';
+                result.errors.forEach((error, index) => {
+                    report += `   ${index + 1}. ${error}\n`;
+                });
+                report += '\n';
+            }
+
+            if (result.warnings.length > 0) {
+                report += '🟡 警告列表 (需要人工审核):\n';
+                result.warnings.forEach((warning, index) => {
+                    report += `   ${index + 1}. ${warning}\n`;
+                });
+                report += '\n';
+            }
+
+            report += '📝 审核建议:\n';
+            if (result.errors.length > 0) {
+                report += '   - 修复上述错误后重新验证\n';
+            }
+            if (result.warnings.length > 0) {
+                report += '   - 检查警告项，完善题目数据\n';
+                report += '   - 确认答案格式和解析内容\n';
+                report += '   - 添加正确的知识点标签\n';
+            }
+            if (result.valid && result.warnings.length === 0) {
+                report += '   - 数据质量良好，可以转换为正式文件\n';
+            }
+
+            // 确保review目录存在
+            if (!fs.existsSync(REVIEW_DIR)) {
+                fs.mkdirSync(REVIEW_DIR, { recursive: true });
+            }
+
+            fs.writeFileSync(reportPath, report, 'utf8');
+            console.log(`   📄 已生成审核报告: ${reportPath}`);
+
+        } catch (error) {
+            console.log(`   ❌ 生成 ${result.year} 年审核报告失败: ${error.message}`);
+        }
+    });
+}
+
+/**
  * 输出验证结果摘要
  * @param {Object} summary - 验证结果汇总
  */
@@ -311,13 +490,21 @@ function printSummary(summary) {
     console.log(`   总文件数: ${summary.totalFiles}`);
     console.log(`   ✅ 验证通过: ${summary.validFiles}`);
     console.log(`   ❌ 验证失败: ${summary.invalidFiles}`);
+    console.log(`   📝 候选文件: ${summary.candidateFiles}`);
     console.log(`   🔴 总错误数: ${summary.totalErrors}`);
     console.log(`   🟡 总警告数: ${summary.totalWarnings}`);
+
+    if (summary.candidateFiles > 0) {
+        console.log('\n📋 已生成候选文件审核报告');
+    }
 
     if (summary.invalidFiles === 0) {
         console.log('\n🎉 所有数据文件验证通过！');
     } else {
         console.log('\n⚠️  发现数据问题，请检查上述错误信息。');
+        if (summary.candidateFiles > 0) {
+            console.log('   候选文件可能需要人工审核和完善。');
+        }
         process.exit(1);
     }
 }
@@ -325,6 +512,7 @@ function printSummary(summary) {
 // ========== 执行验证 ==========
 if (require.main === module) {
     const summary = validateAll();
+    generateReviewReport(summary);
     printSummary(summary);
 }
 
@@ -336,3 +524,5 @@ module.exports = {
     validateBlankQuestion,
     validateSolveQuestion
 };
+
+
