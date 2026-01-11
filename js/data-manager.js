@@ -67,6 +67,127 @@ const dataManager = {
     },
 
     /**
+     * 记录题目尝试
+     * @param {string} questionId - 题目ID
+     * @param {string} userAnswer - 用户答案
+     * @param {boolean} isCorrect - 是否正确
+     * @param {string[]} knowledgePoints - 知识点ID列表
+     * @param {string} source - 来源 ('exam', 'practice', 'real-exam')
+     */
+    recordAttempt(questionId, userAnswer, isCorrect, knowledgePoints = [], source = 'practice') {
+        const attempts = this.load('questionAttempts', []);
+
+        const attempt = {
+            questionId,
+            userAnswer,
+            isCorrect,
+            knowledgePoints: knowledgePoints || [],
+            source,
+            timestamp: new Date().toISOString()
+        };
+
+        attempts.push(attempt);
+
+        // 限制历史记录数量，避免localStorage溢出
+        const maxAttempts = 10000;
+        if (attempts.length > maxAttempts) {
+            attempts.splice(0, attempts.length - maxAttempts);
+        }
+
+        this.save('questionAttempts', attempts);
+    },
+
+    /**
+     * 获取题目尝试历史
+     * @param {string} questionId - 题目ID (可选，不传则返回所有)
+     * @param {number} limit - 限制返回数量
+     * @returns {Array} 尝试历史
+     */
+    getAttempts(questionId = null, limit = null) {
+        const attempts = this.load('questionAttempts', []);
+
+        let filtered = attempts;
+        if (questionId) {
+            filtered = attempts.filter(a => a.questionId === questionId);
+        }
+
+        // 按时间倒序
+        filtered.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+        if (limit && limit > 0) {
+            filtered = filtered.slice(0, limit);
+        }
+
+        return filtered;
+    },
+
+    /**
+     * 获取知识点掌握度统计
+     * @param {number} minAttempts - 最少尝试次数
+     * @param {number} days - 统计最近几天的数据 (默认30天)
+     * @returns {Object} 知识点统计 {knowledgePointId: {correct: number, total: number, accuracy: number}}
+     */
+    getKnowledgePointStats(minAttempts = 3, days = 30) {
+        const attempts = this.load('questionAttempts', []);
+        const cutoffTime = new Date();
+        cutoffTime.setDate(cutoffTime.getDate() - days);
+
+        const stats = {};
+
+        attempts.forEach(attempt => {
+            // 过滤时间范围
+            if (new Date(attempt.timestamp) < cutoffTime) {
+                return;
+            }
+
+            // 处理知识点
+            const knowledgePoints = attempt.knowledgePoints || [];
+            knowledgePoints.forEach(kpId => {
+                if (!stats[kpId]) {
+                    stats[kpId] = { correct: 0, total: 0 };
+                }
+                stats[kpId].total++;
+                if (attempt.isCorrect) {
+                    stats[kpId].correct++;
+                }
+            });
+        });
+
+        // 计算准确率并过滤低频知识点
+        Object.keys(stats).forEach(kpId => {
+            const stat = stats[kpId];
+            if (stat.total >= minAttempts) {
+                stat.accuracy = stat.total > 0 ? stat.correct / stat.total : 0;
+            } else {
+                delete stats[kpId];
+            }
+        });
+
+        return stats;
+    },
+
+    /**
+     * 清除尝试历史
+     * @param {number} daysToKeep - 保留最近几天的数据 (默认保留所有)
+     */
+    clearAttempts(daysToKeep = null) {
+        if (daysToKeep === null) {
+            this.remove('questionAttempts');
+            return;
+        }
+
+        const attempts = this.load('questionAttempts', []);
+        const cutoffTime = new Date();
+        cutoffTime.setDate(cutoffTime.getDate() - daysToKeep);
+
+        const filtered = attempts.filter(attempt =>
+            new Date(attempt.timestamp) >= cutoffTime
+        );
+
+        this.save('questionAttempts', filtered);
+    },
+
+    /**
      * 导出所有数据
      * 自动下载为JSON文件
      */
@@ -83,6 +204,9 @@ const dataManager = {
             wrongQuestions: this.load('wrongQuestions'),
             practiceHistory: this.load('practiceHistory'),
 
+            // 题目尝试历史 (新增)
+            questionAttempts: this.load('questionAttempts', []),
+
             // 学习规划
             studyPlans: this.load('studyPlans'),
 
@@ -95,7 +219,7 @@ const dataManager = {
 
             // 元信息
             exportTime: new Date().toISOString(),
-            version: '2.0.0'
+            version: '3.0.0'  // 版本更新
         };
 
         const blob = new Blob([JSON.stringify(allData, null, 2)],
@@ -134,7 +258,7 @@ const dataManager = {
                     const keys = [
                         'userData', 'progress', 'learningProgress', 'learningNotes',
                         'knowledgeTree', 'wrongQuestions', 'practiceHistory',
-                        'studyPlans', 'statistics', 'aiConversations', 'aiConfig'
+                        'questionAttempts', 'studyPlans', 'statistics', 'aiConversations', 'aiConfig'
                     ];
 
                     keys.forEach(key => {
@@ -162,7 +286,7 @@ const dataManager = {
         const keys = [
             'userData', 'progress', 'learningProgress', 'learningNotes',
             'knowledgeTree', 'wrongQuestions', 'practiceHistory',
-            'studyPlans', 'statistics', 'aiConversations', 'currentView'
+            'questionAttempts', 'studyPlans', 'statistics', 'aiConversations', 'currentView'
         ];
 
         keys.forEach(key => {
@@ -280,6 +404,275 @@ const viewManager = {
             this.switchView(lastView);
         } else {
             this.switchView('dashboard');
+        }
+    }
+};
+
+// ========== 题库管理器 ==========
+const questionBankManager = {
+    storageKey: 'questionBank',
+
+    /**
+     * 获取题库数据
+     * @returns {Object} 题库数据
+     */
+    getData() {
+        return dataManager.load(this.storageKey, {
+            questions: [],
+            favorites: [],
+            lastUpdated: null
+        });
+    },
+
+    /**
+     * 保存题库数据
+     * @param {Object} data - 题库数据
+     */
+    saveData(data) {
+        data.lastUpdated = new Date().toISOString();
+        dataManager.save(this.storageKey, data);
+    },
+
+    /**
+     * 保存单个题目
+     * @param {Object} question - 题目对象
+     * @returns {string} 题目ID
+     */
+    saveQuestion(question) {
+        const data = this.getData();
+        if (!question.id) {
+            question.id = 'q-' + Date.now() + '-' + Math.random().toString(36).slice(2, 11);
+        }
+        question.createdAt = question.createdAt || new Date().toISOString();
+
+        const existingIndex = data.questions.findIndex(q => q.id === question.id);
+        if (existingIndex >= 0) {
+            data.questions[existingIndex] = question;
+        } else {
+            data.questions.push(question);
+        }
+
+        this.saveData(data);
+        return question.id;
+    },
+
+    /**
+     * 批量保存题目
+     * @param {Array} questions - 题目数组
+     * @returns {number} 保存的题目数量
+     */
+    saveQuestions(questions) {
+        const data = this.getData();
+        let savedCount = 0;
+
+        questions.forEach(question => {
+            if (!question.id) {
+                question.id = 'q-' + Date.now() + '-' + Math.random().toString(36).slice(2, 11);
+            }
+            question.createdAt = question.createdAt || new Date().toISOString();
+
+            const existingIndex = data.questions.findIndex(q => q.id === question.id);
+            if (existingIndex >= 0) {
+                data.questions[existingIndex] = question;
+            } else {
+                data.questions.push(question);
+            }
+            savedCount++;
+        });
+
+        this.saveData(data);
+        return savedCount;
+    },
+
+    /**
+     * 获取题目列表（支持筛选和分页）
+     * @param {Object} filter - 筛选条件
+     * @param {Object} pagination - 分页参数
+     * @returns {Object} { questions: [], total: number, page: number, pageSize: number }
+     */
+    getQuestions(filter = {}, pagination = { page: 1, pageSize: 20 }) {
+        const data = this.getData();
+        let questions = [...data.questions];
+
+        // 应用筛选条件
+        if (filter.subject && filter.subject !== 'all') {
+            questions = questions.filter(q => q.subject === filter.subject);
+        }
+        if (filter.difficulty && filter.difficulty !== 'all') {
+            questions = questions.filter(q => q.difficulty === filter.difficulty);
+        }
+        if (filter.type && filter.type !== 'all') {
+            questions = questions.filter(q => q.type === filter.type);
+        }
+        if (filter.source && filter.source !== 'all') {
+            questions = questions.filter(q => q.source === filter.source);
+        }
+        if (filter.favoriteOnly) {
+            questions = questions.filter(q => data.favorites.includes(q.id));
+        }
+        if (filter.keyword) {
+            const keyword = filter.keyword.toLowerCase();
+            questions = questions.filter(q =>
+                (q.question || q.content || '').toLowerCase().includes(keyword) ||
+                (q.explanation || '').toLowerCase().includes(keyword)
+            );
+        }
+        if (filter.knowledgePoint) {
+            questions = questions.filter(q =>
+                q.knowledgePoints && q.knowledgePoints.includes(filter.knowledgePoint)
+            );
+        }
+
+        // 排序（默认按创建时间倒序）
+        questions.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+
+        const total = questions.length;
+        const page = pagination.page || 1;
+        const pageSize = pagination.pageSize || 20;
+        const startIndex = (page - 1) * pageSize;
+
+        return {
+            questions: questions.slice(startIndex, startIndex + pageSize),
+            total,
+            page,
+            pageSize,
+            totalPages: Math.ceil(total / pageSize)
+        };
+    },
+
+    /**
+     * 获取单个题目
+     * @param {string} id - 题目ID
+     * @returns {Object|null} 题目对象
+     */
+    getQuestion(id) {
+        const data = this.getData();
+        return data.questions.find(q => q.id === id) || null;
+    },
+
+    /**
+     * 删除题目
+     * @param {string} id - 题目ID
+     * @returns {boolean} 是否删除成功
+     */
+    deleteQuestion(id) {
+        const data = this.getData();
+        const index = data.questions.findIndex(q => q.id === id);
+        if (index >= 0) {
+            data.questions.splice(index, 1);
+            data.favorites = data.favorites.filter(fid => fid !== id);
+            this.saveData(data);
+            return true;
+        }
+        return false;
+    },
+
+    /**
+     * 切换收藏状态
+     * @param {string} id - 题目ID
+     * @returns {boolean} 切换后的收藏状态
+     */
+    toggleFavorite(id) {
+        const data = this.getData();
+        const index = data.favorites.indexOf(id);
+        if (index >= 0) {
+            data.favorites.splice(index, 1);
+            this.saveData(data);
+            return false;
+        } else {
+            data.favorites.push(id);
+            this.saveData(data);
+            return true;
+        }
+    },
+
+    /**
+     * 检查是否收藏
+     * @param {string} id - 题目ID
+     * @returns {boolean} 是否已收藏
+     */
+    isFavorite(id) {
+        const data = this.getData();
+        return data.favorites.includes(id);
+    },
+
+    /**
+     * 获取题库统计信息
+     * @returns {Object} 统计信息
+     */
+    getStats() {
+        const data = this.getData();
+        const questions = data.questions;
+
+        const stats = {
+            total: questions.length,
+            bySubject: { calculus: 0, linear: 0, probability: 0 },
+            byDifficulty: { basic: 0, intermediate: 0, advanced: 0 },
+            byType: { choice: 0, blank: 0, solve: 0 },
+            bySource: { template: 0, ai: 0, manual: 0, imported: 0 },
+            favorites: data.favorites.length
+        };
+
+        questions.forEach(q => {
+            if (stats.bySubject[q.subject] !== undefined) stats.bySubject[q.subject]++;
+            if (stats.byDifficulty[q.difficulty] !== undefined) stats.byDifficulty[q.difficulty]++;
+            if (stats.byType[q.type] !== undefined) stats.byType[q.type]++;
+            if (stats.bySource[q.source] !== undefined) stats.bySource[q.source]++;
+        });
+
+        return stats;
+    },
+
+    /**
+     * 清空题库
+     */
+    clear() {
+        this.saveData({ questions: [], favorites: [], lastUpdated: null });
+    },
+
+    /**
+     * 导出题库
+     * @returns {string} JSON字符串
+     */
+    export() {
+        const data = this.getData();
+        return JSON.stringify(data, null, 2);
+    },
+
+    /**
+     * 导入题库
+     * @param {string} jsonString - JSON字符串
+     * @param {boolean} merge - 是否合并（true合并，false替换）
+     * @returns {number} 导入的题目数量
+     */
+    import(jsonString, merge = true) {
+        try {
+            const importData = JSON.parse(jsonString);
+            if (!importData.questions || !Array.isArray(importData.questions)) {
+                throw new Error('无效的题库数据格式');
+            }
+
+            if (merge) {
+                const currentData = this.getData();
+                importData.questions.forEach(q => {
+                    q.source = q.source || 'imported';
+                    const existingIndex = currentData.questions.findIndex(cq => cq.id === q.id);
+                    if (existingIndex >= 0) {
+                        currentData.questions[existingIndex] = q;
+                    } else {
+                        currentData.questions.push(q);
+                    }
+                });
+                this.saveData(currentData);
+                return importData.questions.length;
+            } else {
+                importData.questions.forEach(q => q.source = q.source || 'imported');
+                this.saveData(importData);
+                return importData.questions.length;
+            }
+        } catch (e) {
+            console.error('导入题库失败:', e);
+            throw e;
         }
     }
 };

@@ -343,6 +343,17 @@ function renderStatisticsView() {
                     </div>
                 </div>
             </div>
+
+            <!-- 弱项诊断 -->
+            <div class="card">
+                <h3 class="chart-title">🔍 弱项诊断</h3>
+                <div class="diagnosis-container" id="diagnosis-container">
+                    <div class="diagnosis-loading">
+                        <div class="loading-spinner"></div>
+                        <div>正在分析弱项...</div>
+                    </div>
+                </div>
+            </div>
         </div>
     `;
 
@@ -354,6 +365,9 @@ function renderStatisticsView() {
         initDailyBarChart();
         initHeatmapCalendar();
     }, 100);
+
+    // 渲染弱项诊断
+    renderDiagnosisView();
 }
 
 // ========== 图表初始化函数 ==========
@@ -625,6 +639,243 @@ function exportStatisticsCSV() {
     a.download = `学习统计_${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
     URL.revokeObjectURL(url);
+}
+
+/**
+ * 渲染弱项诊断视图
+ */
+function renderDiagnosisView() {
+    const container = document.getElementById('diagnosis-container');
+
+    try {
+        // 分析弱项
+        const diagnosis = diagnosisModule.analyzeWeaknesses();
+
+        let html = '';
+
+        // 诊断摘要
+        html += `
+            <div class="diagnosis-summary">
+                <div class="diagnosis-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">${diagnosis.summary.totalKnowledgePoints}</div>
+                        <div class="stat-label">知识点总数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${diagnosis.summary.weakPointsCount}</div>
+                        <div class="stat-label">弱项数量</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${(diagnosis.summary.averageAccuracy * 100).toFixed(1)}%</div>
+                        <div class="stat-label">平均准确率</div>
+                    </div>
+                </div>
+                <div class="analysis-info">
+                    <small>分析周期: ${diagnosis.summary.analysisPeriod} | 最低尝试次数: ${diagnosis.config.minAttempts}</small>
+                </div>
+            </div>
+        `;
+
+        // 弱项列表
+        if (diagnosis.weakPoints.length > 0) {
+            html += `
+                <div class="weak-points-section">
+                    <h4>📋 弱项知识点排行</h4>
+                    <div class="weak-points-list">
+            `;
+
+            diagnosis.weakPoints.forEach((point, index) => {
+                const strengthClass = point.accuracy < 0.3 ? 'very-weak' :
+                                    point.accuracy < 0.5 ? 'weak' :
+                                    point.accuracy < 0.7 ? 'moderate' : 'mild';
+
+                html += `
+                    <div class="weak-point-item ${strengthClass}">
+                        <div class="point-header">
+                            <span class="point-rank">#${index + 1}</span>
+                            <span class="point-id">${point.knowledgePointId}</span>
+                            <span class="point-accuracy">${(point.accuracy * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="point-details">
+                            <div class="progress-bar-container">
+                                <div class="progress-bar progress-bar-red" style="width: ${(point.accuracy * 100)}%"></div>
+                            </div>
+                            <div class="point-stats">
+                                <span>尝试: ${point.totalAttempts}次</span>
+                                <span>正确: ${point.correctAttempts}次</span>
+                            </div>
+                        </div>
+                        <div class="point-actions">
+                            <button class="btn btn-sm btn-outline" onclick="generateFocusedPractice('${point.knowledgePointId}')">
+                                专项练习
+                            </button>
+                            <button class="btn btn-sm btn-outline" onclick="viewKnowledgePointDetails('${point.knowledgePointId}')">
+                                详情
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                </div>
+            `;
+        } else {
+            html += `
+                <div class="no-weak-points">
+                    <div class="success-message">
+                        🎉 恭喜！未发现明显弱项，继续保持良好学习状态！
+                    </div>
+                </div>
+            `;
+        }
+
+        // 推荐建议
+        if (diagnosis.recommendations.length > 0) {
+            html += `
+                <div class="recommendations-section">
+                    <h4>💡 学习建议</h4>
+                    <div class="recommendations-list">
+            `;
+
+            diagnosis.recommendations.forEach(rec => {
+                const typeClass = rec.type === 'danger' ? 'rec-danger' :
+                                rec.type === 'warning' ? 'rec-warning' :
+                                rec.type === 'success' ? 'rec-success' : 'rec-info';
+
+                html += `
+                    <div class="recommendation-item ${typeClass}">
+                        <div class="rec-message">${rec.message}</div>
+                        <div class="rec-actions">
+                `;
+
+                if (rec.actions) {
+                    rec.actions.forEach(action => {
+                        if (action.action === 'generateFocusedPractice') {
+                            html += `<button class="btn btn-sm" onclick="generateFocusedPractice('${action.params.knowledgePointIds.join(',')}')">🔄 ${action.text}</button>`;
+                        } else if (action.action === 'viewWrongQuestions') {
+                            html += `<button class="btn btn-sm" onclick="viewManager.switchView('practice')">📚 ${action.text}</button>`;
+                        }
+                    });
+                }
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                </div>
+            `;
+        }
+
+        container.innerHTML = html;
+
+    } catch (error) {
+        console.error('诊断渲染失败:', error);
+        container.innerHTML = `
+            <div class="error-message">
+                <div class="error-icon">❌</div>
+                <div>弱项诊断加载失败: ${error.message}</div>
+                <button class="btn btn-primary" onclick="renderDiagnosisView()">重试</button>
+            </div>
+        `;
+    }
+}
+
+/**
+ * 生成针对性练习
+ * @param {string} knowledgePointIds - 知识点ID，多个用逗号分隔
+ */
+function generateFocusedPractice(knowledgePointIds) {
+    const ids = knowledgePointIds.split(',');
+
+    // 切换到练习页面并设置筛选条件
+    viewManager.switchView('practice');
+
+    // 通过localStorage传递筛选条件
+    dataManager.save('focusedPracticeFilter', {
+        knowledgePoints: ids,
+        timestamp: new Date().toISOString()
+    });
+
+    // 显示提示消息
+    setTimeout(() => {
+        alert(`已设置练习筛选条件：${ids.join(', ')}\n请在练习页面选择相应知识点进行针对性练习。`);
+    }, 500);
+}
+
+/**
+ * 查看知识点详情
+ * @param {string} knowledgePointId - 知识点ID
+ */
+function viewKnowledgePointDetails(knowledgePointId) {
+    const details = diagnosisModule.getKnowledgePointDetails(knowledgePointId);
+
+    if (!details) {
+        alert('未找到该知识点的练习记录');
+        return;
+    }
+
+    // 显示详情弹窗
+    const detailHTML = `
+        <div class="knowledge-point-details">
+            <h3>知识点详情: ${knowledgePointId}</h3>
+            <div class="detail-stats">
+                <div class="stat-item">
+                    <div class="stat-value">${details.totalAttempts}</div>
+                    <div class="stat-label">总尝试次数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${(details.accuracy * 100).toFixed(1)}%</div>
+                    <div class="stat-label">准确率</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${details.trend === 'improving' ? '↗️ 上升' :
+                                           details.trend === 'declining' ? '↘️ 下降' : '➡️ 稳定'}</div>
+                    <div class="stat-label">趋势</div>
+                </div>
+            </div>
+            <div class="recent-attempts">
+                <h4>最近练习记录</h4>
+                <div class="attempts-list">
+                    ${details.recentAttempts.slice(0, 5).map(attempt => `
+                        <div class="attempt-item ${attempt.isCorrect ? 'correct' : 'wrong'}">
+                            <span class="attempt-time">${new Date(attempt.timestamp).toLocaleString()}</span>
+                            <span class="attempt-result">${attempt.isCorrect ? '✓' : '✗'}</span>
+                            <span class="attempt-answer">${attempt.userAnswer}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    `;
+
+    // 显示弹窗 (简化为新窗口)
+    const detailWindow = window.open('', '_blank', 'width=600,height=400');
+    detailWindow.document.write(`
+        <html>
+        <head><title>知识点详情 - ${knowledgePointId}</title><style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            .knowledge-point-details h3 { color: #333; }
+            .detail-stats { display: flex; gap: 20px; margin: 20px 0; }
+            .stat-item { text-align: center; }
+            .stat-value { font-size: 24px; font-weight: bold; color: #007bff; }
+            .stat-label { color: #666; }
+            .recent-attempts { margin-top: 30px; }
+            .attempts-list { margin-top: 10px; }
+            .attempt-item { padding: 8px; margin: 5px 0; border-radius: 4px; }
+            .attempt-item.correct { background: #d4edda; }
+            .attempt-item.wrong { background: #f8d7da; }
+            .attempt-time { font-size: 12px; color: #666; }
+            .attempt-result { margin: 0 10px; font-weight: bold; }
+        </style></head>
+        <body>${detailHTML}</body>
+        </html>
+    `);
 }
 
 /**
