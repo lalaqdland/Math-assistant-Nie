@@ -1,0 +1,32 @@
+非UTF-8编码文件报告
+==================================================
+
+检测时间: Windows系统
+总检查文件数: 37
+非UTF-8文件数: 19
+
+编码分布:
+  Windows-1254: 16 个文件
+  ascii: 2 个文件
+  未知: 1 个文件
+
+详细列表:
+  D:\Documents\Coding\Claude Code\math\开发进度.md (未知, 置信度: 0.00)
+  D:\Documents\Coding\Claude Code\math\考研数学一模拟题.html (Windows-1254, 置信度: 0.38)
+  D:\Documents\Coding\Claude Code\math\考研数学学习助手.html (Windows-1254, 置信度: 0.43)
+  D:\Documents\Coding\Claude Code\math\.claude\config.json (ascii, 置信度: 1.00)
+  D:\Documents\Coding\Claude Code\math\.vscode\settings.json (ascii, 置信度: 1.00)
+  D:\Documents\Coding\Claude Code\math\js\ai-tutor-module.js (Windows-1254, 置信度: 0.42)
+  D:\Documents\Coding\Claude Code\math\js\calendar-module.js (Windows-1254, 置信度: 0.47)
+  D:\Documents\Coding\Claude Code\math\js\dashboard-module.js (Windows-1254, 置信度: 0.44)
+  D:\Documents\Coding\Claude Code\math\js\exam-module.js (Windows-1254, 置信度: 0.34)
+  D:\Documents\Coding\Claude Code\math\js\knowledge-data.backup.js (Windows-1254, 置信度: 0.21)
+  D:\Documents\Coding\Claude Code\math\js\knowledge-data.js (Windows-1254, 置信度: 0.22)
+  D:\Documents\Coding\Claude Code\math\js\knowledge-module.js (Windows-1254, 置信度: 0.44)
+  D:\Documents\Coding\Claude Code\math\js\plan-module.js (Windows-1254, 置信度: 0.42)
+  D:\Documents\Coding\Claude Code\math\js\practice-module.js (Windows-1254, 置信度: 0.38)
+  D:\Documents\Coding\Claude Code\math\js\real-exam-module.js (Windows-1254, 置信度: 0.44)
+  D:\Documents\Coding\Claude Code\math\js\review-scheduler.js (Windows-1254, 置信度: 0.40)
+  D:\Documents\Coding\Claude Code\math\js\settings-module.js (Windows-1254, 置信度: 0.37)
+  D:\Documents\Coding\Claude Code\math\js\statistics-module.js (Windows-1254, 置信度: 0.44)
+  D:\Documents\Coding\Claude Code\math\scripts\validate_real_exam.js (Windows-1254, 置信度: 0.38)

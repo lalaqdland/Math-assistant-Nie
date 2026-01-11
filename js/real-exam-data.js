@@ -4,6 +4,7 @@
  *
  * Phase 18: 框架搭建 - 定义数据结构和示例题目
  * Phase 19: 数据录入 - 填充完整10年真题
+ * Phase 19: 数据集成 - 从外部JSON文件加载数据
  */
 
 // ========== 历年分数线数据 ==========
@@ -20,8 +21,81 @@ const examScoreLines = {
     2015: { national: 54, top: 85 }
 };
 
-// ========== 真题数据结构 ==========
-const realExamData = {
+// ========== 真题数据加载 ==========
+let realExamData = {};
+let dataLoadPromises = {};
+
+/**
+ * 从JSON文件异步加载指定年份的真题数据
+ * @param {number} year - 年份
+ * @returns {Promise<Object>} 真题数据
+ */
+async function loadExamData(year) {
+    if (realExamData[year]) {
+        return realExamData[year];
+    }
+
+    if (!dataLoadPromises[year]) {
+        dataLoadPromises[year] = fetch(`data/real-exam-${year}.json`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`无法加载 ${year} 年数据`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // 转换为内部数据结构
+                realExamData[year] = {
+                    year: year,
+                    totalScore: 150,
+                    timeLimit: 180,
+                    sections: {
+                        choice: {
+                            name: '选择题',
+                            count: data.filter(q => q.type === 'choice').length,
+                            scorePerQuestion: 5,
+                            questions: data.filter(q => q.type === 'choice')
+                        },
+                        blank: {
+                            name: '填空题',
+                            count: data.filter(q => q.type === 'blank').length,
+                            scorePerQuestion: 5,
+                            questions: data.filter(q => q.type === 'blank')
+                        },
+                        solve: {
+                            name: '解答题',
+                            count: data.filter(q => q.type === 'solve').length,
+                            scores: [10, 10, 10, 10, 12, 12, 12, 12, 12],
+                            questions: data.filter(q => q.type === 'solve')
+                        }
+                    }
+                };
+                return realExamData[year];
+            })
+            .catch(error => {
+                console.error(`加载 ${year} 年真题数据失败:`, error);
+                return null;
+            });
+    }
+
+    return dataLoadPromises[year];
+}
+
+/**
+ * 预加载指定年份的数据
+ * @param {number|number[]} years - 年份或年份数组
+ */
+function preloadExamData(years) {
+    const yearArray = Array.isArray(years) ? years : [years];
+    yearArray.forEach(year => {
+        if (!realExamData[year] && !dataLoadPromises[year]) {
+            loadExamData(year);
+        }
+    });
+}
+
+// ========== 向后兼容的真题数据结构（仅包含框架） ==========
+const legacyRealExamData = {
     // ==================== 2024年真题 ====================
     2024: {
         year: 2024,
@@ -309,11 +383,20 @@ $$|\\lambda E - A| = \\begin{vmatrix} \\lambda-1 & 1 & 0 \\\\ 1 & \\lambda-2 & 1
 // ========== 辅助函数 ==========
 
 /**
- * 获取指定年份的真题数据
+ * 获取指定年份的真题数据（异步）
+ * @param {number} year - 年份
+ * @returns {Promise<Object|null>} 真题数据
+ */
+async function getRealExamByYear(year) {
+    return await loadExamData(year);
+}
+
+/**
+ * 获取指定年份的真题数据（同步，如果已加载）
  * @param {number} year - 年份
  * @returns {Object|null} 真题数据
  */
-function getRealExamByYear(year) {
+function getRealExamByYearSync(year) {
     return realExamData[year] || null;
 }
 
@@ -322,7 +405,11 @@ function getRealExamByYear(year) {
  * @returns {number[]} 年份数组（降序）
  */
 function getAvailableYears() {
-    return Object.keys(realExamData).map(Number).sort((a, b) => b - a);
+    // 包含分数线中的年份和已加载的数据年份
+    const scoreYears = Object.keys(examScoreLines).map(Number);
+    const loadedYears = Object.keys(realExamData).map(Number);
+    const allYears = [...new Set([...scoreYears, ...loadedYears])];
+    return allYears.sort((a, b) => b - a);
 }
 
 /**
@@ -335,24 +422,52 @@ function getScoreLine(year) {
 }
 
 /**
- * 计算年份的题目总数
+ * 计算年份的题目总数（异步）
  * @param {number} year - 年份
- * @returns {number} 题目总数
+ * @returns {Promise<number>} 题目总数
  */
-function getQuestionCount(year) {
-    const exam = realExamData[year];
+async function getQuestionCount(year) {
+    const exam = await getRealExamByYear(year);
     if (!exam) return 0;
     return exam.sections.choice.count + exam.sections.blank.count + exam.sections.solve.count;
 }
 
 /**
- * 检查年份是否有完整数据
+ * 计算年份的题目总数（同步，如果已加载）
  * @param {number} year - 年份
- * @returns {boolean} 是否有数据
+ * @returns {number} 题目总数
  */
-function hasExamData(year) {
-    const exam = realExamData[year];
+function getQuestionCountSync(year) {
+    const exam = getRealExamByYearSync(year);
+    if (!exam) return 0;
+    return exam.sections.choice.count + exam.sections.blank.count + exam.sections.solve.count;
+}
+
+/**
+ * 检查年份是否有完整数据（异步）
+ * @param {number} year - 年份
+ * @returns {Promise<boolean>} 是否有数据
+ */
+async function hasExamData(year) {
+    const exam = await getRealExamByYear(year);
     if (!exam) return false;
     const { choice, blank, solve } = exam.sections;
     return choice.questions.length > 0 || blank.questions.length > 0 || solve.questions.length > 0;
 }
+
+/**
+ * 检查年份是否有完整数据（同步，如果已加载）
+ * @param {number} year - 年份
+ * @returns {boolean} 是否有数据
+ */
+function hasExamDataSync(year) {
+    const exam = getRealExamByYearSync(year);
+    if (!exam) return false;
+    const { choice, blank, solve } = exam.sections;
+    return choice.questions.length > 0 || blank.questions.length > 0 || solve.questions.length > 0;
+}
+
+// ========== 初始化 ==========
+
+// 预加载已有的数据文件
+preloadExamData([2022, 2023, 2024]);

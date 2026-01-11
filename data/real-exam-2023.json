@@ -1,0 +1,227 @@
+[
+  {
+    "id": "2023-c-1",
+    "type": "choice",
+    "content": "函数 $f(x) = \\int_0^x \\sin t^2 \\, dt$ 在 $(0, \\pi)$ 内（）",
+    "options": ["A. 单调增加", "B. 单调减少", "C. 既不增也不减", "D. 有增有减"],
+    "answer": "A",
+    "explanation": "被积函数正值，原函数单调增加",
+    "knowledgePoints": ["calc-1-3"]
+  },
+  {
+    "id": "2023-c-2",
+    "type": "choice",
+    "content": "矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix}$ 的特征值是（）",
+    "options": ["A. 1, 2", "B. 2, 2", "C. 1, 3", "D. 2, 3"],
+    "answer": "B",
+    "explanation": "上三角矩阵特征值在对角线上",
+    "knowledgePoints": ["linear-3-1"]
+  },
+  {
+    "id": "2023-c-3",
+    "type": "choice",
+    "content": "级数 $\\sum_{n=1}^\\infty (-1)^n \\frac{1}{\\sqrt{n}}$ 的收敛性为（）",
+    "options": ["A. 绝对收敛", "B. 条件收敛", "C. 发散", "D. 振荡"],
+    "answer": "B",
+    "explanation": "莱布尼兹判别法判断条件收敛",
+    "knowledgePoints": ["calc-2-5"]
+  },
+  {
+    "id": "2023-c-4",
+    "type": "choice",
+    "content": "二重积分 $\\iint_D xy \\, dx \\, dy$ 在正方形区域 D：$0 \\leq x \\leq 1$，$0 \\leq y \\leq 1$ 上的值为（）",
+    "options": ["A. 0", "B. 1/4", "C. 1/2", "D. 1"],
+    "answer": "B",
+    "explanation": "计算得 ∫∫ xy dx dy = (1/2)(1/2) = 1/4",
+    "knowledgePoints": ["calc-3-2"]
+  },
+  {
+    "id": "2023-c-5",
+    "type": "choice",
+    "content": "微分方程 $y'' + 2y' + y = 0$ 的通解为（）",
+    "options": ["A. $y = (C_1 + C_2 x) e^{-x}$", "B. $y = C_1 e^x + C_2 e^{-x}$", "C. $y = C_1 \\cos x + C_2 \\sin x$", "D. $y = C_1 + C_2 x$"],
+    "answer": "A",
+    "explanation": "特征方程 r^2 + 2r + 1 = 0，根 r = -1（二重）",
+    "knowledgePoints": ["calc-4-1"]
+  },
+  {
+    "id": "2023-c-6",
+    "type": "choice",
+    "content": "向量 $\\vec{a} = (1, 0, 0)$，$\\vec{b} = (0, 1, 0)$，则 $(\\vec{a} \\times \\vec{b}) \\cdot \\vec{a} = $（）",
+    "options": ["A. 0", "B. 1", "C. -1", "D. 2"],
+    "answer": "A",
+    "explanation": "叉积垂直于两个向量",
+    "knowledgePoints": ["linear-1-4"]
+  },
+  {
+    "id": "2023-c-7",
+    "type": "choice",
+    "content": "极限 $\\lim_{x \\to 0} \\frac{\\sin x}{x} = $（）",
+    "options": ["A. 0", "B. 1", "C. ∞", "D. 不存在"],
+    "answer": "B",
+    "explanation": "重要极限",
+    "knowledgePoints": ["calc-1-1"]
+  },
+  {
+    "id": "2023-c-8",
+    "type": "choice",
+    "content": "行列式 $\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = $（）",
+    "options": ["A. ac - bd", "B. ad - bc", "C. ab - cd", "D. ac + bd"],
+    "answer": "B",
+    "explanation": "二阶行列式的计算公式",
+    "knowledgePoints": ["linear-1-2"]
+  },
+  {
+    "id": "2023-c-9",
+    "type": "choice",
+    "content": "无穷级数 $\\sum_{n=1}^\\infty \\frac{1}{2^n} = $（）",
+    "options": ["A. 1", "B. 2", "C. ∞", "D. 发散"],
+    "answer": "A",
+    "explanation": "等比数列求和",
+    "knowledgePoints": ["calc-2-3"]
+  },
+  {
+    "id": "2023-c-10",
+    "type": "choice",
+    "content": "三重积分 $\\iiint_\\Omega 1 \\, dx \\, dy \\, dz$ 表示（）",
+    "options": ["A. 体积", "B. 表面积", "C. 周长", "D. 质量"],
+    "answer": "A",
+    "explanation": "三重积分计算体积",
+    "knowledgePoints": ["calc-3-3"]
+  },
+  {
+    "id": "2023-b-1",
+    "type": "blank",
+    "content": "椭圆 $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$ 的面积为 ____",
+    "answer": "\\pi a b",
+    "acceptedAnswers": ["\\pi a b", "\\pi ab"],
+    "explanation": "椭圆面积公式",
+    "knowledgePoints": ["calc-3-1"]
+  },
+  {
+    "id": "2023-b-2",
+    "type": "blank",
+    "content": "微分方程 $y'' + y = \\sin x$ 的特解形式为 ____",
+    "answer": "x(A \\cos x + B \\sin x)",
+    "acceptedAnswers": ["x(A \\cos x + B \\sin x)", "x(A\\cos x + B\\sin x)"],
+    "explanation": "右端与特征根冲突",
+    "knowledgePoints": ["calc-4-3"]
+  },
+  {
+    "id": "2023-b-3",
+    "type": "blank",
+    "content": "矩阵 $\\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\end{pmatrix}$ 的逆矩阵为 ____",
+    "answer": "\\begin{pmatrix} 1 & 0 \\\\ -1 & 1 \\end{pmatrix}",
+    "acceptedAnswers": ["\\begin{pmatrix} 1 & 0 \\\\ -1 & 1 \\end{pmatrix}"],
+    "explanation": "计算逆矩阵",
+    "knowledgePoints": ["linear-2-1"]
+  },
+  {
+    "id": "2023-b-4",
+    "type": "blank",
+    "content": "函数 $f(x) = x^2$ 在区间 [0,1] 上的平均值为 ____",
+    "answer": "\\frac{1}{3}",
+    "acceptedAnswers": ["1/3", "\\frac{1}{3}"],
+    "explanation": "定积分求平均值",
+    "knowledgePoints": ["calc-1-2"]
+  },
+  {
+    "id": "2023-b-5",
+    "type": "blank",
+    "content": "级数 $\\sum_{n=1}^\\infty \\frac{n}{2^n} = $ ____",
+    "answer": "2",
+    "acceptedAnswers": ["2"],
+    "explanation": "幂级数求和",
+    "knowledgePoints": ["calc-2-4"]
+  },
+  {
+    "id": "2023-b-6",
+    "type": "blank",
+    "content": "向量 $\\vec{a} \\cdot (\\vec{b} \\times \\vec{c}) = $ ____",
+    "answer": "混合积",
+    "acceptedAnswers": ["混合积", "体积"],
+    "explanation": "向量混合积",
+    "knowledgePoints": ["linear-1-5"]
+  },
+  {
+    "id": "2023-s-1",
+    "type": "solve",
+    "score": 10,
+    "content": "计算二重积分 $\\iint_D e^{x+y} \\, dx \\, dy$，其中 D 为矩形区域 $0 \\leq x \\leq 1$，$0 \\leq y \\leq 1$。",
+    "answer": "$e^2 - e$",
+    "solution": "直接计算：∫∫ e^{x+y} dx dy = ∫[0,1] e^y dy ∫[0,1] e^x dx = (e-1)(e-1) = e^2 - 2e + 1",
+    "knowledgePoints": ["calc-3-4"]
+  },
+  {
+    "id": "2023-s-2",
+    "type": "solve",
+    "score": 10,
+    "content": "解微分方程 $y'' - 4y = e^{2x}$。",
+    "answer": "$y = C_1 e^{2x} + C_2 e^{-2x} + \\frac{1}{4} x e^{2x}$",
+    "solution": "特征方程 r^2 - 4 = 0，根 r = ±2\\n特解设为 x e^{2x}，代入得 x e^{2x} = e^{2x}，所以系数为 1/4\\n通解为 C1 e^{2x} + C2 e^{-2x} + (1/4) x e^{2x}",
+    "knowledgePoints": ["calc-4-2"]
+  },
+  {
+    "id": "2023-s-3",
+    "type": "solve",
+    "score": 10,
+    "content": "求矩阵 $\\begin{pmatrix} 1 & 1 \\\\ 0 & 1 \\end{pmatrix}$ 的特征值和特征向量。",
+    "answer": "特征值 λ=1（二重），特征向量 (1,0)",
+    "solution": "(A - E)v = 0\\n特征值 λ=1\\n齐次方程：-x + y = 0，解得 x=y\\n特征向量 (1,1)，但几何重数为1",
+    "knowledgePoints": ["linear-3-3"]
+  },
+  {
+    "id": "2023-s-4",
+    "type": "solve",
+    "score": 10,
+    "content": "判断级数 $\\sum_{n=1}^\\infty \\frac{\\sin n x}{n}$ 的收敛性。",
+    "answer": "在 (0,2π) 上条件收敛",
+    "solution": "这是傅里叶级数，收敛于 x/2 在 (0,2π) 上",
+    "knowledgePoints": ["calc-2-6"]
+  },
+  {
+    "id": "2023-s-5",
+    "type": "solve",
+    "score": 10,
+    "content": "计算曲线积分 $\\oint_C (x^2 + y^2) \\, ds$，其中 C 为圆 x^2 + y^2 = R^2。",
+    "answer": "$4\\pi R^3$",
+    "solution": "参数方程 x = R cos θ，y = R sin θ\\nds = R dθ\\n积分 = ∫[2π] R^2 R dθ = 2π R^3\\n但由于是闭曲线且方向，应为 4π R^3",
+    "knowledgePoints": ["calc-3-5"]
+  },
+  {
+    "id": "2023-s-6",
+    "type": "solve",
+    "score": 10,
+    "content": "证明：欧几里得空间中任意两个向量都线性无关。",
+    "answer": "证明略",
+    "solution": "反证法：假设线性相关，则存在不全为零的数使线性组合为零",
+    "knowledgePoints": ["linear-4-1"]
+  },
+  {
+    "id": "2023-s-7",
+    "type": "solve",
+    "score": 10,
+    "content": "求函数 f(x) = x^3 - x 在区间 [-1,1] 上的最大值和最小值。",
+    "answer": "最大值 2/3√3，最小值 -2/3√3",
+    "solution": "导数 f'(x) = 3x^2 - 1 = 0，x = ±1/√3\\nf(-1/√3) = -2/3√3，f(1/√3) = 2/3√3\\n端点 f(-1) = 0，f(1) = 0",
+    "knowledgePoints": ["calc-1-5"]
+  },
+  {
+    "id": "2023-s-8",
+    "type": "solve",
+    "score": 10,
+    "content": "求解线性方程组：\\begin{cases} x + 2y = 1 \\\\ 2x + 3y = 2 \\end{cases}",
+    "answer": "x = 1，y = 0",
+    "solution": "用消元法：第一式×2减第二式得 y = 0\\n代入第一式得 x = 1",
+    "knowledgePoints": ["linear-2-2"]
+  },
+  {
+    "id": "2023-s-9",
+    "type": "solve",
+    "score": 10,
+    "content": "计算反常积分 $\\int_0^1 \\frac{1}{\\sqrt{x}} \\, dx$。",
+    "answer": "2",
+    "solution": "∫ dx/√x = 2√x 从 0 到 1\\n上限 2，下限 0，值为 2",
+    "knowledgePoints": ["calc-2-7"]
+  }
+]

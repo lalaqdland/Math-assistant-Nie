@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考研数学一模拟试卷</title>
+
+    <!-- 自动重定向到主页面的模拟考试视图 -->
+    <script>
+        window.location.href = '考研数学学习助手.html#exam';
+    </script>
+
+    <!-- MathJax配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <!-- 外部样式表 -->
+    <link rel="stylesheet" href="css/exam.css">
+</head>
+<body class="exam-page">
+    <div class="exam-header">
+        <div>
+            <h1>考研数学一模拟试卷 <span class="mode-indicator" id="examModeIndicator">即时批改模式</span></h1>
+        </div>
+        <div class="header-controls">
+            <div class="timer" id="examTimer">00:00:00</div>
+            <button class="batch-refresh-btn" id="examBatchRefreshBtn" title="一键更换所有题目">
+                🔄 换一套题
+            </button>
+            <button class="settings-btn" id="apiSettingsBtn">
+                ⚙️ AI设置<span class="api-status inactive" id="apiStatus">未配置</span>
+            </button>
+            <button class="mode-switch" id="examModeSwitch">切换到提交后批改</button>
+        </div>
+    </div>
+
+    <div class="exam-container">
+        <div class="main-content" id="examQuestionsContainer">
+            <!-- 题目将通过JavaScript动态生成 -->
+        </div>
+
+        <div class="exam-sidebar">
+            <h3>答题卡</h3>
+            <div class="answer-card" id="examAnswerCard">
+                <!-- 答题卡将通过JavaScript动态生成 -->
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <span>已答题数：</span>
+                    <span id="examAnsweredCount">0/23</span>
+                </div>
+                <div class="stat-item">
+                    <span>总分：</span>
+                    <span>150分</span>
+                </div>
+                <div class="stat-item" id="examScoreItem" style="display: none;">
+                    <span>得分：</span>
+                    <span id="examFinalScore" style="color: #4CAF50; font-weight: bold;">--</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="exam-footer">
+        <button class="reset-btn" id="examResetBtn">重新开始</button>
+        <div class="score-display" id="examScoreDisplay"></div>
+        <button class="submit-btn" id="examSubmitBtn">提交试卷</button>
+    </div>
+
+    <!-- API配置模态框 -->
+    <div class="modal" id="apiModal">
+        <div class="modal-content">
+            <div class="modal-header">AI模型配置（只读）</div>
+
+            <!-- 提示信息 -->
+            <div style="background: #fff3e0; border-left: 4px solid #ff9800; padding: 12px; margin-bottom: 15px; border-radius: 4px;">
+                <strong style="color: #e65100;">提示：</strong>
+                <span style="color: #666;">AI配置已集中到主页面管理，请前往「考研数学学习助手」的设置页面进行配置。</span>
+            </div>
+
+            <!-- 厂商选择 -->
+            <div class="input-group">
+                <label for="apiProvider">当前AI厂商:</label>
+                <select id="apiProvider" disabled style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px; background: #f5f5f5;">
+                    <option value="claude">Claude (Anthropic)</option>
+                    <option value="deepseek">Deepseek</option>
+                    <option value="zhipu">智谱AI (GLM)</option>
+                    <option value="openai">其他OpenAI兼容API</option>
+                </select>
+            </div>
+
+            <!-- API Key输入 -->
+            <div class="input-group">
+                <label for="apiKeyInput">API Key:</label>
+                <input type="password" id="apiKeyInput" disabled placeholder="未配置" style="background: #f5f5f5;">
+            </div>
+
+            <!-- Base URL配置 -->
+            <div class="input-group">
+                <label for="apiBaseUrl">API Base URL:</label>
+                <input type="text" id="apiBaseUrl" disabled placeholder="未配置" style="background: #f5f5f5;">
+            </div>
+
+            <!-- 模型选择 -->
+            <div class="input-group">
+                <label for="apiModel">当前模型:</label>
+                <select id="apiModel" disabled style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px; background: #f5f5f5;">
+                    <!-- 动态加载模型列表 -->
+                </select>
+            </div>
+
+            <!-- 自定义模型ID (仅OpenAI兼容时显示) -->
+            <div class="input-group" id="customModelGroup" style="display: none;">
+                <label for="customModelId">自定义模型ID:</label>
+                <input type="text" id="customModelId" disabled placeholder="未配置" style="background: #f5f5f5;">
+            </div>
+
+            <!-- 测试连接 -->
+            <button class="test-connection-btn" id="testConnectionBtn">测试连接</button>
+            <div id="connectionStatus"></div>
+
+            <!-- 操作按钮 -->
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-secondary" id="cancelApiBtn">关闭</button>
+                <button class="modal-btn modal-btn-primary" onclick="window.location.href='考研数学学习助手.html'">前往主页配置</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 批量换题进度模态框 -->
+    <div class="batch-progress-modal" id="batchProgressModal">
+        <div class="batch-progress-content">
+            <div class="batch-progress-header">
+                <span>🔄</span>
+                <span>一键换题</span>
+            </div>
+            <div class="batch-progress-bar-container">
+                <div class="batch-progress-bar" id="batchProgressBar"></div>
+            </div>
+            <div class="batch-progress-text" id="batchProgressText">正在生成新题目...</div>
+            <div class="batch-progress-status" id="batchProgressStatus">准备中...</div>
+            <div class="batch-progress-buttons">
+                <button class="batch-cancel-btn" id="batchCancelBtn">取消换题</button>
+                <button class="batch-close-btn" id="batchCloseBtn">完成</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 外部JavaScript模块 -->
+    <script src="js/ai-adapter.js"></script>
+    <script src="js/exam-module.js"></script>
+
+    <script>
+        // 页面初始化
+        window.onload = function() {
+            // 加载AI配置
+            loadExamAPIConfig();
+
+            // 初始化考试模块
+            initExamModule();
+
+            // 绑定API设置相关事件
+            document.getElementById('apiSettingsBtn').addEventListener('click', () => {
+                document.getElementById('apiModal').classList.add('show');
+            });
+
+            document.getElementById('cancelApiBtn').addEventListener('click', () => {
+                document.getElementById('apiModal').classList.remove('show');
+            });
+
+            document.getElementById('testConnectionBtn').addEventListener('click', testExamAPIConnection);
+
+            // 批量换题模态框事件
+            document.getElementById('batchCancelBtn').addEventListener('click', () => {
+                examBatchRefreshCancelled = true;
+            });
+
+            document.getElementById('batchCloseBtn').addEventListener('click', () => {
+                document.getElementById('batchProgressModal').classList.remove('show');
+            });
+
+            // 点击模态框外部关闭
+            document.getElementById('apiModal').addEventListener('click', (e) => {
+                if (e.target.id === 'apiModal') {
+                    document.getElementById('apiModal').classList.remove('show');
+                }
+            });
+        };
+
+        // 加载API配置（从主页面统一配置读取）
+        function loadExamAPIConfig() {
+            let provider = null;
+            let key = null;
+            let baseUrl = null;
+            let modelId = null;
+
+            // 优先从主页面的统一配置读取
+            try {
+                const globalConfig = localStorage.getItem('mathHelper_aiConfig');
+                if (globalConfig) {
+                    const config = JSON.parse(globalConfig);
+                    provider = config.provider;
+                    key = config.apiKey;
+                    baseUrl = config.baseUrl;
+                    modelId = config.modelId;
+                }
+            } catch (e) {
+                console.warn('读取主页面配置失败:', e);
+            }
+
+            // 回退到旧配置
+            if (!provider) {
+                provider = localStorage.getItem('aiProvider') || 'claude';
+                key = localStorage.getItem('aiApiKey') || localStorage.getItem('claudeApiKey');
+                baseUrl = localStorage.getItem('aiBaseUrl') || localStorage.getItem('claudeApiBaseUrl');
+                modelId = localStorage.getItem('aiModel') || localStorage.getItem('claudeApiModel');
+            }
+
+            // 更新UI显示
+            document.getElementById('apiProvider').value = provider || 'claude';
+            if (key) {
+                document.getElementById('apiKeyInput').value = key;
+            }
+            if (baseUrl) {
+                document.getElementById('apiBaseUrl').value = baseUrl;
+            }
+
+            // 更新API状态指示
+            updateExamAPIStatus(!!key);
+        }
+
+        // 更新API状态显示
+        function updateExamAPIStatus(configured) {
+            const statusSpan = document.getElementById('apiStatus');
+            if (configured) {
+                statusSpan.textContent = '已配置';
+                statusSpan.className = 'api-status active';
+            } else {
+                statusSpan.textContent = '未配置';
+                statusSpan.className = 'api-status inactive';
+            }
+        }
+
+        // 测试API连接
+        async function testExamAPIConnection() {
+            const btn = document.getElementById('testConnectionBtn');
+            const statusDiv = document.getElementById('connectionStatus');
+
+            if (!isAIConfigured()) {
+                statusDiv.innerHTML = '<div class="connection-status error">请先在主页面配置AI</div>';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = '测试中...';
+            statusDiv.innerHTML = '';
+
+            try {
+                await callAI([{ role: 'user', content: '测试连接' }], { maxTokens: 10 });
+                statusDiv.innerHTML = '<div class="connection-status success">✓ 连接成功!</div>';
+            } catch (error) {
+                statusDiv.innerHTML = `<div class="connection-status error">✗ 连接失败: ${error.message}</div>`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '测试连接';
+            }
+        }
+
+        // 页面关闭前保存
+        window.addEventListener('beforeunload', saveExamToStorage);
+    </script>
+</body>
+</html>

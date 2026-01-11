@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考研数学学习助手</title>
+
+    <!-- MathJax配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <!-- Chart.js图表库 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+
+    <!-- Cal-Heatmap热力图库 -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cal-heatmap@4.2.4/dist/cal-heatmap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cal-heatmap@4.2.4/dist/cal-heatmap.css">
+
+    <!-- 外部样式表 -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/exam.css">
+</head>
+<body>
+    <!-- 新手引导遮罩层 -->
+    <div id="onboarding-overlay" class="onboarding-overlay" style="display: none;">
+        <div class="onboarding-modal">
+            <div class="onboarding-header">
+                <span class="onboarding-icon">🎓</span>
+                <h2>欢迎使用考研数学学习助手</h2>
+            </div>
+            <div class="onboarding-content">
+                <p class="onboarding-intro">这是一个专为考研数学一设计的学习平台，让我们先了解一下各项功能：</p>
+                <div class="onboarding-features">
+                    <div class="onboarding-feature">
+                        <span class="feature-icon">📚</span>
+                        <div class="feature-info">
+                            <strong>知识点学习</strong>
+                            <p>50+核心知识点，AI详解，互动提问</p>
+                        </div>
+                    </div>
+                    <div class="onboarding-feature">
+                        <span class="feature-icon">📅</span>
+                        <div class="feature-info">
+                            <strong>学习规划</strong>
+                            <p>三阶段计划，AI智能调整，每日任务</p>
+                        </div>
+                    </div>
+                    <div class="onboarding-feature">
+                        <span class="feature-icon">✍️</span>
+                        <div class="feature-info">
+                            <strong>练习测试</strong>
+                            <p>专项练习，模拟考试，错题管理</p>
+                        </div>
+                    </div>
+                    <div class="onboarding-feature">
+                        <span class="feature-icon">🤖</span>
+                        <div class="feature-info">
+                            <strong>AI助教</strong>
+                            <p>实时答疑，多轮对话，公式支持</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="onboarding-tip">
+                    <span class="tip-icon">💡</span>
+                    <span>使用AI功能前需要先配置API密钥</span>
+                </div>
+            </div>
+            <div class="onboarding-footer">
+                <label class="onboarding-checkbox">
+                    <input type="checkbox" id="dontShowAgain">
+                    <span>不再显示此欢迎页</span>
+                </label>
+                <div class="onboarding-buttons">
+                    <button class="btn btn-secondary" onclick="goToAISettings()">配置AI</button>
+                    <button class="btn btn-primary" onclick="closeOnboarding()">开始使用</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI配置提示条 -->
+    <div id="ai-config-banner" class="ai-config-banner" style="display: none;">
+        <div class="banner-content">
+            <span class="banner-icon">⚠️</span>
+            <span class="banner-text">AI功能未配置，部分功能不可用</span>
+            <button class="btn btn-primary btn-sm" onclick="goToAISettings()">立即配置</button>
+            <button class="banner-close" onclick="hideAIBanner()">&times;</button>
+        </div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="app-container">
+        <!-- 左侧导航栏 -->
+        <nav class="sidebar">
+            <!-- 折叠按钮 -->
+            <button class="sidebar-toggle" onclick="toggleSidebarCollapse()" title="折叠/展开侧边栏">
+                <span id="toggleIcon">☰</span>
+            </button>
+            <div class="logo">
+                <div class="logo-icon">📚</div>
+                考研数学助手
+            </div>
+            <ul class="nav-menu">
+                <li class="active" data-view="dashboard" data-tooltip="首页">
+                    <span class="nav-icon">📊</span>
+                    <span>首页</span>
+                </li>
+                <li data-view="plan" data-tooltip="学习规划">
+                    <span class="nav-icon">📅</span>
+                    <span>学习规划</span>
+                </li>
+                <li data-view="knowledge" data-tooltip="知识点学习">
+                    <span class="nav-icon">📚</span>
+                    <span>知识点学习</span>
+                </li>
+                <li data-view="practice" data-tooltip="练习测试">
+                    <span class="nav-icon">✍️</span>
+                    <span>练习测试</span>
+                </li>
+                <li data-view="ai-tutor" data-tooltip="AI助教">
+                    <span class="nav-icon">🤖</span>
+                    <span>AI助教</span>
+                </li>
+                <li data-view="statistics" data-tooltip="学习统计">
+                    <span class="nav-icon">📈</span>
+                    <span>学习统计</span>
+                </li>
+                <li data-view="settings" data-tooltip="设置">
+                    <span class="nav-icon">⚙️</span>
+                    <span>设置</span>
+                </li>
+                <li data-view="exam" data-tooltip="模拟考试">
+                    <span class="nav-icon">📝</span>
+                    <span>模拟考试</span>
+                </li>
+                <li data-view="real-exam" data-tooltip="历年真题">
+                    <span class="nav-icon">📜</span>
+                    <span>历年真题</span>
+                </li>
+            </ul>
+            <!-- AI状态指示器 -->
+            <div class="ai-status-indicator" id="aiStatusIndicator" onclick="goToAISettings()">
+                <span class="status-dot" id="aiStatusDot"></span>
+                <span class="status-text" id="aiStatusText">AI未配置</span>
+            </div>
+        </nav>
+
+        <!-- 右侧内容区 -->
+        <main class="content-area">
+            <div id="view-container">
+                <!-- 内容将通过JavaScript动态加载 -->
+            </div>
+        </main>
+    </div>
+
+    <!-- 外部脚本 - 核心模块 -->
+    <script src="js/ai-adapter.js"></script>
+    <script src="js/data-manager.js"></script>
+    <script src="js/knowledge-data.js"></script>
+    <script src="js/knowledge-module.js"></script>
+    <script src="js/plan-module.js"></script>
+    <script src="js/calendar-module.js"></script>
+
+    <!-- 外部脚本 - 视图模块 -->
+    <script src="js/dashboard-module.js"></script>
+    <script src="js/practice-module.js"></script>
+    <script src="js/ai-tutor-module.js"></script>
+    <script src="js/statistics-module.js"></script>
+    <script src="js/settings-module.js"></script>
+    <script src="js/exam-module.js"></script>
+    <script src="js/review-scheduler.js"></script>
+    <script src="js/real-exam-data.js"></script>
+    <script src="js/real-exam-module.js"></script>
+
+    <!-- 初始化脚本 -->
+    <script>
+        // ========== 侧边栏折叠功能 ==========
+        function toggleSidebarCollapse() {
+            const sidebar = document.querySelector('.sidebar');
+            const contentArea = document.querySelector('.content-area');
+            const toggleIcon = document.getElementById('toggleIcon');
+
+            sidebar.classList.toggle('collapsed');
+            contentArea.classList.toggle('sidebar-collapsed');
+
+            // 更新图标
+            if (sidebar.classList.contains('collapsed')) {
+                toggleIcon.textContent = '☰';
+                localStorage.setItem('sidebarCollapsed', 'true');
+            } else {
+                toggleIcon.textContent = '☰';
+                localStorage.setItem('sidebarCollapsed', 'false');
+            }
+        }
+
+        // 加载侧边栏折叠状态
+        function loadSidebarState() {
+            const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+            if (isCollapsed) {
+                const sidebar = document.querySelector('.sidebar');
+                const contentArea = document.querySelector('.content-area');
+                sidebar.classList.add('collapsed');
+                contentArea.classList.add('sidebar-collapsed');
+            }
+        }
+
+        // ========== 系统初始化 ==========
+        window.onload = function() {
+            console.log('考研数学学习助手 v3.3.0');
+            console.log('系统初始化中...');
+
+            // 加载侧边栏状态
+            loadSidebarState();
+
+            // 注册视图
+            viewManager.register('dashboard', renderDashboard);
+            viewManager.register('practice', renderPracticeView);
+            viewManager.register('ai-tutor', renderAITutorView);
+            viewManager.register('statistics', renderStatisticsView);
+            viewManager.register('settings', renderSettingsView);
+            viewManager.register('exam', renderExamView);
+            viewManager.register('real-exam', renderRealExamView);
+
+            // 处理 URL hash 导航（支持从其他页面跳转）
+            if (window.location.hash === '#exam') {
+                viewManager.switchView('exam');
+            } else {
+                // 加载上次的视图
+                viewManager.loadLastView();
+            }
+
+            // 绑定导航点击事件
+            document.querySelectorAll('.nav-menu li').forEach(li => {
+                li.addEventListener('click', function() {
+                    const view = this.dataset.view;
+                    if (view) {
+                        viewManager.switchView(view);
+                    }
+                });
+            });
+
+            // 初始化新手引导和AI状态
+            initOnboarding();
+            updateAIStatus();
+
+            console.log('系统初始化完成!');
+        };
+    </script>
+</body>
+</html>

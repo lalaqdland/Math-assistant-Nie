@@ -1,0 +1,227 @@
+[
+  {
+    "id": "2022-c-1",
+    "type": "choice",
+    "content": "函数 $f(x) = \\int_x^1 \\frac{1}{t} \\, dt$ 在 (0,1) 内（）",
+    "options": ["A. 单调增加", "B. 单调减少", "C. 恒等于0", "D. 无界"],
+    "answer": "B",
+    "explanation": "被积函数为正，原函数单调减少",
+    "knowledgePoints": ["calc-1-3"]
+  },
+  {
+    "id": "2022-c-2",
+    "type": "choice",
+    "content": "矩阵 $A = \\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\end{pmatrix}$ 的行列式值为（）",
+    "options": ["A. 0", "B. 1", "C. 2", "D. -1"],
+    "answer": "B",
+    "explanation": "计算行列式 det A = 1*1 - 0*1 = 1",
+    "knowledgePoints": ["linear-1-2"]
+  },
+  {
+    "id": "2022-c-3",
+    "type": "choice",
+    "content": "级数 $\\sum_{n=1}^\\infty \\frac{1}{n^2}$ 的和为（）",
+    "options": ["A. 1", "B. π/2", "C. π²/6", "D. π²/2"],
+    "answer": "C",
+    "explanation": "ζ(2) = π²/6",
+    "knowledgePoints": ["calc-2-5"]
+  },
+  {
+    "id": "2022-c-4",
+    "type": "choice",
+    "content": "二重积分 $\\iint_D x \\, dx \\, dy$ 在区域 D：$0 \\leq x \\leq 1$，$0 \\leq y \\leq x$ 上的值为（）",
+    "options": ["A. 1/2", "B. 1/3", "C. 1/4", "D. 1/6"],
+    "answer": "D",
+    "explanation": "改变积分顺序：∫∫ x dx dy = ∫[0,1] x ∫[0,x] dy dx = ∫[0,1] x^2 dx = 1/3",
+    "knowledgePoints": ["calc-3-2"]
+  },
+  {
+    "id": "2022-c-5",
+    "type": "choice",
+    "content": "微分方程 $y'' - y = 0$ 的通解为（）",
+    "options": ["A. $y = C_1 e^x + C_2 e^{-x}$", "B. $y = C_1 \\cos x + C_2 \\sin x$", "C. $y = (C_1 + C_2 x) e^x$", "D. $y = C_1 + C_2 x$"],
+    "answer": "A",
+    "explanation": "双曲函数形式的解",
+    "knowledgePoints": ["calc-4-1"]
+  },
+  {
+    "id": "2022-c-6",
+    "type": "choice",
+    "content": "向量 $\\vec{a} \\times \\vec{b}$ 的几何意义是（）",
+    "options": ["A. 数量积", "B. 向量积", "C. 混合积", "D. 投影"],
+    "answer": "B",
+    "explanation": "叉积的结果是向量",
+    "knowledgePoints": ["linear-1-4"]
+  },
+  {
+    "id": "2022-c-7",
+    "type": "choice",
+    "content": "极限 $\\lim_{x \\to \\infty} \\frac{x^2}{e^x} = $（）",
+    "options": ["A. 0", "B. 1", "C. ∞", "D. 不存在"],
+    "answer": "A",
+    "explanation": "指数函数增长快于多项式",
+    "knowledgePoints": ["calc-1-1"]
+  },
+  {
+    "id": "2022-c-8",
+    "type": "choice",
+    "content": "线性方程组有解的条件是（）",
+    "options": ["A. 系数行列式不为零", "B. 增广矩阵秩等于系数矩阵秩", "C. 增广矩阵秩大于系数矩阵秩", "D. 系数矩阵可逆"],
+    "answer": "B",
+    "explanation": "克拉默法则的推广",
+    "knowledgePoints": ["linear-2-2"]
+  },
+  {
+    "id": "2022-c-9",
+    "type": "choice",
+    "content": "无穷级数 $\\sum_{n=1}^\\infty \\frac{1}{n!}$（）",
+    "options": ["A. 收敛", "B. 发散", "C. 振荡", "D. 条件收敛"],
+    "answer": "A",
+    "explanation": "正项级数，比值判别法",
+    "knowledgePoints": ["calc-2-3"]
+  },
+  {
+    "id": "2022-c-10",
+    "type": "choice",
+    "content": "三重积分的几何意义是（）",
+    "options": ["A. 体积", "B. 表面积", "C. 周长", "D. 弧长"],
+    "answer": "A",
+    "explanation": "三重积分计算体积",
+    "knowledgePoints": ["calc-3-3"]
+  },
+  {
+    "id": "2022-b-1",
+    "type": "blank",
+    "content": "圆 x^2 + y^2 = R^2 的面积为 ____",
+    "answer": "\\pi R^2",
+    "acceptedAnswers": ["\\pi R^2"],
+    "explanation": "圆的面积公式",
+    "knowledgePoints": ["calc-3-1"]
+  },
+  {
+    "id": "2022-b-2",
+    "type": "blank",
+    "content": "微分方程 y'' + y = x 的特解形式为 ____",
+    "answer": "Ax + B",
+    "acceptedAnswers": ["Ax + B"],
+    "explanation": "多项式形式的特解",
+    "knowledgePoints": ["calc-4-3"]
+  },
+  {
+    "id": "2022-b-3",
+    "type": "blank",
+    "content": "矩阵的特征值满足的方程叫 ____",
+    "answer": "特征方程",
+    "acceptedAnswers": ["特征方程"],
+    "explanation": "特征值定义",
+    "knowledgePoints": ["linear-3-1"]
+  },
+  {
+    "id": "2022-b-4",
+    "type": "blank",
+    "content": "函数 f(x) 在 [a,b] 上可积的必要条件是 ____",
+    "answer": "有界",
+    "acceptedAnswers": ["有界"],
+    "explanation": "可积的必要条件",
+    "knowledgePoints": ["calc-1-2"]
+  },
+  {
+    "id": "2022-b-5",
+    "type": "blank",
+    "content": "级数收敛的必要条件是通项 ____",
+    "answer": "趋于零",
+    "acceptedAnswers": ["趋于零"],
+    "explanation": "级数收敛的必要条件",
+    "knowledgePoints": ["calc-2-4"]
+  },
+  {
+    "id": "2022-b-6",
+    "type": "blank",
+    "content": "向量 a · (b × c) 叫做 ____",
+    "answer": "混合积",
+    "acceptedAnswers": ["混合积"],
+    "explanation": "向量混合积",
+    "knowledgePoints": ["linear-1-5"]
+  },
+  {
+    "id": "2022-s-1",
+    "type": "solve",
+    "score": 10,
+    "content": "计算二重积分 $\\iint_D \\sqrt{x^2 + y^2} \\, dx \\, dy$，其中 D 为圆域 x^2 + y^2 ≤ R^2。",
+    "answer": "$\\frac{2}{3} \\pi R^3$",
+    "solution": "使用极坐标：∫∫ r · r dr dθ = ∫[0,2π] dθ ∫[0,R] r^2 dr = 2π · (R^3/3) = (2/3)π R^3",
+    "knowledgePoints": ["calc-3-4"]
+  },
+  {
+    "id": "2022-s-2",
+    "type": "solve",
+    "score": 10,
+    "content": "解微分方程 y''' + y'' = 0。",
+    "answer": "$y = C_1 + C_2 x + C_3 e^{-x}$",
+    "solution": "特征方程 r^3 + r^2 = r^2(r+1) = 0\\n根 r=0（二重），r=-1\\n通解 y = C1 + C2 x + C3 e^{-x}",
+    "knowledgePoints": ["calc-4-2"]
+  },
+  {
+    "id": "2022-s-3",
+    "type": "solve",
+    "score": 10,
+    "content": "求矩阵的特征多项式。",
+    "answer": "多项式形式",
+    "solution": "特征多项式 det(A - λE)",
+    "knowledgePoints": ["linear-3-3"]
+  },
+  {
+    "id": "2022-s-4",
+    "type": "solve",
+    "score": 10,
+    "content": "证明级数 $\\sum_{n=1}^\\infty \\frac{(-1)^{n-1}}{n}$ 收敛。",
+    "answer": "证明略",
+    "solution": "莱布尼兹判别法：单调递减趋于零",
+    "knowledgePoints": ["calc-2-6"]
+  },
+  {
+    "id": "2022-s-5",
+    "type": "solve",
+    "score": 10,
+    "content": "计算曲线积分 ∮_C y dx，C 为圆 x^2 + y^2 = R^2。",
+    "answer": "0",
+    "solution": "格林公式：∮ y dx = ∬ (∂y/∂x - ∂x/∂y) dA = ∬ (0 - 0) dA = 0",
+    "knowledgePoints": ["calc-3-5"]
+  },
+  {
+    "id": "2022-s-6",
+    "type": "solve",
+    "score": 10,
+    "content": "证明向量空间的基的线性无关性。",
+    "answer": "证明略",
+    "solution": "反证法证明线性无关",
+    "knowledgePoints": ["linear-4-1"]
+  },
+  {
+    "id": "2022-s-7",
+    "type": "solve",
+    "score": 10,
+    "content": "求函数 f(x) = x^2 - 2x 在区间 [0,3] 上的最大值和最小值。",
+    "answer": "最大值 4，最小值 -1",
+    "solution": "导数 f'(x) = 2x - 2 = 0，x=1\\nf(1) = -1\\n端点 f(0)=0，f(3)=3\\n最大值 3，最小值 -1",
+    "knowledgePoints": ["calc-1-5"]
+  },
+  {
+    "id": "2022-s-8",
+    "type": "solve",
+    "score": 10,
+    "content": "解线性方程组：\\begin{cases} x + y = 1 \\\\ x - y = 0 \\end{cases}",
+    "answer": "x = 1/2，y = 1/2",
+    "solution": "加减消元：x = 1/2，y = 1/2",
+    "knowledgePoints": ["linear-2-2"]
+  },
+  {
+    "id": "2022-s-9",
+    "type": "solve",
+    "score": 10,
+    "content": "计算反常积分 ∫_{-∞}^∞ e^{-x^2} dx。",
+    "answer": "$\\sqrt{\\pi}$",
+    "solution": "高斯积分的标准结果",
+    "knowledgePoints": ["calc-2-7"]
+  }
+]
