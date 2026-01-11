@@ -507,6 +507,104 @@ $$f'(\\xi) = 1$$`
                             },
                             aiEnhanced: null,
                             relatedProblems: []
+                        },
+                        {
+                            id: 'calc-3-3',
+                            name: '函数凸凹性与拐点',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**凸凹性定义**：
+设 $f(x)$ 在区间 $I$ 上连续，在 $I$ 内二阶可导。
+
+**凹函数**：若 $f''(x) > 0$，则 $f(x)$ 在 $I$ 上是凹的（下凸）
+**凸函数**：若 $f''(x) < 0$，则 $f(x)$ 在 $I$ 上是凸的（上凸）
+
+**几何意义**：
+- 凹函数：曲线在切线上方
+- 凸函数：曲线在切线下方
+
+**拐点定义**：
+曲线上凹凸性改变的点称为拐点。若 $(x_0, f(x_0))$ 是拐点，则 $f''(x_0) = 0$ 或 $f''(x_0)$ 不存在。
+
+**求拐点步骤**：
+1. 求 $f''(x) = 0$ 或不存在的点
+2. 检验 $f''(x)$ 在该点两侧是否变号`,
+                                formulas: [
+                                    '$f\'\'(x) > 0 \\Rightarrow$ 凹（下凸）',
+                                    '$f\'\'(x) < 0 \\Rightarrow$ 凸（上凸）',
+                                    '拐点：$f\'\'(x_0) = 0$ 且 $f\'\'(x)$ 变号'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：求函数的凹凸区间和拐点',
+                                        content: '求函数 $f(x) = x^3 - 3x^2 + 1$ 的凹凸区间和拐点。',
+                                        solution: `**解：** $f'(x) = 3x^2 - 6x$，$f''(x) = 6x - 6 = 6(x-1)$
+
+令 $f''(x) = 0$，得 $x = 1$
+
+- 当 $x < 1$ 时，$f''(x) < 0$，凸区间
+- 当 $x > 1$ 时，$f''(x) > 0$，凹区间
+
+因此：
+- 凸区间：$(-\\infty, 1)$
+- 凹区间：$(1, +\\infty)$
+- 拐点：$(1, f(1)) = (1, -1)$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '二阶导数的符号决定凹凸性',
+                                    '拐点是凹凸性改变的分界点',
+                                    '$f\'\'(x_0) = 0$ 是拐点的必要条件，非充分条件',
+                                    '拐点的二阶导数在两侧必须变号'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-3-4',
+                            name: '函数的渐近线',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**水平渐近线**：
+若 $\\lim\\limits_{x \\to +\\infty} f(x) = A$ 或 $\\lim\\limits_{x \\to -\\infty} f(x) = A$，则 $y = A$ 是水平渐近线。
+
+**垂直渐近线**：
+若 $\\lim\\limits_{x \\to x_0^+} f(x) = \\infty$ 或 $\\lim\\limits_{x \\to x_0^-} f(x) = \\infty$，则 $x = x_0$ 是垂直渐近线。
+
+**斜渐近线**：
+若 $\\lim\\limits_{x \\to \\infty} [f(x) - (ax + b)] = 0$，则 $y = ax + b$ 是斜渐近线。
+
+**求斜渐近线方法**：
+$$a = \\lim_{x \\to \\infty} \\frac{f(x)}{x}, \\quad b = \\lim_{x \\to \\infty} [f(x) - ax]$$`,
+                                formulas: [
+                                    '$y = A$：水平渐近线（$\\lim\\limits_{x \\to \\infty} f(x) = A$）',
+                                    '$x = x_0$：垂直渐近线（$\\lim\\limits_{x \\to x_0} f(x) = \\infty$）',
+                                    '$y = ax + b$：斜渐近线（$a = \\lim\\limits_{x \\to \\infty} \\dfrac{f(x)}{x}$）'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：求函数的所有渐近线',
+                                        content: '求函数 $f(x) = \\dfrac{x^2}{x-1}$ 的所有渐近线。',
+                                        solution: `**解：**
+1. **垂直渐近线**：$\\lim\\limits_{x \\to 1} \\dfrac{x^2}{x-1} = \\infty$，故 $x = 1$ 是垂直渐近线。
+
+2. **斜渐近线**：
+$$a = \\lim_{x \\to \\infty} \\frac{f(x)}{x} = \\lim_{x \\to \\infty} \\frac{x}{x-1} = 1$$
+$$b = \\lim_{x \\to \\infty} \\left[\\frac{x^2}{x-1} - x\\right] = \\lim_{x \\to \\infty} \\frac{x}{x-1} = 1$$
+
+故 $y = x + 1$ 是斜渐近线。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '有斜渐近线时，该方向无水平渐近线',
+                                    '垂直渐近线通常在分母为0处寻找',
+                                    '分式函数分子分母同次时有水平渐近线',
+                                    '分子比分母高一次时有斜渐近线'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
                         }
                     ]
                 },
@@ -674,6 +772,104 @@ $$I = \\frac{e^x(\\sin x - \\cos x)}{2} + C$$`
                             },
                             aiEnhanced: null,
                             relatedProblems: []
+                        },
+                        {
+                            id: 'calc-4-4',
+                            name: '有理函数积分',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**有理函数的部分分式分解**：
+设有理函数 $\\dfrac{P(x)}{Q(x)}$，若分子次数 $\\geq$ 分母次数，先做多项式除法。
+
+**部分分式分解原则**：
+1. 分母的一次因子 $(x-a)^k$ 对应：
+$$\\frac{A_1}{x-a} + \\frac{A_2}{(x-a)^2} + \\cdots + \\frac{A_k}{(x-a)^k}$$
+
+2. 分母的不可约二次因子 $(x^2+px+q)^k$ 对应：
+$$\\frac{B_1x+C_1}{x^2+px+q} + \\cdots + \\frac{B_kx+C_k}{(x^2+px+q)^k}$$
+
+**基本积分公式**：
+$$\\int \\frac{1}{x-a}dx = \\ln|x-a| + C$$
+$$\\int \\frac{1}{(x-a)^n}dx = -\\frac{1}{(n-1)(x-a)^{n-1}} + C \\quad (n>1)$$`,
+                                formulas: [
+                                    '$\\int \\dfrac{1}{x-a}dx = \\ln|x-a| + C$',
+                                    '$\\int \\dfrac{1}{x^2+a^2}dx = \\dfrac{1}{a}\\arctan\\dfrac{x}{a} + C$',
+                                    '$\\int \\dfrac{1}{(x-a)^n}dx = -\\dfrac{1}{(n-1)(x-a)^{n-1}} + C$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：有理函数积分',
+                                        content: '求 $\\int \\dfrac{1}{x^2-1}dx$',
+                                        solution: `**解：** 部分分式分解：
+$$\\frac{1}{x^2-1} = \\frac{1}{(x-1)(x+1)} = \\frac{A}{x-1} + \\frac{B}{x+1}$$
+
+通分比较：$A = \\dfrac{1}{2}$，$B = -\\dfrac{1}{2}$
+
+$$\\int \\frac{1}{x^2-1}dx = \\frac{1}{2}\\ln|x-1| - \\frac{1}{2}\\ln|x+1| + C$$
+$$= \\frac{1}{2}\\ln\\left|\\frac{x-1}{x+1}\\right| + C$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '先检查是否需要多项式除法',
+                                    '部分分式的待定系数用通分比较法或赋值法求解',
+                                    '不可约二次因子的积分需要配方',
+                                    '可用递推公式处理高次因子'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-4-5',
+                            name: '三角函数积分',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**基本三角函数积分**：
+$$\\int \\sin^n x dx, \\quad \\int \\cos^n x dx$$
+
+**处理方法**：
+1. $n$ 为奇数：拆出一个，用恒等式转化
+2. $n$ 为偶数：用降幂公式
+
+**降幂公式**：
+$$\\sin^2 x = \\frac{1-\\cos 2x}{2}, \\quad \\cos^2 x = \\frac{1+\\cos 2x}{2}$$
+
+**万能代换**：
+设 $t = \\tan\\dfrac{x}{2}$，则
+$$\\sin x = \\frac{2t}{1+t^2}, \\quad \\cos x = \\frac{1-t^2}{1+t^2}, \\quad dx = \\frac{2}{1+t^2}dt$$
+
+**华里士公式**（定积分）：
+$$\\int_0^{\\pi/2} \\sin^n x dx = \\int_0^{\\pi/2} \\cos^n x dx$$`,
+                                formulas: [
+                                    '$\\sin^2 x = \\dfrac{1-\\cos 2x}{2}$',
+                                    '$\\cos^2 x = \\dfrac{1+\\cos 2x}{2}$',
+                                    '$t = \\tan\\dfrac{x}{2}$：万能代换',
+                                    '$\\int \\tan x dx = -\\ln|\\cos x| + C$',
+                                    '$\\int \\sec x dx = \\ln|\\sec x + \\tan x| + C$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：三角函数幂次积分',
+                                        content: '求 $\\int \\sin^3 x dx$',
+                                        solution: `**解：** $n=3$ 为奇数，拆出一个 $\\sin x$：
+$$\\int \\sin^3 x dx = \\int \\sin^2 x \\cdot \\sin x dx$$
+$$= \\int (1-\\cos^2 x) d(-\\cos x)$$
+$$= -\\int (1-\\cos^2 x) d(\\cos x)$$
+
+令 $u = \\cos x$：
+$$= -\\int (1-u^2) du = -u + \\frac{u^3}{3} + C$$
+$$= -\\cos x + \\frac{\\cos^3 x}{3} + C$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '奇次幂拆出一个配合恒等式',
+                                    '偶次幂用降幂公式',
+                                    '万能代换通用但计算量大',
+                                    '对称性公式可简化定积分计算'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
                         }
                     ]
                 },
@@ -819,6 +1015,52 @@ $$= \\ln(\\sqrt{2} + 1) - \\ln 1 = \\ln(\\sqrt{2} + 1)$$`
                                     '绕不同轴旋转用不同公式',
                                     '柱壳法适用于绕 $y$ 轴旋转',
                                     '弧长微元：$ds = \\sqrt{1 + y\'^2}dx$'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-5-4',
+                            name: '反常积分',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**反常积分（广义积分）**分两类：
+
+**第一类：无穷区间上的反常积分**
+$$\\int_a^{+\\infty} f(x)dx = \\lim_{b \\to +\\infty} \\int_a^b f(x)dx$$
+$$\\int_{-\\infty}^b f(x)dx = \\lim_{a \\to -\\infty} \\int_a^b f(x)dx$$
+
+若极限存在，称反常积分**收敛**；否则**发散**。
+
+**第二类：无界函数的反常积分**
+设 $f(x)$ 在 $[a, b)$ 上连续，$x = b$ 是瑕点（无界点），则
+$$\\int_a^b f(x)dx = \\lim_{\\varepsilon \\to 0^+} \\int_a^{b-\\varepsilon} f(x)dx$$
+
+**重要结论**：
+$$\\int_1^{+\\infty} \\frac{1}{x^p}dx \\begin{cases} \\text{收敛}, & p > 1 \\\\ \\text{发散}, & p \\leq 1 \\end{cases}$$
+$$\\int_0^1 \\frac{1}{x^p}dx \\begin{cases} \\text{收敛}, & p < 1 \\\\ \\text{发散}, & p \\geq 1 \\end{cases}$$`,
+                                formulas: [
+                                    '$\\int_1^{+\\infty} \\dfrac{1}{x^p}dx$：$p > 1$ 收敛，$p \\leq 1$ 发散',
+                                    '$\\int_0^1 \\dfrac{1}{x^p}dx$：$p < 1$ 收敛，$p \\geq 1$ 发散',
+                                    '比较判别法：$f(x) \\leq g(x)$，$\\int g$ 收敛 $\\Rightarrow \\int f$ 收敛'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：判断反常积分敛散性',
+                                        content: '判断 $\\int_1^{+\\infty} \\dfrac{1}{x^2}dx$ 的敛散性并求值。',
+                                        solution: `**解：**
+$$\\int_1^{+\\infty} \\frac{1}{x^2}dx = \\lim_{b \\to +\\infty} \\int_1^b x^{-2}dx$$
+$$= \\lim_{b \\to +\\infty} \\left[-\\frac{1}{x}\\right]_1^b = \\lim_{b \\to +\\infty} \\left(-\\frac{1}{b} + 1\\right) = 1$$
+
+极限存在，故反常积分**收敛**，值为 $1$。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '无穷区间和无界函数两类反常积分',
+                                    '判断敛散性可用比较判别法',
+                                    '熟记 $p$ 积分的敛散性结论',
+                                    '既有无穷区间又有瑕点时需分段讨论'
                                 ]
                             },
                             aiEnhanced: null,
@@ -1015,6 +1257,941 @@ $$\\frac{\\partial z}{\\partial x} = -\\frac{F_x}{F_z} = -\\frac{2x}{2z} = -\\fr
                             relatedProblems: []
                         }
                     ]
+                },
+                // 第七章 多重积分
+                {
+                    id: 'calc-ch7',
+                    name: '第七章 多重积分',
+                    expanded: false,
+                    units: [
+                        {
+                            id: 'calc-7-1',
+                            name: '二重积分的概念',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**二重积分的定义**：
+设 $f(x, y)$ 是有界闭区域 $D$ 上的有界函数，将 $D$ 分成 $n$ 个小区域 $\\Delta \\sigma_i$，在每个小区域取一点 $(\\xi_i, \\eta_i)$，当小区域最大直径 $\\lambda \\to 0$ 时，若极限
+$$\\lim_{\\lambda \\to 0} \\sum_{i=1}^n f(\\xi_i, \\eta_i)\\Delta\\sigma_i$$
+存在，则称此极限为 $f(x, y)$ 在 $D$ 上的**二重积分**，记作
+$$\\iint_D f(x, y)d\\sigma = \\iint_D f(x, y)dxdy$$
+
+**几何意义**：
+当 $f(x, y) \\geq 0$ 时，二重积分表示以 $D$ 为底、以 $z = f(x, y)$ 为顶的曲顶柱体的体积。
+
+**性质**：
+1. 线性：$\\iint_D [\\alpha f + \\beta g]d\\sigma = \\alpha \\iint_D f d\\sigma + \\beta \\iint_D g d\\sigma$
+2. 可加性：$\\iint_D f d\\sigma = \\iint_{D_1} f d\\sigma + \\iint_{D_2} f d\\sigma$（$D = D_1 \\cup D_2$）
+3. 保号性：$f \\geq 0 \\Rightarrow \\iint_D f d\\sigma \\geq 0$`,
+                                formulas: [
+                                    '$\\iint_D f(x, y)dxdy$',
+                                    '$\\iint_D 1 \\cdot d\\sigma = S_D$（区域面积）',
+                                    '$m \\cdot S_D \\leq \\iint_D f d\\sigma \\leq M \\cdot S_D$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：利用定义估计二重积分',
+                                        content: '设 $D$ 是圆 $x^2 + y^2 \\leq 1$，估计 $\\iint_D (x^2 + y^2)dxdy$ 的范围。',
+                                        solution: `**解：** 在 $D$ 上，$0 \\leq x^2 + y^2 \\leq 1$
+
+因此 $m = 0$，$M = 1$，$S_D = \\pi$
+
+由估值定理：$0 \\leq \\iint_D (x^2 + y^2)dxdy \\leq \\pi$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '二重积分是定积分的推广',
+                                    '积分区域 $D$ 必须是有界闭区域',
+                                    '被积函数在 $D$ 上有界是可积的必要条件',
+                                    '二重积分的值与积分变量无关'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-7-2',
+                            name: '二重积分的计算',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**直角坐标下的计算**：
+
+**X型区域**：$D = \\{(x,y) | a \\leq x \\leq b, \\varphi_1(x) \\leq y \\leq \\varphi_2(x)\\}$
+$$\\iint_D f(x,y)dxdy = \\int_a^b dx \\int_{\\varphi_1(x)}^{\\varphi_2(x)} f(x,y)dy$$
+
+**Y型区域**：$D = \\{(x,y) | c \\leq y \\leq d, \\psi_1(y) \\leq x \\leq \\psi_2(y)\\}$
+$$\\iint_D f(x,y)dxdy = \\int_c^d dy \\int_{\\psi_1(y)}^{\\psi_2(y)} f(x,y)dx$$
+
+**极坐标下的计算**：
+令 $x = r\\cos\\theta$，$y = r\\sin\\theta$，则 $dxdy = r \\cdot dr d\\theta$
+$$\\iint_D f(x,y)dxdy = \\iint_{D'} f(r\\cos\\theta, r\\sin\\theta) \\cdot r \\cdot drd\\theta$$`,
+                                formulas: [
+                                    '$\\iint_D dxdy = \\int_a^b dx \\int_{\\varphi_1(x)}^{\\varphi_2(x)} dy$（X型）',
+                                    '$dxdy = r \\cdot dr d\\theta$（极坐标）',
+                                    '$x = r\\cos\\theta, y = r\\sin\\theta$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：直角坐标计算二重积分',
+                                        content: '计算 $\\iint_D xy \\, dxdy$，其中 $D$ 由 $y = x$，$y = x^2$ 围成。',
+                                        solution: `**解：** 区域 $D$：$0 \\leq x \\leq 1$，$x^2 \\leq y \\leq x$
+$$\\iint_D xy \\, dxdy = \\int_0^1 x \\, dx \\int_{x^2}^x y \\, dy$$
+$$= \\int_0^1 x \\cdot \\frac{y^2}{2}\\Big|_{x^2}^x dx = \\int_0^1 x \\cdot \\frac{x^2 - x^4}{2} dx$$
+$$= \\frac{1}{2}\\int_0^1 (x^3 - x^5)dx = \\frac{1}{2}\\left[\\frac{x^4}{4} - \\frac{x^6}{6}\\right]_0^1$$
+$$= \\frac{1}{2}\\left(\\frac{1}{4} - \\frac{1}{6}\\right) = \\frac{1}{24}$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '先画区域图，确定积分次序',
+                                    '圆形区域用极坐标更方便',
+                                    '交换积分次序时注意边界变化',
+                                    '极坐标不要忘乘 $r$'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-7-3',
+                            name: '三重积分',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**三重积分的定义**：
+$$\\iiint_\\Omega f(x,y,z)dV = \\lim_{\\lambda \\to 0} \\sum_{i=1}^n f(\\xi_i, \\eta_i, \\zeta_i)\\Delta V_i$$
+
+**直角坐标计算**（投影法）：
+$$\\iiint_\\Omega f \\, dV = \\iint_{D_{xy}} dxdy \\int_{z_1(x,y)}^{z_2(x,y)} f(x,y,z)dz$$
+
+**柱坐标**：$x = r\\cos\\theta$，$y = r\\sin\\theta$，$z = z$
+$$dV = r \\cdot dr d\\theta dz$$
+
+**球坐标**：$x = \\rho\\sin\\varphi\\cos\\theta$，$y = \\rho\\sin\\varphi\\sin\\theta$，$z = \\rho\\cos\\varphi$
+$$dV = \\rho^2 \\sin\\varphi \\cdot d\\rho d\\varphi d\\theta$$`,
+                                formulas: [
+                                    '$dV = dxdydz$（直角坐标）',
+                                    '$dV = r \\cdot drd\\theta dz$（柱坐标）',
+                                    '$dV = \\rho^2 \\sin\\varphi \\cdot d\\rho d\\varphi d\\theta$（球坐标）'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：球坐标计算三重积分',
+                                        content: '计算 $\\iiint_\\Omega (x^2+y^2+z^2)dV$，其中 $\\Omega$ 是球 $x^2+y^2+z^2 \\leq R^2$。',
+                                        solution: `**解：** 用球坐标：$x^2+y^2+z^2 = \\rho^2$
+$$\\iiint_\\Omega \\rho^2 \\cdot \\rho^2 \\sin\\varphi \\, d\\rho d\\varphi d\\theta$$
+$$= \\int_0^{2\\pi} d\\theta \\int_0^\\pi \\sin\\varphi d\\varphi \\int_0^R \\rho^4 d\\rho$$
+$$= 2\\pi \\cdot 2 \\cdot \\frac{R^5}{5} = \\frac{4\\pi R^5}{5}$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '柱坐标适用于有轴对称性的区域',
+                                    '球坐标适用于球形或锥形区域',
+                                    '球坐标的 $\\varphi$ 是与 $z$ 轴的夹角',
+                                    '体积元 $dV$ 的雅可比因子不要遗漏'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-7-4',
+                            name: '重积分的应用',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**几何应用**：
+
+**曲面面积**：
+设曲面 $z = f(x, y)$，$(x, y) \\in D$，则
+$$S = \\iint_D \\sqrt{1 + \\left(\\frac{\\partial z}{\\partial x}\\right)^2 + \\left(\\frac{\\partial z}{\\partial y}\\right)^2} \\, dxdy$$
+
+**体积**：
+$$V = \\iiint_\\Omega dV = \\iint_D [z_2(x,y) - z_1(x,y)]dxdy$$
+
+**物理应用**：
+
+**质心**：
+$$\\bar{x} = \\frac{\\iint_D x\\rho(x,y)d\\sigma}{\\iint_D \\rho(x,y)d\\sigma}$$
+
+**转动惯量**：
+$$I_x = \\iint_D y^2 \\rho(x,y)d\\sigma$$（对 $x$ 轴）`,
+                                formulas: [
+                                    '$S = \\iint_D \\sqrt{1 + z_x^2 + z_y^2} \\, dxdy$',
+                                    '$\\bar{x} = \\dfrac{\\iint_D x\\rho \\, d\\sigma}{\\iint_D \\rho \\, d\\sigma}$',
+                                    '$I = \\iint_D r^2 \\rho \\, d\\sigma$（$r$ 为到轴距离）'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：求曲面面积',
+                                        content: '求球面 $x^2+y^2+z^2=R^2$ 被柱面 $x^2+y^2=Rx$ 所截部分的面积（$z \\geq 0$）。',
+                                        solution: `**解：** 球面上半部分：$z = \\sqrt{R^2 - x^2 - y^2}$
+$$z_x = -\\frac{x}{z}, \\quad z_y = -\\frac{y}{z}$$
+$$\\sqrt{1 + z_x^2 + z_y^2} = \\frac{R}{z}$$
+
+用极坐标 $x = r\\cos\\theta$，$y = r\\sin\\theta$，柱面为 $r = R\\cos\\theta$
+$$S = \\iint_D \\frac{R}{\\sqrt{R^2-r^2}} r\\,drd\\theta$$
+
+（积分计算略）答案：$S = 2R^2(\\pi - 2)$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '曲面面积公式中面积微元是曲面的',
+                                    '均匀薄板的质心用几何中心公式',
+                                    '转动惯量公式中 $r$ 是到转轴的距离',
+                                    '利用对称性简化计算'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        }
+                    ]
+                },
+                // 第八章 曲线曲面积分
+                {
+                    id: 'calc-ch8',
+                    name: '第八章 曲线曲面积分',
+                    expanded: false,
+                    units: [
+                        {
+                            id: 'calc-8-1',
+                            name: '第一类曲线积分',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**第一类曲线积分（对弧长的曲线积分）**：
+设 $L$ 是光滑曲线，$f(x, y)$ 在 $L$ 上有界，则
+$$\\int_L f(x, y)ds = \\lim_{\\lambda \\to 0} \\sum_{i=1}^n f(\\xi_i, \\eta_i)\\Delta s_i$$
+
+**计算方法**：
+1. 参数形式：$x = x(t)$，$y = y(t)$（$\\alpha \\leq t \\leq \\beta$）
+$$\\int_L f(x,y)ds = \\int_\\alpha^\\beta f(x(t), y(t))\\sqrt{x'^2(t) + y'^2(t)}dt$$
+
+2. 直角坐标：$y = y(x)$（$a \\leq x \\leq b$）
+$$\\int_L f(x,y)ds = \\int_a^b f(x, y(x))\\sqrt{1 + y'^2(x)}dx$$
+
+**性质**：与积分方向无关（$ds > 0$）`,
+                                formulas: [
+                                    '$ds = \\sqrt{x\'^2 + y\'^2}dt$（参数形式）',
+                                    '$ds = \\sqrt{1 + y\'^2}dx$（$y = y(x)$）',
+                                    '$\\int_L ds = $ 曲线长度'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：计算第一类曲线积分',
+                                        content: '计算 $\\int_L (x^2 + y^2)ds$，其中 $L$ 是圆 $x^2 + y^2 = a^2$。',
+                                        solution: `**解：** 参数化：$x = a\\cos t$，$y = a\\sin t$（$0 \\leq t \\leq 2\\pi$）
+$$ds = \\sqrt{a^2\\sin^2 t + a^2\\cos^2 t}dt = a\\,dt$$
+$$\\int_L (x^2 + y^2)ds = \\int_0^{2\\pi} a^2 \\cdot a\\,dt = 2\\pi a^3$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '第一类曲线积分与方向无关',
+                                    '弧长微元 $ds$ 始终为正',
+                                    '利用曲线对称性简化计算',
+                                    '空间曲线：$ds = \\sqrt{x\'^2 + y\'^2 + z\'^2}dt$'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-8-2',
+                            name: '第二类曲线积分',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**第二类曲线积分（对坐标的曲线积分）**：
+$$\\int_L P(x,y)dx + Q(x,y)dy$$
+
+**向量形式**：
+$$\\int_L \\mathbf{F} \\cdot d\\mathbf{r} = \\int_L Pdx + Qdy$$
+其中 $\\mathbf{F} = (P, Q)$，$d\\mathbf{r} = (dx, dy)$
+
+**计算方法**：
+参数形式：$x = x(t)$，$y = y(t)$（$\\alpha \\to \\beta$）
+$$\\int_L Pdx + Qdy = \\int_\\alpha^\\beta [P(x(t),y(t))x'(t) + Q(x(t),y(t))y'(t)]dt$$
+
+**与第一类的关系**：
+$$\\int_L Pdx + Qdy = \\int_L (P\\cos\\alpha + Q\\cos\\beta)ds$$
+其中 $\\alpha$、$\\beta$ 是切向量与坐标轴的夹角。
+
+**性质**：与积分方向有关（反向变号）`,
+                                formulas: [
+                                    '$\\int_{L^-} Pdx + Qdy = -\\int_L Pdx + Qdy$',
+                                    '$\\oint_L Pdx + Qdy$（闭曲线积分）'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：计算第二类曲线积分',
+                                        content: '计算 $\\int_L ydx - xdy$，其中 $L$ 是从 $(1,0)$ 到 $(0,1)$ 的直线段。',
+                                        solution: `**解：** 直线方程：$x + y = 1$，参数化 $x = 1-t$，$y = t$（$0 \\to 1$）
+$$dx = -dt, \\quad dy = dt$$
+$$\\int_L ydx - xdy = \\int_0^1 [t(-1) - (1-t)(1)]dt$$
+$$= \\int_0^1 (-t - 1 + t)dt = \\int_0^1 (-1)dt = -1$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '积分方向很重要，反向变号',
+                                    '参数方向要与积分方向一致',
+                                    '物理意义：变力沿曲线做的功',
+                                    '闭曲线正方向：逆时针'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-8-3',
+                            name: '格林公式',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**格林公式**：
+设闭区域 $D$ 由分段光滑曲线 $L$（正向）围成，$P$、$Q$ 在 $D$ 上有连续一阶偏导数，则
+$$\\oint_L Pdx + Qdy = \\iint_D \\left(\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y}\\right)dxdy$$
+
+**应用**：
+1. 计算曲线积分
+2. 计算平面区域面积：$S = \\frac{1}{2}\\oint_L (xdy - ydx)$
+3. 判断路径无关性
+
+**路径无关性条件**：
+若 $\\dfrac{\\partial Q}{\\partial x} = \\dfrac{\\partial P}{\\partial y}$ 在单连通区域 $D$ 上成立，则
+- 曲线积分与路径无关
+- $Pdx + Qdy$ 是某函数的全微分
+- 存在 $u(x,y)$ 使得 $du = Pdx + Qdy$`,
+                                formulas: [
+                                    '$\\oint_L Pdx + Qdy = \\iint_D (Q_x - P_y)dxdy$',
+                                    '$S = \\dfrac{1}{2}\\oint_L (xdy - ydx)$',
+                                    '路径无关：$\\dfrac{\\partial Q}{\\partial x} = \\dfrac{\\partial P}{\\partial y}$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：用格林公式计算曲线积分',
+                                        content: '计算 $\\oint_L (x^2 - y)dx + (y^2 + x)dy$，其中 $L$ 是圆 $x^2 + y^2 = 1$ 正向。',
+                                        solution: `**解：** $P = x^2 - y$，$Q = y^2 + x$
+$$\\frac{\\partial Q}{\\partial x} = 1, \\quad \\frac{\\partial P}{\\partial y} = -1$$
+$$\\oint_L = \\iint_D (1 - (-1))dxdy = 2\\iint_D dxdy = 2\\pi$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '格林公式建立曲线积分与二重积分的联系',
+                                    '曲线必须是闭曲线，正向（逆时针）',
+                                    '若区域有洞，需挖洞处理',
+                                    '路径无关时可用端点公式'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-8-4',
+                            name: '第一类曲面积分',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**第一类曲面积分（对面积的曲面积分）**：
+设 $\\Sigma$ 是光滑曲面，$f(x,y,z)$ 在 $\\Sigma$ 上有界，则
+$$\\iint_\\Sigma f(x,y,z)dS$$
+
+**计算方法**：
+设曲面 $\\Sigma: z = z(x,y)$，$(x,y) \\in D_{xy}$，则
+$$\\iint_\\Sigma f dS = \\iint_{D_{xy}} f(x,y,z(x,y))\\sqrt{1 + z_x^2 + z_y^2}\\,dxdy$$
+
+**性质**：
+- 与曲面侧无关
+- 面积：$S = \\iint_\\Sigma dS$`,
+                                formulas: [
+                                    '$dS = \\sqrt{1 + z_x^2 + z_y^2}\\,dxdy$',
+                                    '$\\iint_\\Sigma dS = $ 曲面面积'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：计算第一类曲面积分',
+                                        content: '计算 $\\iint_\\Sigma (x^2 + y^2)dS$，其中 $\\Sigma$ 是球面 $x^2+y^2+z^2=a^2$。',
+                                        solution: `**解：** 利用对称性：
+$$\\iint_\\Sigma x^2 dS = \\iint_\\Sigma y^2 dS = \\iint_\\Sigma z^2 dS$$
+
+因此 $\\iint_\\Sigma (x^2 + y^2)dS = \\dfrac{2}{3}\\iint_\\Sigma (x^2+y^2+z^2)dS$
+$$= \\frac{2}{3} \\cdot a^2 \\cdot 4\\pi a^2 = \\frac{8\\pi a^4}{3}$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '面积微元 $dS$ 与曲面侧无关',
+                                    '充分利用对称性简化计算',
+                                    '可投影到 $xOy$、$yOz$ 或 $xOz$ 平面',
+                                    '分片曲面分段计算'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-8-5',
+                            name: '第二类曲面积分',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**第二类曲面积分（对坐标的曲面积分）**：
+$$\\iint_\\Sigma Pdydz + Qdzdx + Rdxdy$$
+
+**向量形式**（通量）：
+$$\\iint_\\Sigma \\mathbf{F} \\cdot d\\mathbf{S} = \\iint_\\Sigma (P\\cos\\alpha + Q\\cos\\beta + R\\cos\\gamma)dS$$
+其中 $(\\cos\\alpha, \\cos\\beta, \\cos\\gamma)$ 是曲面法向量的方向余弦。
+
+**计算方法**：
+设 $\\Sigma: z = z(x,y)$ 取上侧，则
+$$\\iint_\\Sigma Rdxdy = \\pm\\iint_{D_{xy}} R(x,y,z(x,y))dxdy$$
+（上侧取 $+$，下侧取 $-$）
+
+**性质**：与曲面侧有关，换侧变号`,
+                                formulas: [
+                                    '$\\iint_{\\Sigma^-} = -\\iint_\\Sigma$',
+                                    '上侧：$\\iint_\\Sigma Rdxdy = +\\iint_{D_{xy}} R\\,dxdy$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：计算第二类曲面积分',
+                                        content: '计算 $\\iint_\\Sigma z\\,dxdy$，其中 $\\Sigma$ 是上半球面 $z = \\sqrt{a^2-x^2-y^2}$ 的上侧。',
+                                        solution: `**解：** 投影到 $D_{xy}: x^2 + y^2 \\leq a^2$
+$$\\iint_\\Sigma z\\,dxdy = \\iint_{D_{xy}} \\sqrt{a^2-x^2-y^2}\\,dxdy$$
+
+用极坐标：
+$$= \\int_0^{2\\pi}d\\theta \\int_0^a \\sqrt{a^2-r^2} \\cdot r\\,dr = \\frac{2\\pi a^3}{3}$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '曲面侧：法向量方向决定正负',
+                                    '上侧法向量向上（$z$ 分量 $> 0$）',
+                                    '投影时注意曲面是否能一一对应',
+                                    '闭曲面取外侧为正'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-8-6',
+                            name: '高斯公式',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**高斯公式**：
+设 $\\Omega$ 是空间闭区域，边界曲面 $\\Sigma$ 取外侧，$P$、$Q$、$R$ 在 $\\Omega$ 上有连续一阶偏导数，则
+$$\\oiint_\\Sigma Pdydz + Qdzdx + Rdxdy = \\iiint_\\Omega \\left(\\frac{\\partial P}{\\partial x} + \\frac{\\partial Q}{\\partial y} + \\frac{\\partial R}{\\partial z}\\right)dV$$
+
+**向量形式（散度定理）**：
+$$\\oiint_\\Sigma \\mathbf{F} \\cdot d\\mathbf{S} = \\iiint_\\Omega \\nabla \\cdot \\mathbf{F} \\, dV$$
+
+其中散度 $\\nabla \\cdot \\mathbf{F} = \\dfrac{\\partial P}{\\partial x} + \\dfrac{\\partial Q}{\\partial y} + \\dfrac{\\partial R}{\\partial z}$`,
+                                formulas: [
+                                    '$\\oiint_\\Sigma (Pdydz + Qdzdx + Rdxdy) = \\iiint_\\Omega (P_x + Q_y + R_z)dV$',
+                                    '$\\nabla \\cdot \\mathbf{F} = P_x + Q_y + R_z$（散度）'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：用高斯公式计算曲面积分',
+                                        content: '计算 $\\oiint_\\Sigma x\\,dydz + y\\,dzdx + z\\,dxdy$，其中 $\\Sigma$ 是球面 $x^2+y^2+z^2=a^2$ 的外侧。',
+                                        solution: `**解：** $P = x$，$Q = y$，$R = z$
+$$P_x + Q_y + R_z = 1 + 1 + 1 = 3$$
+$$\\oiint_\\Sigma = \\iiint_\\Omega 3\\,dV = 3 \\cdot \\frac{4\\pi a^3}{3} = 4\\pi a^3$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '高斯公式建立曲面积分与三重积分的联系',
+                                    '曲面必须是闭曲面，取外侧',
+                                    '若曲面不封闭，需补面构成闭曲面',
+                                    '物理意义：通量等于源的总强度'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-8-7',
+                            name: '斯托克斯公式',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**斯托克斯公式**：
+设 $\\Sigma$ 是光滑曲面，边界 $\\Gamma$ 是分段光滑闭曲线（与 $\\Sigma$ 的法向量成右手系），则
+$$\\oint_\\Gamma Pdx + Qdy + Rdz = \\iint_\\Sigma \\begin{vmatrix} dydz & dzdx & dxdy \\\\ \\frac{\\partial}{\\partial x} & \\frac{\\partial}{\\partial y} & \\frac{\\partial}{\\partial z} \\\\ P & Q & R \\end{vmatrix}$$
+
+展开为：
+$$= \\iint_\\Sigma \\left(\\frac{\\partial R}{\\partial y} - \\frac{\\partial Q}{\\partial z}\\right)dydz + \\left(\\frac{\\partial P}{\\partial z} - \\frac{\\partial R}{\\partial x}\\right)dzdx + \\left(\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y}\\right)dxdy$$
+
+**向量形式**：
+$$\\oint_\\Gamma \\mathbf{F} \\cdot d\\mathbf{r} = \\iint_\\Sigma (\\nabla \\times \\mathbf{F}) \\cdot d\\mathbf{S}$$
+
+其中旋度 $\\nabla \\times \\mathbf{F} = (R_y - Q_z, P_z - R_x, Q_x - P_y)$`,
+                                formulas: [
+                                    '$\\oint_\\Gamma \\mathbf{F} \\cdot d\\mathbf{r} = \\iint_\\Sigma (\\nabla \\times \\mathbf{F}) \\cdot d\\mathbf{S}$',
+                                    '$\\nabla \\times \\mathbf{F}$（旋度）'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：斯托克斯公式应用',
+                                        content: '计算 $\\oint_\\Gamma y\\,dx + z\\,dy + x\\,dz$，其中 $\\Gamma$ 是圆 $x^2+y^2=1$，$z=0$，从 $z$ 轴正向看逆时针。',
+                                        solution: `**解：** 取 $\\Sigma$：$z=0$，$x^2+y^2 \\leq 1$，上侧
+
+$P = y$，$Q = z = 0$，$R = x$
+$$Q_x - P_y = 0 - 1 = -1$$
+$$\\oint_\\Gamma = \\iint_\\Sigma (-1)dxdy = -\\pi$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '斯托克斯公式是格林公式的推广',
+                                    '曲线方向与曲面法向成右手系',
+                                    '可选取不同曲面计算（只要边界相同）',
+                                    '物理意义：环流量与旋度通量'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        }
+                    ]
+                },
+                // 第九章 无穷级数
+                {
+                    id: 'calc-ch9',
+                    name: '第九章 无穷级数',
+                    expanded: false,
+                    units: [
+                        {
+                            id: 'calc-9-1',
+                            name: '级数收敛性',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**无穷级数的定义**：
+设 $\\{a_n\\}$ 是数列，称表达式 $\\sum_{n=1}^{\\infty} a_n = a_1 + a_2 + \\cdots + a_n + \\cdots$ 为无穷级数。
+
+**部分和**：$S_n = a_1 + a_2 + \\cdots + a_n$
+
+若 $\\lim_{n \\to \\infty} S_n = S$ 存在，则称级数**收敛**，$S$ 为级数的和；否则称级数**发散**。
+
+**收敛的必要条件**：
+若 $\\sum a_n$ 收敛，则 $\\lim_{n \\to \\infty} a_n = 0$
+
+**柯西收敛准则**：
+$\\sum a_n$ 收敛 $\\Leftrightarrow$ 对任意 $\\varepsilon > 0$，存在 $N$，当 $n > N$ 时，对任意正整数 $p$，$|a_{n+1} + \\cdots + a_{n+p}| < \\varepsilon$`,
+                                formulas: [
+                                    '$\\sum_{n=1}^{\\infty} a_n$ 收敛 $\\Rightarrow \\lim_{n \\to \\infty} a_n = 0$',
+                                    '几何级数：$\\sum_{n=0}^{\\infty} q^n = \\dfrac{1}{1-q}$（$|q| < 1$）',
+                                    '$p$ 级数：$\\sum \\dfrac{1}{n^p}$，$p > 1$ 收敛，$p \\leq 1$ 发散'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：判断级数敛散性',
+                                        content: '判断级数 $\\sum_{n=1}^{\\infty} \\dfrac{n}{n+1}$ 的敛散性。',
+                                        solution: `**解：**
+$$\\lim_{n \\to \\infty} a_n = \\lim_{n \\to \\infty} \\frac{n}{n+1} = 1 \\neq 0$$
+
+由收敛必要条件，级数**发散**。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '$\\lim a_n \\neq 0$ 则级数必发散',
+                                    '$\\lim a_n = 0$ 不能保证收敛',
+                                    '调和级数 $\\sum 1/n$ 发散',
+                                    '级数加括号后收敛，原级数不一定收敛'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-9-2',
+                            name: '正项级数',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**正项级数**：$a_n \\geq 0$ 的级数。
+
+**比较判别法**：
+设 $0 \\leq a_n \\leq b_n$，则
+- $\\sum b_n$ 收敛 $\\Rightarrow \\sum a_n$ 收敛
+- $\\sum a_n$ 发散 $\\Rightarrow \\sum b_n$ 发散
+
+**比较判别法的极限形式**：
+设 $\\lim_{n \\to \\infty} \\dfrac{a_n}{b_n} = l$，则
+- $0 < l < \\infty$：同敛散
+- $l = 0$：$\\sum b_n$ 收敛 $\\Rightarrow \\sum a_n$ 收敛
+- $l = \\infty$：$\\sum b_n$ 发散 $\\Rightarrow \\sum a_n$ 发散
+
+**比值判别法（达朗贝尔）**：
+设 $\\lim_{n \\to \\infty} \\dfrac{a_{n+1}}{a_n} = \\rho$，则 $\\rho < 1$ 收敛，$\\rho > 1$ 发散
+
+**根值判别法（柯西）**：
+设 $\\lim_{n \\to \\infty} \\sqrt[n]{a_n} = \\rho$，则 $\\rho < 1$ 收敛，$\\rho > 1$ 发散`,
+                                formulas: [
+                                    '比值：$\\lim \\dfrac{a_{n+1}}{a_n} = \\rho$，$\\rho < 1$ 收敛',
+                                    '根值：$\\lim \\sqrt[n]{a_n} = \\rho$，$\\rho < 1$ 收敛',
+                                    '比较：$a_n \\sim \\dfrac{1}{n^p}$，$p > 1$ 收敛'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：比值判别法',
+                                        content: '判断级数 $\\sum_{n=1}^{\\infty} \\dfrac{n!}{n^n}$ 的敛散性。',
+                                        solution: `**解：**
+$$\\frac{a_{n+1}}{a_n} = \\frac{(n+1)!}{(n+1)^{n+1}} \\cdot \\frac{n^n}{n!}$$
+$$= \\frac{n+1}{(n+1)^{n+1}} \\cdot n^n = \\frac{n^n}{(n+1)^n}$$
+$$= \\left(\\frac{n}{n+1}\\right)^n = \\left(1 - \\frac{1}{n+1}\\right)^n$$
+
+$$\\lim_{n \\to \\infty} \\frac{a_{n+1}}{a_n} = e^{-1} < 1$$
+
+级数**收敛**。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '正项级数部分和单调增，收敛等价于有界',
+                                    '比值和根值判别法失效时用比较法',
+                                    '含 $n!$ 常用比值判别法',
+                                    '含 $a^n$ 常用根值判别法'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-9-3',
+                            name: '任意项级数',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**交错级数**：$\\sum_{n=1}^{\\infty} (-1)^{n-1} a_n$（$a_n > 0$）
+
+**莱布尼茨判别法**：
+若 $\\{a_n\\}$ 单调递减且 $\\lim_{n \\to \\infty} a_n = 0$，则交错级数收敛。
+
+**绝对收敛与条件收敛**：
+- 若 $\\sum |a_n|$ 收敛，称 $\\sum a_n$ **绝对收敛**
+- 若 $\\sum a_n$ 收敛但 $\\sum |a_n|$ 发散，称 $\\sum a_n$ **条件收敛**
+
+**重要性质**：
+- 绝对收敛 $\\Rightarrow$ 收敛
+- 绝对收敛级数改变求和顺序，和不变
+- 条件收敛级数重排后和可能改变`,
+                                formulas: [
+                                    '交错级数：$a_n \\downarrow 0 \\Rightarrow \\sum (-1)^{n-1}a_n$ 收敛',
+                                    '绝对收敛：$\\sum |a_n|$ 收敛',
+                                    '条件收敛：$\\sum a_n$ 收敛但 $\\sum |a_n|$ 发散'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：交错级数敛散性',
+                                        content: '判断级数 $\\sum_{n=1}^{\\infty} \\dfrac{(-1)^{n-1}}{n}$ 的敛散性。',
+                                        solution: `**解：** 这是交错级数，$a_n = \\dfrac{1}{n}$
+
+1. $a_n = \\dfrac{1}{n}$ 单调递减 ✓
+2. $\\lim_{n \\to \\infty} \\dfrac{1}{n} = 0$ ✓
+
+由莱布尼茨判别法，级数**收敛**。
+
+但 $\\sum \\dfrac{1}{n}$ 发散，故为**条件收敛**。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '先判断是否绝对收敛',
+                                    '交错级数用莱布尼茨判别法',
+                                    '绝对收敛的级数可任意重排',
+                                    '条件收敛级数重排后可收敛到任意值'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-9-4',
+                            name: '幂级数',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**幂级数的形式**：
+$$\\sum_{n=0}^{\\infty} a_n x^n = a_0 + a_1 x + a_2 x^2 + \\cdots$$
+
+$$\\sum_{n=0}^{\\infty} a_n (x - x_0)^n$$（在 $x_0$ 处展开）
+
+**收敛半径**：
+设 $\\lim_{n \\to \\infty} \\left|\\dfrac{a_{n+1}}{a_n}\\right| = \\rho$，则
+$$R = \\frac{1}{\\rho} \\quad (\\rho \\neq 0, \\infty)$$
+
+- $|x| < R$：绝对收敛
+- $|x| > R$：发散
+- $|x| = R$：需单独讨论
+
+**幂级数的性质**：
+1. 逐项求导：$\\left(\\sum a_n x^n\\right)' = \\sum n a_n x^{n-1}$
+2. 逐项积分：$\\int \\sum a_n x^n dx = \\sum \\frac{a_n}{n+1} x^{n+1} + C$
+3. 求导积分后收敛半径不变`,
+                                formulas: [
+                                    '$R = \\lim \\left|\\dfrac{a_n}{a_{n+1}}\\right|$（收敛半径）',
+                                    '$e^x = \\sum_{n=0}^{\\infty} \\dfrac{x^n}{n!}$',
+                                    '$\\sin x = \\sum_{n=0}^{\\infty} \\dfrac{(-1)^n x^{2n+1}}{(2n+1)!}$',
+                                    '$\\ln(1+x) = \\sum_{n=1}^{\\infty} \\dfrac{(-1)^{n-1} x^n}{n}$（$-1 < x \\leq 1$）'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：求幂级数收敛半径',
+                                        content: '求幂级数 $\\sum_{n=1}^{\\infty} \\dfrac{x^n}{n}$ 的收敛半径和收敛域。',
+                                        solution: `**解：** $a_n = \\dfrac{1}{n}$
+$$\\rho = \\lim_{n \\to \\infty} \\frac{a_{n+1}}{a_n} = \\lim_{n \\to \\infty} \\frac{n}{n+1} = 1$$
+$$R = 1$$
+
+边界点：
+- $x = 1$：$\\sum \\dfrac{1}{n}$ 发散
+- $x = -1$：$\\sum \\dfrac{(-1)^n}{n}$ 收敛
+
+收敛域：$[-1, 1)$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '幂级数在收敛区间内可逐项求导积分',
+                                    '端点收敛性需单独判断',
+                                    '常见函数的幂级数展开要熟记',
+                                    '求和函数常用求导或积分技巧'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-9-5',
+                            name: '傅里叶级数',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**傅里叶级数的形式**：
+设 $f(x)$ 是周期为 $2\\pi$ 的函数，则
+$$f(x) \\sim \\frac{a_0}{2} + \\sum_{n=1}^{\\infty} (a_n \\cos nx + b_n \\sin nx)$$
+
+**傅里叶系数**：
+$$a_n = \\frac{1}{\\pi} \\int_{-\\pi}^{\\pi} f(x) \\cos nx \\, dx \\quad (n = 0, 1, 2, \\cdots)$$
+$$b_n = \\frac{1}{\\pi} \\int_{-\\pi}^{\\pi} f(x) \\sin nx \\, dx \\quad (n = 1, 2, 3, \\cdots)$$
+
+**狄利克雷收敛定理**：
+若 $f(x)$ 满足狄利克雷条件，则傅里叶级数收敛：
+- 在连续点收敛于 $f(x)$
+- 在间断点收敛于 $\\dfrac{f(x^-) + f(x^+)}{2}$
+
+**奇偶函数的展开**：
+- 偶函数：只含余弦项（$b_n = 0$）
+- 奇函数：只含正弦项（$a_n = 0$）`,
+                                formulas: [
+                                    '$a_n = \\dfrac{1}{\\pi}\\int_{-\\pi}^{\\pi} f(x)\\cos nx\\,dx$',
+                                    '$b_n = \\dfrac{1}{\\pi}\\int_{-\\pi}^{\\pi} f(x)\\sin nx\\,dx$',
+                                    '偶函数：$a_n = \\dfrac{2}{\\pi}\\int_0^{\\pi} f(x)\\cos nx\\,dx$，$b_n = 0$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：求傅里叶级数',
+                                        content: '将 $f(x) = x$（$-\\pi < x < \\pi$）展开成傅里叶级数。',
+                                        solution: `**解：** $f(x) = x$ 是奇函数，$a_n = 0$
+
+$$b_n = \\frac{1}{\\pi}\\int_{-\\pi}^{\\pi} x \\sin nx\\,dx = \\frac{2}{\\pi}\\int_0^{\\pi} x \\sin nx\\,dx$$
+
+分部积分得：$b_n = \\dfrac{2(-1)^{n+1}}{n}$
+
+$$f(x) = 2\\sum_{n=1}^{\\infty} \\frac{(-1)^{n+1}}{n} \\sin nx$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '利用奇偶性简化傅里叶系数计算',
+                                    '间断点处级数收敛于左右极限均值',
+                                    '周期为 $2l$ 时需做变量替换',
+                                    '正弦级数和余弦级数是特殊情况'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        }
+                    ]
+                },
+                // 第十章 微分方程
+                {
+                    id: 'calc-ch10',
+                    name: '第十章 微分方程',
+                    expanded: false,
+                    units: [
+                        {
+                            id: 'calc-10-1',
+                            name: '一阶微分方程',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**可分离变量方程**：
+$$\\frac{dy}{dx} = f(x)g(y)$$
+分离变量：$\\dfrac{dy}{g(y)} = f(x)dx$，两边积分。
+
+**齐次方程**：
+$$\\frac{dy}{dx} = \\varphi\\left(\\frac{y}{x}\\right)$$
+令 $u = \\dfrac{y}{x}$，则 $y = ux$，$\\dfrac{dy}{dx} = u + x\\dfrac{du}{dx}$
+
+**一阶线性方程**：
+$$\\frac{dy}{dx} + P(x)y = Q(x)$$
+通解公式：
+$$y = e^{-\\int P dx}\\left[\\int Q e^{\\int P dx}dx + C\\right]$$
+
+**伯努利方程**：
+$$\\frac{dy}{dx} + P(x)y = Q(x)y^n \\quad (n \\neq 0, 1)$$
+令 $z = y^{1-n}$，化为一阶线性方程。`,
+                                formulas: [
+                                    '$y\' + P(x)y = Q(x)$：$y = e^{-\\int P dx}\\left[\\int Q e^{\\int P dx}dx + C\\right]$',
+                                    '齐次方程：令 $u = y/x$',
+                                    '伯努利方程：令 $z = y^{1-n}$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：一阶线性方程',
+                                        content: '求方程 $y\' + \\dfrac{y}{x} = x^2$ 的通解。',
+                                        solution: `**解：** $P(x) = \\dfrac{1}{x}$，$Q(x) = x^2$
+$$\\int P dx = \\ln|x|, \\quad e^{\\int P dx} = x$$
+$$y = \\frac{1}{x}\\left[\\int x^2 \\cdot x \\,dx + C\\right] = \\frac{1}{x}\\left[\\frac{x^4}{4} + C\\right]$$
+$$y = \\frac{x^3}{4} + \\frac{C}{x}$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '先判断方程类型再选方法',
+                                    '一阶线性方程的通解公式要熟记',
+                                    '齐次方程通过换元化为可分离变量',
+                                    '伯努利方程换元后成为线性方程'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-10-2',
+                            name: '可降阶方程',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**$y^{(n)} = f(x)$ 型**：
+直接积分 $n$ 次。
+
+**$y'' = f(x, y')$ 型（不显含 $y$）**：
+令 $p = y'$，则 $y'' = p'$，方程化为
+$$p' = f(x, p)$$
+一阶方程，解出 $p = \\varphi(x, C_1)$，再积分得 $y$。
+
+**$y'' = f(y, y')$ 型（不显含 $x$）**：
+令 $p = y'$，则 $y'' = \\dfrac{dp}{dx} = \\dfrac{dp}{dy} \\cdot \\dfrac{dy}{dx} = p\\dfrac{dp}{dy}$
+方程化为
+$$p\\frac{dp}{dy} = f(y, p)$$
+关于 $p$、$y$ 的一阶方程。`,
+                                formulas: [
+                                    '不含 $y$：令 $p = y\'$',
+                                    '不含 $x$：令 $p = y\'$，$y\'\' = p\\dfrac{dp}{dy}$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：不含 $y$ 的二阶方程',
+                                        content: '求方程 $y\'\' = x + y\'$ 的通解。',
+                                        solution: `**解：** 令 $p = y'$，则 $p' = x + p$
+
+这是一阶线性方程：$p' - p = x$
+$$p = e^x\\left[\\int x e^{-x}dx + C_1\\right] = e^x(-x-1+C_1e^x)$$
+$$= C_1 e^x - x - 1$$
+
+积分得：$y = C_1 e^x - \\dfrac{x^2}{2} - x + C_2$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '根据方程特点选择换元',
+                                    '不含 $y$：用 $p = y\'$ 降阶',
+                                    '不含 $x$：利用 $y\'\' = p \\cdot dp/dy$',
+                                    '求出 $p$ 后还需积分得 $y$'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-10-3',
+                            name: '二阶常系数齐次方程',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**方程形式**：
+$$y'' + py' + qy = 0$$
+
+**特征方程**：
+$$r^2 + pr + q = 0$$
+
+**通解**：
+根据特征根 $r_1$、$r_2$：
+
+1. **两个不等实根**：$y = C_1 e^{r_1 x} + C_2 e^{r_2 x}$
+
+2. **两个相等实根** $r_1 = r_2 = r$：$y = (C_1 + C_2 x)e^{rx}$
+
+3. **共轭复根** $r = \\alpha \\pm \\beta i$：$y = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$`,
+                                formulas: [
+                                    '特征方程：$r^2 + pr + q = 0$',
+                                    '不等实根：$y = C_1 e^{r_1 x} + C_2 e^{r_2 x}$',
+                                    '重根：$y = (C_1 + C_2 x)e^{rx}$',
+                                    '复根 $\\alpha \\pm \\beta i$：$y = e^{\\alpha x}(C_1 \\cos\\beta x + C_2 \\sin\\beta x)$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：求二阶齐次方程通解',
+                                        content: '求 $y\'\' - 5y\' + 6y = 0$ 的通解。',
+                                        solution: `**解：** 特征方程：$r^2 - 5r + 6 = 0$
+$$(r-2)(r-3) = 0$$
+$$r_1 = 2, \\quad r_2 = 3$$
+
+两个不等实根，通解为：
+$$y = C_1 e^{2x} + C_2 e^{3x}$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '特征方程决定解的形式',
+                                    '复根时用欧拉公式 $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$',
+                                    '高阶方程类似，特征根对应解的项',
+                                    '$n$ 重根对应 $(C_1 + C_2 x + \\cdots + C_n x^{n-1})e^{rx}$'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'calc-10-4',
+                            name: '二阶常系数非齐次方程',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**方程形式**：
+$$y'' + py' + qy = f(x)$$
+
+**通解结构**：
+通解 = 齐次方程通解 + 非齐次方程特解
+
+**待定系数法（$f(x) = P_m(x)e^{\\lambda x}$）**：
+特解形式：$y^* = x^k Q_m(x)e^{\\lambda x}$
+
+其中 $k$ 的取值：
+- $\\lambda$ 不是特征根：$k = 0$
+- $\\lambda$ 是单特征根：$k = 1$
+- $\\lambda$ 是二重特征根：$k = 2$
+
+**待定系数法（$f(x) = e^{\\lambda x}[P_l(x)\\cos\\omega x + P_n(x)\\sin\\omega x]$）**：
+特解形式：$y^* = x^k e^{\\lambda x}[R_m(x)\\cos\\omega x + S_m(x)\\sin\\omega x]$
+其中 $m = \\max(l, n)$，$k$ 由 $\\lambda + i\\omega$ 是否为特征根决定。`,
+                                formulas: [
+                                    '$y = Y + y^*$（通解 = 齐次通解 + 特解）',
+                                    '$f(x) = P_m(x)e^{\\lambda x}$：$y^* = x^k Q_m(x)e^{\\lambda x}$',
+                                    '$f(x) = e^{\\lambda x}\\cos\\omega x$：$y^* = x^k e^{\\lambda x}(A\\cos\\omega x + B\\sin\\omega x)$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：求非齐次方程通解',
+                                        content: '求 $y\'\' - 3y\' + 2y = e^x$ 的通解。',
+                                        solution: `**解：**
+1. 齐次通解：特征方程 $r^2 - 3r + 2 = 0$，$r = 1, 2$
+$$Y = C_1 e^x + C_2 e^{2x}$$
+
+2. 特解：$f(x) = e^x$，$\\lambda = 1$ 是单特征根
+设 $y^* = Axe^x$
+$$y^{*\\prime} = Ae^x + Axe^x, \\quad y^{*\\prime\\prime} = 2Ae^x + Axe^x$$
+
+代入：$2Ae^x + Axe^x - 3(Ae^x + Axe^x) + 2Axe^x = e^x$
+$$-Ae^x = e^x \\Rightarrow A = -1$$
+
+通解：$y = C_1 e^x + C_2 e^{2x} - xe^x$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '先求齐次方程通解',
+                                    '根据 $f(x)$ 形式设特解',
+                                    '特解中 $k$ 由 $\\lambda$ 与特征根的关系决定',
+                                    '常数变易法是通用方法'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        }
+                    ]
                 }
             ]
         },
@@ -1118,6 +2295,98 @@ $$= 1 \\times 3 - 2 \\times (-2) = 3 + 4 = 7$$`
                                     '化简时尽量产生更多的零',
                                     '注意代数余子式的符号',
                                     '高阶行列式要善用性质化简'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'la-1-3',
+                            name: '行列式计算技巧',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**常用计算技巧**：
+
+**1. 化三角形法**：
+通过行（列）变换将行列式化为上三角或下三角形式，对角线元素之积即为行列式值。
+
+**2. 降阶法**：
+利用展开定理，选择零元素较多的行（列）展开。
+
+**3. 加边法**：
+添加一行一列，使计算更简便。
+
+**4. 递推法**：
+对于有规律的行列式，建立递推关系。
+
+**特殊行列式**：
+- 范德蒙德行列式：$\\prod_{1 \\leq j < i \\leq n}(x_i - x_j)$
+- 爪形行列式：利用消元技巧`,
+                                formulas: [
+                                    '上三角：$|A| = a_{11}a_{22}\\cdots a_{nn}$',
+                                    '范德蒙德：$\\prod_{1 \\leq j < i \\leq n}(x_i - x_j)$',
+                                    '$|A^n| = |A|^n$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：三阶范德蒙德行列式',
+                                        content: '计算 $\\begin{vmatrix} 1 & 1 & 1 \\\\ a & b & c \\\\ a^2 & b^2 & c^2 \\end{vmatrix}$',
+                                        solution: `**解：** 这是范德蒙德行列式，
+$$= (b-a)(c-a)(c-b)$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '选择最简便的方法计算',
+                                    '范德蒙德行列式公式要熟记',
+                                    '行变换不改变行列式值（加减）',
+                                    '交换两行行列式变号'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'la-1-4',
+                            name: '克拉默法则',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**克拉默法则**：
+设线性方程组 $Ax = b$，其中 $A$ 是 $n$ 阶方阵。
+
+若 $|A| \\neq 0$，则方程组有唯一解：
+$$x_j = \\frac{|A_j|}{|A|}, \\quad j = 1, 2, \\cdots, n$$
+
+其中 $A_j$ 是将 $A$ 的第 $j$ 列换成常数列 $b$ 所得矩阵。
+
+**应用条件**：
+- 方程个数 = 未知量个数 = $n$
+- 系数行列式 $|A| \\neq 0$
+
+**推论**：
+齐次方程组 $Ax = 0$：
+- $|A| \\neq 0$：只有零解
+- $|A| = 0$：有非零解`,
+                                formulas: [
+                                    '$x_j = \\dfrac{|A_j|}{|A|}$',
+                                    '$|A| \\neq 0 \\Leftrightarrow$ 唯一解',
+                                    '齐次方程组：$|A| = 0 \\Leftrightarrow$ 有非零解'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：克拉默法则求解',
+                                        content: '用克拉默法则解 $\\begin{cases} x + y = 3 \\\\ 2x - y = 0 \\end{cases}$',
+                                        solution: `**解：** $|A| = \\begin{vmatrix} 1 & 1 \\\\ 2 & -1 \\end{vmatrix} = -3$
+
+$|A_1| = \\begin{vmatrix} 3 & 1 \\\\ 0 & -1 \\end{vmatrix} = -3$，$|A_2| = \\begin{vmatrix} 1 & 3 \\\\ 2 & 0 \\end{vmatrix} = -6$
+
+$x = \\dfrac{-3}{-3} = 1$，$y = \\dfrac{-6}{-3} = 2$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '克拉默法则适用于方程数等于未知数个数',
+                                    '系数行列式不为零是有唯一解的充要条件',
+                                    '实际计算中效率不高，主要用于理论分析',
+                                    '齐次方程组有非零解当且仅当系数行列式为零'
                                 ]
                             },
                             aiEnhanced: null,
@@ -1265,6 +2534,91 @@ $$\\xrightarrow{r_2 \\leftrightarrow r_3} \\begin{pmatrix} 1 & 2 & 3 \\\\ 0 & -1
                                     '可逆矩阵的秩等于阶数',
                                     '用初等行变换化为阶梯形求秩',
                                     '$r(A^TA) = r(AA^T) = r(A)$'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'la-2-4',
+                            name: '分块矩阵',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**分块矩阵的概念**：
+将矩阵用若干条纵线和横线分成许多小矩阵，每个小矩阵称为子块。
+
+**分块矩阵的运算**：
+设 $A = \\begin{pmatrix} A_{11} & A_{12} \\\\ A_{21} & A_{22} \\end{pmatrix}$，$B = \\begin{pmatrix} B_{11} & B_{12} \\\\ B_{21} & B_{22} \\end{pmatrix}$
+
+**加法**：对应子块相加
+**乘法**：$AB = \\begin{pmatrix} A_{11}B_{11}+A_{12}B_{21} & \\cdots \\\\ \\cdots & \\cdots \\end{pmatrix}$
+
+**分块对角矩阵**：
+$$\\begin{pmatrix} A_1 & & \\\\ & A_2 & \\\\ & & A_3 \\end{pmatrix}^{-1} = \\begin{pmatrix} A_1^{-1} & & \\\\ & A_2^{-1} & \\\\ & & A_3^{-1} \\end{pmatrix}$$`,
+                                formulas: [
+                                    '分块对角阵的逆：各子块分别求逆',
+                                    '分块对角阵的行列式：各子块行列式之积',
+                                    '分块乘法：子块按矩阵乘法规则'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：分块矩阵求逆',
+                                        content: '设 $A = \\begin{pmatrix} I_2 & O \\\\ O & B \\end{pmatrix}$，其中 $B$ 可逆，求 $A^{-1}$。',
+                                        solution: `**解：** 分块对角矩阵，
+$$A^{-1} = \\begin{pmatrix} I_2 & O \\\\ O & B^{-1} \\end{pmatrix}$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '分块时保证子块乘法有意义',
+                                    '分块对角阵的运算最简单',
+                                    '副对角线分块阵求逆需特殊处理',
+                                    '利用分块简化大矩阵运算'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'la-2-5',
+                            name: '矩阵方程',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**矩阵方程的类型**：
+
+**1. $AX = B$ 型**：
+若 $A$ 可逆，则 $X = A^{-1}B$
+
+**2. $XA = B$ 型**：
+若 $A$ 可逆，则 $X = BA^{-1}$
+
+**3. $AXB = C$ 型**：
+若 $A$、$B$ 可逆，则 $X = A^{-1}CB^{-1}$
+
+**求解方法**：
+1. 直接求逆（适用于简单情况）
+2. 初等变换法
+3. 利用分块矩阵
+
+**注意**：矩阵乘法不满足交换律，左乘右乘要分清。`,
+                                formulas: [
+                                    '$AX = B \\Rightarrow X = A^{-1}B$',
+                                    '$XA = B \\Rightarrow X = BA^{-1}$',
+                                    '$AXB = C \\Rightarrow X = A^{-1}CB^{-1}$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：解矩阵方程',
+                                        content: '解矩阵方程 $AX = B$，其中 $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$，$B = \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$',
+                                        solution: `**解：** 先求 $A^{-1}$：$|A| = -2$
+$$A^{-1} = -\\frac{1}{2}\\begin{pmatrix} 4 & -2 \\\\ -3 & 1 \\end{pmatrix} = \\begin{pmatrix} -2 & 1 \\\\ 3/2 & -1/2 \\end{pmatrix}$$
+$$X = A^{-1}B = \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '左乘和右乘是不同的操作',
+                                    '求逆时注意矩阵是否可逆',
+                                    '复杂方程可分步处理',
+                                    '用增广矩阵法效率更高'
                                 ]
                             },
                             aiEnhanced: null,
@@ -1418,6 +2772,90 @@ $\\beta_2 = \\alpha_2 - \\dfrac{1}{2}\\beta_1 = (1,0,1)^T - \\dfrac{1}{2}(1,1,0)
                             },
                             aiEnhanced: null,
                             relatedProblems: []
+                        },
+                        {
+                            id: 'la-3-4',
+                            name: '向量空间的基与维数',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**向量空间**：
+满足加法和数乘封闭的向量集合。
+
+**基与维数**：
+若向量空间 $V$ 中存在 $n$ 个线性无关的向量 $\\alpha_1, \\alpha_2, \\ldots, \\alpha_n$，且 $V$ 中任意向量都可由它们线性表出，则称 $\\{\\alpha_1, \\alpha_2, \\ldots, \\alpha_n\\}$ 是 $V$ 的一组**基**，$n$ 称为 $V$ 的**维数**。
+
+**极大线性无关组**：
+向量组的一个部分组，满足：
+1. 线性无关
+2. 添加任一向量后线性相关
+
+**秩的概念**：
+极大线性无关组所含向量的个数称为向量组的**秩**。`,
+                                formulas: [
+                                    '$\\dim V = $ 基向量个数',
+                                    '向量组的秩 = 极大线性无关组的向量个数',
+                                    '$r(A) = $ 行向量组的秩 $= $ 列向量组的秩'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：求向量组的秩和极大无关组',
+                                        content: '求向量组 $\\alpha_1=(1,1,0)^T$, $\\alpha_2=(1,0,1)^T$, $\\alpha_3=(0,1,-1)^T$ 的秩。',
+                                        solution: `**解：** 将向量组构成矩阵并化简：
+$$A = \\begin{pmatrix} 1 & 1 & 0 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & -1 \\end{pmatrix} \\to \\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & -1 & 1 \\\\ 0 & 0 & 0 \\end{pmatrix}$$
+$r(A) = 2$，秩为 2，$\\{\\alpha_1, \\alpha_2\\}$ 是极大无关组。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '基不唯一，但维数唯一',
+                                    '任意向量在给定基下的坐标唯一',
+                                    '极大无关组不唯一，但秩唯一',
+                                    '向量组的秩等于其构成矩阵的秩'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'la-3-5',
+                            name: '坐标变换',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**坐标的定义**：
+设 $\\{\\alpha_1, \\alpha_2, \\ldots, \\alpha_n\\}$ 是向量空间 $V$ 的一组基，若
+$$\\beta = x_1\\alpha_1 + x_2\\alpha_2 + \\cdots + x_n\\alpha_n$$
+则 $(x_1, x_2, \\ldots, x_n)^T$ 称为 $\\beta$ 在该基下的**坐标**。
+
+**过渡矩阵**：
+设两组基 $\\{\\alpha_1, \\ldots, \\alpha_n\\}$ 和 $\\{\\beta_1, \\ldots, \\beta_n\\}$，若
+$$(\\beta_1, \\ldots, \\beta_n) = (\\alpha_1, \\ldots, \\alpha_n)P$$
+则 $P$ 称为从基 $\\alpha$ 到基 $\\beta$ 的**过渡矩阵**。
+
+**坐标变换公式**：
+若 $\\gamma$ 在两组基下的坐标分别为 $x$ 和 $y$，则
+$$x = Py$$`,
+                                formulas: [
+                                    '$(\\beta_1, \\ldots, \\beta_n) = (\\alpha_1, \\ldots, \\alpha_n)P$',
+                                    '$x = Py$（坐标变换）',
+                                    '过渡矩阵必可逆'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：求过渡矩阵',
+                                        content: '设 $\\alpha_1, \\alpha_2$ 是基，$\\beta_1 = \\alpha_1 + \\alpha_2$，$\\beta_2 = \\alpha_1 - \\alpha_2$，求过渡矩阵。',
+                                        solution: `**解：** $(\\beta_1, \\beta_2) = (\\alpha_1, \\alpha_2)\\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$
+
+过渡矩阵 $P = \\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '过渡矩阵由新基在旧基下的坐标构成',
+                                    '过渡矩阵必可逆',
+                                    '反方向的过渡矩阵是 $P^{-1}$',
+                                    '坐标变换与向量变换方向相反'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
                         }
                     ]
                 },
@@ -1521,6 +2959,47 @@ $r(A) = r(A, b) = 2$，有解。
                                     '特解 + 齐次通解 = 非齐次通解',
                                     '用增广矩阵判断相容性',
                                     '克莱默法则适用于 $n$ 元 $n$ 方程'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'la-4-3',
+                            name: '方程组解的结构',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**齐次方程组解的结构**：
+设 $Ax = 0$ 的基础解系为 $\\xi_1, \\xi_2, \\ldots, \\xi_{n-r}$（$r = r(A)$），则通解为：
+$$x = c_1\\xi_1 + c_2\\xi_2 + \\cdots + c_{n-r}\\xi_{n-r}$$
+
+**非齐次方程组解的结构**：
+设 $Ax = b$ 的一个特解为 $\\eta$，$Ax = 0$ 的通解为 $\\bar{x}$，则 $Ax = b$ 的通解为：
+$$x = \\eta + \\bar{x}$$
+
+**解的存在性定理**：
+- $Ax = b$ 有解 $\\Leftrightarrow$ $r(A) = r(A|b)$
+- 有唯一解 $\\Leftrightarrow$ $r(A) = r(A|b) = n$
+- 有无穷多解 $\\Leftrightarrow$ $r(A) = r(A|b) < n$`,
+                                formulas: [
+                                    '非齐次通解 = 特解 + 齐次通解',
+                                    '基础解系含 $n - r(A)$ 个向量',
+                                    '有解条件：$r(A) = r(A|b)$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：解的结构应用',
+                                        content: '若 $Ax = b$ 有解 $\\alpha_1, \\alpha_2$，证明 $\\dfrac{1}{2}(\\alpha_1 + \\alpha_2)$ 也是解。',
+                                        solution: `**解：** 设 $\\alpha = \\dfrac{1}{2}(\\alpha_1 + \\alpha_2)$
+$$A\\alpha = \\frac{1}{2}(A\\alpha_1 + A\\alpha_2) = \\frac{1}{2}(b + b) = b$$
+因此 $\\alpha$ 也是 $Ax = b$ 的解。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '非齐次解集不是向量空间',
+                                    '两个特解之差是齐次解',
+                                    '基础解系是齐次解空间的基',
+                                    '特解的选取不唯一'
                                 ]
                             },
                             aiEnhanced: null,
@@ -1688,6 +3167,96 @@ $$Q = \\frac{1}{\\sqrt{2}}\\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}, \\q
                             },
                             aiEnhanced: null,
                             relatedProblems: []
+                        },
+                        {
+                            id: 'la-5-4',
+                            name: '相似对角化的应用',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**矩阵幂的计算**：
+若 $A = P\\Lambda P^{-1}$，则
+$$A^n = P\\Lambda^n P^{-1}$$
+
+其中 $\\Lambda^n = \\begin{pmatrix} \\lambda_1^n & & \\\\ & \\ddots & \\\\ & & \\lambda_k^n \\end{pmatrix}$
+
+**矩阵指数**：
+$$e^{At} = Pe^{\\Lambda t}P^{-1}$$
+
+**线性递推数列**：
+如斐波那契数列 $a_{n+2} = a_{n+1} + a_n$ 可写成
+$$\\begin{pmatrix} a_{n+2} \\\\ a_{n+1} \\end{pmatrix} = \\begin{pmatrix} 1 & 1 \\\\ 1 & 0 \\end{pmatrix} \\begin{pmatrix} a_{n+1} \\\\ a_n \\end{pmatrix}$$
+通过对角化求 $a_n$ 的通项。`,
+                                formulas: [
+                                    '$A^n = P\\Lambda^n P^{-1}$',
+                                    '$e^{At} = Pe^{\\Lambda t}P^{-1}$',
+                                    '斐波那契：$F_n = \\dfrac{1}{\\sqrt{5}}[(\\dfrac{1+\\sqrt{5}}{2})^n - (\\dfrac{1-\\sqrt{5}}{2})^n]$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：求矩阵的幂',
+                                        content: '设 $A = \\begin{pmatrix} 3 & 1 \\\\ 0 & 2 \\end{pmatrix}$，求 $A^{10}$。',
+                                        solution: `**解：** 特征值 $\\lambda_1 = 3$，$\\lambda_2 = 2$
+特征向量 $\\xi_1 = (1, 0)^T$，$\\xi_2 = (1, -1)^T$
+
+$A = P\\Lambda P^{-1}$，$A^{10} = P\\Lambda^{10}P^{-1}$
+
+$\\Lambda^{10} = \\begin{pmatrix} 3^{10} & 0 \\\\ 0 & 2^{10} \\end{pmatrix}$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '对角化简化矩阵幂计算',
+                                    '线性微分方程组可用矩阵指数求解',
+                                    '递推数列问题转化为矩阵幂',
+                                    'Jordan标准形处理不可对角化情况'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'la-5-5',
+                            name: '正交对角化的应用',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**二次型化标准形**：
+设二次型 $f = x^TAx$（$A$ 实对称），存在正交矩阵 $Q$ 使
+$$f = y^T(Q^TAQ)y = \\sum_{i=1}^n \\lambda_i y_i^2$$
+
+**惯性定理**：
+二次型的正、负、零特征值个数在正交变换下不变。
+
+**主轴定理**：
+实对称矩阵的正交对角化对应于把二次曲面化为标准形。
+
+**Rayleigh 商**：
+$$R(x) = \\frac{x^TAx}{x^Tx}$$
+最大值为最大特征值，最小值为最小特征值。`,
+                                formulas: [
+                                    '$f = \\sum_{i=1}^n \\lambda_i y_i^2$（标准形）',
+                                    '$\\lambda_{\\min} \\leq \\dfrac{x^TAx}{x^Tx} \\leq \\lambda_{\\max}$',
+                                    '正惯性指数 = 正特征值个数'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：用正交变换化二次型为标准形',
+                                        content: '化二次型 $f = x_1^2 + 2x_1x_2 + x_2^2$ 为标准形。',
+                                        solution: `**解：** 矩阵 $A = \\begin{pmatrix} 1 & 1 \\\\ 1 & 1 \\end{pmatrix}$
+特征值：$\\lambda_1 = 2$，$\\lambda_2 = 0$
+
+正交矩阵 $Q$ 使 $Q^TAQ = \\begin{pmatrix} 2 & 0 \\\\ 0 & 0 \\end{pmatrix}$
+
+标准形：$f = 2y_1^2$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '正交变换保持向量长度',
+                                    '正定矩阵的特征值全为正',
+                                    '二次曲面分类依据特征值符号',
+                                    'Rayleigh商用于估计特征值'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
                         }
                     ]
                 },
@@ -1796,6 +3365,98 @@ $\\lambda_1 = 3 > 0$，$\\lambda_2 = 1 > 0$
                                     '正定矩阵的特征值都为正',
                                     '实对称正定矩阵可分解为 $A = LL^T$',
                                     '正定矩阵的逆矩阵也正定'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'la-6-3',
+                            name: '二次型的规范形',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**规范形的定义**：
+形如 $y_1^2 + y_2^2 + \\cdots + y_p^2 - y_{p+1}^2 - \\cdots - y_r^2$ 的二次型。
+
+系数只有 $1, -1, 0$ 三种。
+
+**化规范形的方法**：
+1. 先化标准形 $\\sum \\lambda_i z_i^2$
+2. 再做变换 $y_i = \\sqrt{|\\lambda_i|} z_i$ 化为规范形
+
+**与标准形的区别**：
+- 标准形：系数为特征值
+- 规范形：系数只有 $\\pm 1$
+
+**规范形的唯一性**：
+二次型的规范形在非退化线性变换下唯一。`,
+                                formulas: [
+                                    '规范形：$y_1^2 + \\cdots + y_p^2 - y_{p+1}^2 - \\cdots - y_r^2$',
+                                    '$p$ = 正惯性指数',
+                                    '$r - p$ = 负惯性指数',
+                                    '$n - r$ = 零特征值个数'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：化二次型为规范形',
+                                        content: '将 $f = 2x_1^2 + 8x_2^2$ 化为规范形。',
+                                        solution: `**解：** 令 $y_1 = \\sqrt{2}x_1$，$y_2 = \\sqrt{8}x_2 = 2\\sqrt{2}x_2$
+
+则 $f = y_1^2 + y_2^2$
+
+这是规范形，正惯性指数 $p = 2$。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '规范形是最简单的二次型形式',
+                                    '规范形由惯性指数完全确定',
+                                    '化规范形不保持正交性',
+                                    '正定二次型的规范形全是 $+1$'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'la-6-4',
+                            name: '惯性定理',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**惯性定理**：
+实二次型经过非退化线性变换化成的标准形（或规范形）中，正项个数 $p$ 和负项个数 $q$ 是唯一确定的，与所用变换无关。
+
+**惯性指数**：
+- **正惯性指数** $p$：标准形中正系数项的个数
+- **负惯性指数** $q$：标准形中负系数项的个数
+- **符号差**：$p - q$
+
+**合同关系**：
+若存在可逆矩阵 $C$ 使 $B = C^TAC$，则 $A$ 与 $B$ 合同。
+
+**合同标准形定理**：
+实对称矩阵与对角矩阵合同当且仅当它们有相同的正、负惯性指数。`,
+                                formulas: [
+                                    '$p + q \\leq n$（$n$ 为矩阵阶数）',
+                                    '$p + q = r(A)$（矩阵的秩）',
+                                    '合同：$B = C^TAC$，$C$ 可逆'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：求惯性指数',
+                                        content: '求二次型 $f = x_1^2 - 2x_2^2 + x_3^2$ 的惯性指数。',
+                                        solution: `**解：** 这已经是标准形。
+
+正项：$x_1^2, x_3^2$，正惯性指数 $p = 2$
+负项：$-2x_2^2$，负惯性指数 $q = 1$
+符号差：$p - q = 1$
+秩：$r = p + q = 3$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '惯性指数是二次型的不变量',
+                                    '正定等价于 $p = n, q = 0$',
+                                    '负定等价于 $p = 0, q = n$',
+                                    '合同矩阵具有相同的惯性指数'
                                 ]
                             },
                             aiEnhanced: null,
@@ -1973,6 +3634,92 @@ $$P = 1 - \\frac{2 \\times (0.75)^2 / 2}{1} = 1 - 0.5625 = 0.4375 = \\frac{7}{16
                             },
                             aiEnhanced: null,
                             relatedProblems: []
+                        },
+                        {
+                            id: 'prob-1-4',
+                            name: '贝叶斯公式应用',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**全概率公式**：
+设 $B_1, B_2, \\ldots, B_n$ 是样本空间的一个划分，则对任意事件 $A$：
+$$P(A) = \\sum_{i=1}^n P(B_i)P(A|B_i)$$
+
+**贝叶斯公式**：
+$$P(B_j|A) = \\frac{P(B_j)P(A|B_j)}{\\sum_{i=1}^n P(B_i)P(A|B_i)}$$
+
+**理解**：
+- $P(B_j)$：先验概率（结果发生前对原因的估计）
+- $P(B_j|A)$：后验概率（结果发生后对原因的修正）
+- 贝叶斯公式实现了由"果"推"因"`,
+                                formulas: [
+                                    '$P(A) = \\sum_i P(B_i)P(A|B_i)$（全概率）',
+                                    '$P(B_j|A) = \\dfrac{P(B_j)P(A|B_j)}{P(A)}$（贝叶斯）'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：产品来源问题',
+                                        content: '甲乙丙三厂产品占比40%、35%、25%，次品率分别为2%、1.5%、1%。随机取一个是次品，求来自甲厂的概率。',
+                                        solution: `**解：** 设 $A$ = 次品，$B_1, B_2, B_3$ = 来自甲乙丙
+
+$P(A) = 0.4×0.02 + 0.35×0.015 + 0.25×0.01 = 0.0158$
+
+$P(B_1|A) = \\dfrac{0.4×0.02}{0.0158} ≈ 0.506$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '全概率是"因"推"果"',
+                                    '贝叶斯是"果"推"因"',
+                                    '划分条件：互不相容且并集为全集',
+                                    '实际问题中识别原因和结果是关键'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'prob-1-5',
+                            name: '事件的独立性',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**两事件独立**：
+$A$ 与 $B$ 独立 $\\Leftrightarrow$ $P(AB) = P(A)P(B)$
+
+**性质**：
+若 $A$ 与 $B$ 独立，则以下也独立：
+- $A$ 与 $\\bar{B}$
+- $\\bar{A}$ 与 $B$
+- $\\bar{A}$ 与 $\\bar{B}$
+
+**$n$ 个事件相互独立**：
+$A_1, A_2, \\ldots, A_n$ 相互独立 $\\Leftrightarrow$ 对任意 $k$ 个事件（$2 \\leq k \\leq n$）有
+$$P(A_{i_1}A_{i_2}\\cdots A_{i_k}) = P(A_{i_1})P(A_{i_2})\\cdots P(A_{i_k})$$
+
+**注意**：两两独立不等于相互独立`,
+                                formulas: [
+                                    '$P(AB) = P(A)P(B)$（独立定义）',
+                                    '$P(A|B) = P(A)$（独立的等价条件）',
+                                    '相互独立需验证 $2^n - n - 1$ 个等式'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：独立性判断',
+                                        content: '设 $P(A) = 0.4$，$P(B) = 0.5$，$P(A \\cup B) = 0.7$，判断 $A$、$B$ 是否独立。',
+                                        solution: `**解：** $P(AB) = P(A) + P(B) - P(A \\cup B) = 0.4 + 0.5 - 0.7 = 0.2$
+
+$P(A)P(B) = 0.4 × 0.5 = 0.2$
+
+$P(AB) = P(A)P(B)$，故 $A$、$B$ **独立**。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '独立性通过概率乘法判断',
+                                    '互斥与独立是不同概念',
+                                    '$P(A) \\neq 0, 1$ 时，独立与互斥不能同时成立',
+                                    '伯努利试验各次试验相互独立'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
                         }
                     ]
                 },
@@ -2074,6 +3821,94 @@ $$P(0.5 < X < 1.5) = \\int_{0.5}^{1.5} \\frac{1}{2}dx = \\frac{1}{2} \\times 1 =
                                     '概率密度可以大于1',
                                     '标准正态分布 $N(0, 1)$ 的分布函数记为 $\\Phi(x)$',
                                     '正态分布的标准化：$Z = \\dfrac{X - \\mu}{\\sigma}$'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'prob-2-3',
+                            name: '常见分布族',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**离散型分布**：
+- **二项分布** $B(n, p)$：$P(X=k) = C_n^k p^k (1-p)^{n-k}$
+- **泊松分布** $P(\\lambda)$：$P(X=k) = \\dfrac{\\lambda^k e^{-\\lambda}}{k!}$
+- **几何分布**：$P(X=k) = (1-p)^{k-1}p$
+
+**连续型分布**：
+- **均匀分布** $U(a, b)$：$f(x) = \\dfrac{1}{b-a}$，$a \\leq x \\leq b$
+- **指数分布** $Exp(\\lambda)$：$f(x) = \\lambda e^{-\\lambda x}$，$x > 0$
+- **正态分布** $N(\\mu, \\sigma^2)$：$f(x) = \\dfrac{1}{\\sqrt{2\\pi}\\sigma}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$
+
+**泊松逼近**：当 $n$ 大、$p$ 小时，$B(n, p) \\approx P(np)$`,
+                                formulas: [
+                                    '$B(n,p)$：$E(X)=np$，$D(X)=np(1-p)$',
+                                    '$P(\\lambda)$：$E(X)=D(X)=\\lambda$',
+                                    '$N(\\mu,\\sigma^2)$：$E(X)=\\mu$，$D(X)=\\sigma^2$',
+                                    '$Exp(\\lambda)$：$E(X)=1/\\lambda$，$D(X)=1/\\lambda^2$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：分布识别',
+                                        content: '某产品次品率为0.01，随机抽取100件，求恰好有2件次品的概率。',
+                                        solution: `**解：** $X \\sim B(100, 0.01)$
+
+精确：$P(X=2) = C_{100}^2 (0.01)^2 (0.99)^{98}$
+
+泊松近似（$\\lambda = 100×0.01 = 1$）：
+$P(X=2) ≈ \\dfrac{1^2 e^{-1}}{2!} = \\dfrac{e^{-1}}{2} ≈ 0.184$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '识别题目中的分布类型是关键',
+                                    '泊松分布适用于稀有事件',
+                                    '指数分布具有无记忆性',
+                                    '正态分布的$3\\sigma$原则'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'prob-2-4',
+                            name: '分布函数的性质',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**分布函数的定义**：
+$$F(x) = P(X \\leq x)$$
+
+**基本性质**：
+1. $0 \\leq F(x) \\leq 1$
+2. $F(x)$ 单调不减
+3. $\\lim_{x \\to -\\infty} F(x) = 0$，$\\lim_{x \\to +\\infty} F(x) = 1$
+4. $F(x)$ 右连续：$F(x+0) = F(x)$
+
+**与概率的关系**：
+- $P(a < X \\leq b) = F(b) - F(a)$
+- $P(X = a) = F(a) - F(a-0)$（跳跃点处）
+- $P(X > a) = 1 - F(a)$
+
+**连续型特有**：
+$F'(x) = f(x)$（在连续点处）`,
+                                formulas: [
+                                    '$P(a < X \\leq b) = F(b) - F(a)$',
+                                    '$F(x) = \\int_{-\\infty}^x f(t)dt$（连续型）',
+                                    '$F(x) = \\sum_{x_i \\leq x} P(X = x_i)$（离散型）'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：由分布函数求概率',
+                                        content: '设 $F(x) = \\begin{cases} 0, & x < 0 \\\\ x, & 0 \\leq x < 1 \\\\ 1, & x \\geq 1 \\end{cases}$，求 $P(0.5 < X \\leq 0.8)$。',
+                                        solution: `**解：** $P(0.5 < X \\leq 0.8) = F(0.8) - F(0.5)$
+$= 0.8 - 0.5 = 0.3$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '分布函数是右连续的',
+                                    '跳跃点处的概率等于跳跃高度',
+                                    '连续型分布函数处处连续',
+                                    '分布函数完全刻画随机变量的分布'
                                 ]
                             },
                             aiEnhanced: null,
@@ -2181,10 +4016,145 @@ $$\\text{Cov}(X, Y) = E(XY) - E(X)E(Y) = 3 - 1 \\times 2 = 1$$`
                             },
                             aiEnhanced: null,
                             relatedProblems: []
+                        },
+                        {
+                            id: 'prob-3-3',
+                            name: '切比雪夫不等式',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**切比雪夫不等式**：
+设随机变量 $X$ 有有限的期望 $\\mu$ 和方差 $\\sigma^2$，则对任意 $\\varepsilon > 0$：
+$$P(|X - \\mu| \\geq \\varepsilon) \\leq \\frac{\\sigma^2}{\\varepsilon^2}$$
+
+等价形式：
+$$P(|X - \\mu| < \\varepsilon) \\geq 1 - \\frac{\\sigma^2}{\\varepsilon^2}$$
+
+**应用**：
+- 估计概率上下界
+- 大数定律的证明
+- 样本容量的确定`,
+                                formulas: [
+                                    '$P(|X - \\mu| \\geq \\varepsilon) \\leq \\dfrac{\\sigma^2}{\\varepsilon^2}$',
+                                    '$P(|X - \\mu| < k\\sigma) \\geq 1 - \\dfrac{1}{k^2}$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：估计概率',
+                                        content: '设 $E(X) = 10$，$D(X) = 4$，估计 $P(|X - 10| \\geq 4)$。',
+                                        solution: `**解：** 由切比雪夫不等式：
+$$P(|X - 10| \\geq 4) \\leq \\frac{4}{4^2} = \\frac{1}{4}$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '不需要知道具体分布',
+                                    '估计结果较为粗糙',
+                                    '方差越小估计越精确',
+                                    '是大数定律的基础'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'prob-3-4',
+                            name: '矩与矩母函数',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**矩的定义**：
+- **$k$ 阶原点矩**：$\\mu_k = E(X^k)$
+- **$k$ 阶中心矩**：$\\nu_k = E[(X - E(X))^k]$
+
+特别地：$\\mu_1 = E(X)$，$\\nu_2 = D(X)$
+
+**矩母函数**：
+$$M_X(t) = E(e^{tX}) = \\sum_{k=0}^{\\infty} \\frac{t^k}{k!}E(X^k)$$
+
+**性质**：
+1. $M_X^{(k)}(0) = E(X^k)$（$k$ 阶矩）
+2. 矩母函数唯一确定分布
+3. 独立随机变量和：$M_{X+Y}(t) = M_X(t)M_Y(t)$`,
+                                formulas: [
+                                    '$M_X(t) = E(e^{tX})$',
+                                    '$E(X^k) = M_X^{(k)}(0)$',
+                                    '正态：$M_X(t) = e^{\\mu t + \\frac{\\sigma^2 t^2}{2}}$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：用矩母函数求矩',
+                                        content: '设 $X \\sim P(\\lambda)$，利用矩母函数求 $E(X)$。',
+                                        solution: `**解：** 泊松分布的矩母函数：
+$$M_X(t) = e^{\\lambda(e^t - 1)}$$
+$$M'_X(t) = \\lambda e^t \\cdot e^{\\lambda(e^t - 1)}$$
+$$E(X) = M'_X(0) = \\lambda \\cdot 1 = \\lambda$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '矩母函数不一定存在',
+                                    '矩母函数相同则分布相同',
+                                    '用于证明中心极限定理',
+                                    '独立和的矩母函数是乘积'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'prob-3-5',
+                            name: '特殊分布的数字特征',
+                            difficulty: 'intermediate',
+                            content: {
+                                concept: `**常见离散分布的数字特征**：
+
+| 分布 | 期望 $E(X)$ | 方差 $D(X)$ |
+|------|------------|------------|
+| 0-1分布 $B(1,p)$ | $p$ | $p(1-p)$ |
+| 二项分布 $B(n,p)$ | $np$ | $np(1-p)$ |
+| 泊松分布 $P(\\lambda)$ | $\\lambda$ | $\\lambda$ |
+| 几何分布 $G(p)$ | $\\dfrac{1}{p}$ | $\\dfrac{1-p}{p^2}$ |
+
+**常见连续分布的数字特征**：
+
+| 分布 | 期望 $E(X)$ | 方差 $D(X)$ |
+|------|------------|------------|
+| 均匀分布 $U(a,b)$ | $\\dfrac{a+b}{2}$ | $\\dfrac{(b-a)^2}{12}$ |
+| 指数分布 $Exp(\\lambda)$ | $\\dfrac{1}{\\lambda}$ | $\\dfrac{1}{\\lambda^2}$ |
+| 正态分布 $N(\\mu,\\sigma^2)$ | $\\mu$ | $\\sigma^2$ |
+| 卡方分布 $\\chi^2(n)$ | $n$ | $2n$ |
+| $t$ 分布 $t(n)$ | $0$ (n>1) | $\\dfrac{n}{n-2}$ (n>2) |`,
+                                formulas: [
+                                    '二项：$E(X)=np$，$D(X)=np(1-p)$',
+                                    '泊松：$E(X)=D(X)=\\lambda$',
+                                    '指数：$E(X)=\\dfrac{1}{\\lambda}$，$D(X)=\\dfrac{1}{\\lambda^2}$',
+                                    '正态：$E(X)=\\mu$，$D(X)=\\sigma^2$',
+                                    '$\\chi^2(n)$：$E=n$，$D=2n$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：利用分布性质求期望方差',
+                                        content: '设 $X \\sim B(100, 0.3)$，求 $E(X)$ 和 $D(X)$。',
+                                        solution: `**解：** 二项分布的期望和方差公式：
+$$E(X) = np = 100 \\times 0.3 = 30$$
+$$D(X) = np(1-p) = 100 \\times 0.3 \\times 0.7 = 21$$`
+                                    },
+                                    {
+                                        title: '例2：指数分布的无记忆性',
+                                        content: '设元件寿命 $X \\sim Exp(0.01)$，已工作100小时，求再工作50小时的概率。',
+                                        solution: `**解：** 由指数分布的无记忆性：
+$$P(X > 150 | X > 100) = P(X > 50) = e^{-0.01 \\times 50} = e^{-0.5} \\approx 0.607$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '泊松分布的期望等于方差',
+                                    '指数分布具有无记忆性',
+                                    '正态分布期望和方差相互独立',
+                                    '$\\chi^2$、$t$、$F$ 分布用于统计推断'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
                         }
                     ]
                 },
-                // 第四章 多维随机变量
                 {
                     id: 'prob-ch4',
                     name: '第四章 多维随机变量',
@@ -2325,10 +4295,111 @@ $$f_Z(z) = \\begin{cases} z, & 0 < z < 1 \\\\ 2-z, & 1 \\leq z < 2 \\\\ 0, & \\t
                             },
                             aiEnhanced: null,
                             relatedProblems: []
+                        },
+                        {
+                            id: 'prob-4-4',
+                            name: '多维随机变量函数分布',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**二维随机变量函数的分布**：
+设 $(X, Y)$ 是二维随机变量，$Z = g(X, Y)$
+
+**离散型**：
+列出所有可能的 $Z$ 值及其概率
+
+**连续型**：
+1. **分布函数法**：$F_Z(z) = P(g(X,Y) \\leq z)$
+2. **变换法**：对于 $U = \\varphi(X,Y)$，$V = \\psi(X,Y)$
+
+$$f_{U,V}(u,v) = f_{X,Y}(x(u,v), y(u,v)) \\cdot |J|$$
+其中 $J = \\dfrac{\\partial(x,y)}{\\partial(u,v)}$
+
+**特殊情况**：
+- $Z = X + Y$：$f_Z(z) = \\int_{-\\infty}^{+\\infty} f(x, z-x)dx$
+- $Z = XY$：换元 $u = xy$，$v = y$`,
+                                formulas: [
+                                    '卷积：$f_Z(z) = \\int f_X(x)f_Y(z-x)dx$',
+                                    '雅可比：$|J| = |\\dfrac{\\partial(x,y)}{\\partial(u,v)}|$',
+                                    '$\\max$：$F_Z = F_X \\cdot F_Y$（独立时）'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：商的分布',
+                                        content: '设 $X, Y$ 独立同分布 $U(0,1)$，求 $Z = X/Y$ 的分布。',
+                                        solution: `**解：** 用变换法，令 $u = x/y$，$v = y$
+
+则 $x = uv$，$y = v$，$|J| = |v|$
+
+$$f_{U,V}(u,v) = 1 \\cdot |v|, \\quad 0 < uv < 1, 0 < v < 1$$
+
+积分消去 $v$ 得 $Z$ 的密度函数。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '分布函数法最通用',
+                                    '变换法适用于光滑变换',
+                                    '注意雅可比行列式的绝对值',
+                                    '正态变量的线性变换仍是正态'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'prob-4-5',
+                            name: '二维随机变量函数的分布',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**和的分布 $Z = X + Y$**：
+
+离散型：$P(Z = z) = \\sum_x P(X = x)P(Y = z - x)$（独立时）
+
+连续型：$f_Z(z) = \\int_{-\\infty}^{+\\infty} f_X(x)f_Y(z-x)dx$（卷积公式）
+
+**重要结论**：
+1. **正态分布的可加性**：
+   若 $X \\sim N(\\mu_1, \\sigma_1^2)$，$Y \\sim N(\\mu_2, \\sigma_2^2)$ 独立，
+   则 $X + Y \\sim N(\\mu_1 + \\mu_2, \\sigma_1^2 + \\sigma_2^2)$
+
+2. **泊松分布的可加性**：
+   若 $X \\sim P(\\lambda_1)$，$Y \\sim P(\\lambda_2)$ 独立，
+   则 $X + Y \\sim P(\\lambda_1 + \\lambda_2)$
+
+3. **$\\chi^2$ 分布的可加性**：
+   若 $X \\sim \\chi^2(n_1)$，$Y \\sim \\chi^2(n_2)$ 独立，
+   则 $X + Y \\sim \\chi^2(n_1 + n_2)$
+
+**商的分布**：
+$Z = X/Y$ 需用变换法，设 $U = X/Y$, $V = Y$`,
+                                formulas: [
+                                    '$f_{X+Y}(z) = \\int f_X(x)f_Y(z-x)dx$ （卷积）',
+                                    '正态：$X+Y \\sim N(\\mu_1+\\mu_2, \\sigma_1^2+\\sigma_2^2)$',
+                                    '泊松：$X+Y \\sim P(\\lambda_1+\\lambda_2)$',
+                                    '$\\chi^2$：$X+Y \\sim \\chi^2(n_1+n_2)$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：正态变量和的分布',
+                                        content: '设 $X \\sim N(1, 4)$，$Y \\sim N(2, 9)$ 独立，求 $P(X + Y > 5)$。',
+                                        solution: `**解：** 由正态分布可加性：
+$$X + Y \\sim N(1+2, 4+9) = N(3, 13)$$
+
+$$P(X + Y > 5) = P\\left(\\frac{X+Y-3}{\\sqrt{13}} > \\frac{5-3}{\\sqrt{13}}\\right)$$
+$$= 1 - \\Phi\\left(\\frac{2}{\\sqrt{13}}\\right) \\approx 1 - \\Phi(0.555) \\approx 0.29$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '可加性要求随机变量独立',
+                                    '卷积公式计算连续型和的密度',
+                                    '正态、泊松、$\\chi^2$ 分布具有可加性',
+                                    '二项分布同参数时也可加'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
                         }
                     ]
                 },
-                // 第五章 大数定律与中心极限定理
                 {
                     id: 'prob-ch5',
                     name: '第五章 大数定律与中心极限定理',
@@ -2416,6 +4487,46 @@ $$\\approx 1 - \\Phi(1) \\approx 1 - 0.8413 = 0.1587$$`
                                     '这是正态分布广泛应用的理论基础',
                                     '一般 $n \\geq 30$ 时近似效果较好',
                                     '二项分布可用正态近似（需连续性修正）'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'prob-5-3',
+                            name: '棣莫弗-拉普拉斯定理应用',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**棣莫弗-拉普拉斯定理**：
+设 $X \\sim B(n, p)$，当 $n$ 充分大时：
+$$\\frac{X - np}{\\sqrt{np(1-p)}} \\xrightarrow{d} N(0, 1)$$
+
+**近似计算**：
+$$P(a \\leq X \\leq b) \\approx \\Phi\\left(\\frac{b - np}{\\sqrt{np(1-p)}}\\right) - \\Phi\\left(\\frac{a - np}{\\sqrt{np(1-p)}}\\right)$$
+
+**连续性修正**：
+$$P(X = k) \\approx P(k - 0.5 < X < k + 0.5)$$
+
+**适用条件**：$np > 5$ 且 $n(1-p) > 5$`,
+                                formulas: [
+                                    '$\\dfrac{X - np}{\\sqrt{np(1-p)}} \\approx N(0, 1)$',
+                                    '连续性修正：$P(X \\leq k) \\approx \\Phi(\\dfrac{k+0.5-np}{\\sqrt{np(1-p)}})$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：二项分布的正态近似',
+                                        content: '抛硬币100次，求正面出现45至55次的概率。',
+                                        solution: `**解：** $X \\sim B(100, 0.5)$，$np = 50$，$\\sqrt{np(1-p)} = 5$
+
+$$P(45 \\leq X \\leq 55) \\approx \\Phi(1) - \\Phi(-1)$$
+$$= 2\\Phi(1) - 1 \\approx 2(0.8413) - 1 = 0.6826$$`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '是二项分布的正态近似',
+                                    '连续性修正可提高精度',
+                                    '$n$ 越大近似越好',
+                                    '$p$ 接近0.5时近似更好'
                                 ]
                             },
                             aiEnhanced: null,
@@ -2565,6 +4676,110 @@ $$= (9.02, 10.98)$$`
                                     '样本量越大，区间越窄',
                                     '$\\alpha$ 称为显著性水平',
                                     '控制 $\\alpha$ 时 $\\beta$ 可能增大'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'prob-6-4',
+                            name: '估计量的评价标准',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**估计量的评价标准**：
+
+**1. 无偏性**：
+若 $E(\\hat{\\theta}) = \\theta$，则 $\\hat{\\theta}$ 是 $\\theta$ 的无偏估计。
+- $\\bar{X}$ 是 $\\mu$ 的无偏估计
+- $S^2$ 是 $\\sigma^2$ 的无偏估计
+- $\\dfrac{1}{n}\\sum(X_i - \\bar{X})^2$ 是 $\\sigma^2$ 的有偏估计
+
+**2. 有效性（效率）**：
+若 $\\hat{\\theta}_1$、$\\hat{\\theta}_2$ 都是 $\\theta$ 的无偏估计，
+且 $D(\\hat{\\theta}_1) < D(\\hat{\\theta}_2)$，
+则 $\\hat{\\theta}_1$ 比 $\\hat{\\theta}_2$ 更有效。
+
+**3. 一致性（相合性）**：
+若 $\\hat{\\theta}_n \\xrightarrow{P} \\theta$（$n \\to \\infty$），
+则 $\\hat{\\theta}_n$ 是 $\\theta$ 的一致估计。
+
+**均方误差**：$MSE(\\hat{\\theta}) = E[(\\hat{\\theta} - \\theta)^2] = D(\\hat{\\theta}) + [E(\\hat{\\theta}) - \\theta]^2$`,
+                                formulas: [
+                                    '无偏：$E(\\hat{\\theta}) = \\theta$',
+                                    '有效：$D(\\hat{\\theta}_1) < D(\\hat{\\theta}_2)$',
+                                    '一致：$\\hat{\\theta}_n \\xrightarrow{P} \\theta$',
+                                    '$MSE = D(\\hat{\\theta}) + [\\text{偏差}]^2$'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：验证无偏性',
+                                        content: '证明 $S^2 = \\dfrac{1}{n-1}\\sum(X_i - \\bar{X})^2$ 是 $\\sigma^2$ 的无偏估计。',
+                                        solution: `**证：**
+$$E(S^2) = E\\left[\\frac{1}{n-1}\\sum(X_i - \\bar{X})^2\\right]$$
+
+由于 $\\sum(X_i - \\bar{X})^2 = \\sum X_i^2 - n\\bar{X}^2$
+
+$$E(S^2) = \\frac{1}{n-1}[n(\\sigma^2 + \\mu^2) - n(\\frac{\\sigma^2}{n} + \\mu^2)]$$
+$$= \\frac{1}{n-1}(n\\sigma^2 - \\sigma^2) = \\sigma^2$$
+
+所以 $S^2$ 是 $\\sigma^2$ 的无偏估计。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '无偏性：期望等于真值',
+                                    '有效性：方差越小越好',
+                                    '一致性：大样本时收敛于真值',
+                                    '这三个标准是选择估计量的重要依据'
+                                ]
+                            },
+                            aiEnhanced: null,
+                            relatedProblems: []
+                        },
+                        {
+                            id: 'prob-6-5',
+                            name: '常用假设检验',
+                            difficulty: 'advanced',
+                            content: {
+                                concept: `**单正态总体均值检验**：
+
+| 条件 | $H_0$ | 检验统计量 | 拒绝域 |
+|------|-------|-----------|--------|
+| $\\sigma$ 已知 | $\\mu = \\mu_0$ | $Z = \\dfrac{\\bar{X} - \\mu_0}{\\sigma/\\sqrt{n}}$ | $|Z| > z_{\\alpha/2}$ |
+| $\\sigma$ 未知 | $\\mu = \\mu_0$ | $T = \\dfrac{\\bar{X} - \\mu_0}{S/\\sqrt{n}}$ | $|T| > t_{\\alpha/2}(n-1)$ |
+
+**方差检验**（$\\mu$ 未知）：
+$H_0: \\sigma^2 = \\sigma_0^2$
+检验统计量：$\\chi^2 = \\dfrac{(n-1)S^2}{\\sigma_0^2}$
+拒绝域：$\\chi^2 < \\chi^2_{1-\\alpha/2}(n-1)$ 或 $\\chi^2 > \\chi^2_{\\alpha/2}(n-1)$
+
+**检验步骤**：
+1. 建立假设 $H_0$、$H_1$
+2. 选择统计量，确定拒绝域形式
+3. 给定 $\\alpha$，查表确定临界值
+4. 计算统计量值，判断是否拒绝 $H_0$`,
+                                formulas: [
+                                    '$Z = \\dfrac{\\bar{X} - \\mu_0}{\\sigma/\\sqrt{n}}$ （$\\sigma$ 已知）',
+                                    '$T = \\dfrac{\\bar{X} - \\mu_0}{S/\\sqrt{n}}$ （$\\sigma$ 未知）',
+                                    '$\\chi^2 = \\dfrac{(n-1)S^2}{\\sigma_0^2}$ （方差检验）'
+                                ],
+                                examples: [
+                                    {
+                                        title: '例1：均值检验',
+                                        content: '设 $X \\sim N(\\mu, 4)$，样本 $n = 25$，$\\bar{x} = 10.8$，检验 $H_0: \\mu = 10$（$\\alpha = 0.05$）。',
+                                        solution: `**解：** $\\sigma = 2$ 已知，用 $Z$ 检验
+
+$$Z = \\frac{\\bar{x} - \\mu_0}{\\sigma/\\sqrt{n}} = \\frac{10.8 - 10}{2/5} = 2$$
+
+$z_{0.025} = 1.96$，由于 $|Z| = 2 > 1.96$
+
+**结论**：拒绝 $H_0$，认为 $\\mu \\neq 10$。`
+                                    }
+                                ],
+                                keyPoints: [
+                                    '$\\sigma$ 已知用 $Z$ 检验，未知用 $t$ 检验',
+                                    '双侧检验拒绝域在两端',
+                                    '单侧检验根据 $H_1$ 确定拒绝域位置',
+                                    '$p$ 值：使 $H_0$ 被拒绝的最小 $\\alpha$'
                                 ]
                             },
                             aiEnhanced: null,

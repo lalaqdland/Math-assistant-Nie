@@ -26,6 +26,7 @@
 
     --sidebar-bg: linear-gradient(180deg, #1a237e 0%, #283593 50%, #3949ab 100%);
     --sidebar-width: 240px;
+    --sidebar-width-collapsed: 60px;
     --header-height: 0px;
 
     --text-primary: #333;
@@ -77,6 +78,95 @@ body {
     overflow-y: auto;
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
     z-index: 1000;
+    transition: width 0.3s ease;
+}
+
+/* 侧边栏折叠状态 */
+.sidebar.collapsed {
+    width: var(--sidebar-width-collapsed);
+}
+
+.sidebar.collapsed .logo {
+    padding: 20px 10px;
+    font-size: 0;
+}
+
+.sidebar.collapsed .logo-icon {
+    font-size: 28px;
+    margin-bottom: 0;
+}
+
+.sidebar.collapsed .nav-menu li {
+    padding: 12px 0;
+    justify-content: center;
+    gap: 0;
+}
+
+.sidebar.collapsed .nav-menu li span:not(.nav-icon) {
+    display: none;
+}
+
+.sidebar.collapsed .nav-menu li {
+    position: relative;
+}
+
+/* 折叠状态下的 tooltip */
+.sidebar.collapsed .nav-menu li:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    margin-left: 10px;
+    font-size: 14px;
+    z-index: 1001;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar.collapsed .ai-status-indicator {
+    flex-direction: column;
+    padding: 10px 5px;
+    gap: 5px;
+}
+
+.sidebar.collapsed .ai-status-indicator .status-text {
+    display: none;
+}
+
+/* 侧边栏折叠按钮 */
+.sidebar-toggle {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.sidebar-toggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+}
+
+.sidebar.collapsed .sidebar-toggle {
+    right: 12px;
+    top: 15px;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -170,6 +260,11 @@ body {
     min-height: 100vh;
     background: #f5f7fa;
     padding: 30px;
+    transition: margin-left 0.3s ease;
+}
+
+.content-area.sidebar-collapsed {
+    margin-left: var(--sidebar-width-collapsed);
 }
 
 #view-container {
@@ -3657,4 +3752,657 @@ body.has-ai-banner .content-area {
     max-height: 300px;
     border-radius: 8px;
     border: 1px solid #e0e0e0;
+}
+
+/* ========== 模拟考试集成视图样式 ========== */
+
+.exam-integrated-view {
+    background: #f5f7fa;
+}
+
+.exam-integrated-view .exam-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: white;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.exam-integrated-view .exam-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.exam-integrated-view .exam-title h1 {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin: 0;
+}
+
+.exam-integrated-view .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.exam-integrated-view .timer {
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--primary-color);
+    font-family: 'Consolas', 'Monaco', monospace;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.exam-integrated-view .exam-main-container {
+    display: flex;
+    gap: 20px;
+}
+
+.exam-integrated-view .exam-questions-area {
+    flex: 1;
+    background: white;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.exam-integrated-view .exam-sidebar-panel {
+    width: 300px;
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+}
+
+.exam-integrated-view .exam-sidebar-panel h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e3f2fd;
+}
+
+.exam-integrated-view .exam-stats {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.exam-integrated-view .exam-stats .stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed #e0e0e0;
+    font-size: 14px;
+}
+
+.exam-integrated-view .exam-stats .stat-item:last-child {
+    border-bottom: none;
+}
+
+.exam-integrated-view .exam-footer-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: white;
+    border-radius: var(--border-radius);
+    margin-top: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.exam-integrated-view .score-display {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--success-color);
+}
+
+/* 模式指示器样式 */
+.exam-integrated-view .mode-indicator {
+    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+/* 响应式适配 */
+@media (max-width: 1024px) {
+    .exam-integrated-view .exam-main-container {
+        flex-direction: column;
+    }
+
+    .exam-integrated-view .exam-sidebar-panel {
+        width: 100%;
+        position: static;
+        max-height: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .exam-integrated-view .exam-header-bar {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .exam-integrated-view .header-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .exam-integrated-view .exam-footer-bar {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* ========== Phase 16: 日历组件样式 ========== */
+
+/* 日历区域容器 */
+.plan-calendar-section {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow-sm);
+}
+
+.plan-calendar-section .section-header {
+    margin-bottom: 20px;
+}
+
+.plan-calendar-section .section-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 日历组件主体 */
+.calendar-widget {
+    width: 100%;
+}
+
+/* 日历头部 - 导航 */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.calendar-nav-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-color);
+    background: white;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+}
+
+.calendar-nav-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.calendar-title {
+    min-width: 150px;
+    text-align: center;
+}
+
+.calendar-year-month {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.calendar-today-btn {
+    padding: 8px 16px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transition-fast);
+}
+
+.calendar-today-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* 星期标题行 */
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.calendar-weekday {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-sm);
+}
+
+/* 日期网格 */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+/* 日期单元格 */
+.calendar-day {
+    aspect-ratio: 1;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    position: relative;
+    background: white;
+    border: 2px solid transparent;
+}
+
+.calendar-day:hover {
+    background: var(--bg-hover);
+    transform: scale(1.02);
+}
+
+.calendar-day .day-number {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* 非当前月日期 */
+.calendar-day.other-month {
+    opacity: 0.4;
+}
+
+.calendar-day.other-month .day-number {
+    color: var(--text-muted);
+}
+
+/* 今日 */
+.calendar-day.today {
+    border-color: var(--primary-color);
+    background: rgba(33, 150, 243, 0.08);
+}
+
+.calendar-day.today .day-number {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* 选中日期 */
+.calendar-day.selected {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.calendar-day.selected .day-number {
+    color: white;
+}
+
+.calendar-day.selected .task-indicator {
+    background: white !important;
+}
+
+/* 范围外日期 */
+.calendar-day.out-of-range {
+    background: var(--bg-primary);
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+
+.calendar-day.out-of-range:hover {
+    transform: none;
+}
+
+/* 有任务的日期 */
+.calendar-day.has-task {
+    background: var(--bg-hover);
+}
+
+/* 任务状态指示器 */
+.task-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.task-indicator.pending {
+    background: var(--primary-color);
+}
+
+.task-indicator.partial {
+    background: var(--warning-color);
+}
+
+.task-indicator.completed {
+    background: var(--success-color);
+}
+
+/* 图例 */
+.calendar-legend {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.legend-dot.pending {
+    background: var(--primary-color);
+}
+
+.legend-dot.partial {
+    background: var(--warning-color);
+}
+
+.legend-dot.completed {
+    background: var(--success-color);
+}
+
+/* ========== 日期任务详情面板 ========== */
+
+.date-tasks-panel {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.date-tasks-panel .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.date-tasks-panel .panel-header h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.today-badge {
+    font-size: 12px;
+    padding: 2px 8px;
+    background: var(--primary-gradient);
+    color: white;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.panel-stats {
+    display: flex;
+    gap: 15px;
+}
+
+.panel-stats .stat-item {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 4px 10px;
+    background: var(--bg-primary);
+    border-radius: 12px;
+}
+
+/* 空状态 */
+.panel-empty {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-muted);
+}
+
+.panel-empty .empty-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+
+.panel-empty p {
+    font-size: 14px;
+}
+
+/* 任务列表 */
+.panel-task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 单个任务项 */
+.date-task-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border-left: 3px solid transparent;
+}
+
+.date-task-item:hover {
+    background: var(--bg-hover);
+    transform: translateX(3px);
+}
+
+.date-task-item.status-completed {
+    border-left-color: var(--success-color);
+    opacity: 0.8;
+}
+
+.date-task-item.status-pending {
+    border-left-color: var(--primary-color);
+}
+
+.date-task-item.status-in_progress {
+    border-left-color: var(--warning-color);
+}
+
+.date-task-item.status-skipped {
+    border-left-color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.date-task-item .task-icon {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-sm);
+}
+
+.date-task-item .task-info {
+    flex: 1;
+}
+
+.date-task-item .task-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.date-task-item .task-meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.date-task-item .dot-separator {
+    color: var(--border-color);
+}
+
+.date-task-item .task-status {
+    flex-shrink: 0;
+}
+
+.date-task-item .status-badge {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.date-task-item .status-badge.status-pending {
+    background: rgba(33, 150, 243, 0.15);
+    color: var(--primary-color);
+}
+
+.date-task-item .status-badge.status-in_progress {
+    background: rgba(255, 152, 0, 0.15);
+    color: var(--warning-color);
+}
+
+.date-task-item .status-badge.status-completed {
+    background: rgba(76, 175, 80, 0.15);
+    color: var(--success-color);
+}
+
+.date-task-item .status-badge.status-skipped {
+    background: rgba(153, 153, 153, 0.15);
+    color: var(--text-muted);
+}
+
+/* ========== 日历响应式设计 ========== */
+
+@media (max-width: 768px) {
+    .plan-calendar-section {
+        padding: 15px;
+    }
+
+    .calendar-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .calendar-today-btn {
+        order: 4;
+        width: 100%;
+    }
+
+    .calendar-day {
+        min-height: 40px;
+    }
+
+    .calendar-day .day-number {
+        font-size: 12px;
+    }
+
+    .task-indicator {
+        width: 6px;
+        height: 6px;
+        bottom: 4px;
+    }
+
+    .calendar-legend {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .date-tasks-panel .panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .date-task-item {
+        flex-wrap: wrap;
+    }
+
+    .date-task-item .task-status {
+        width: 100%;
+        margin-top: 10px;
+        padding-left: 55px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-day {
+        min-height: 35px;
+        padding: 3px;
+    }
+
+    .calendar-weekday {
+        padding: 6px 0;
+        font-size: 11px;
+    }
+
+    .panel-stats {
+        flex-direction: column;
+        gap: 8px;
+    }
 }

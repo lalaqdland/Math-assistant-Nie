@@ -1011,6 +1011,15 @@ function renderPlanDisplay(plan) {
 
     container.innerHTML = `
         <div class="plan-display-container">
+            <!-- 学习日历 -->
+            <div class="plan-calendar-section">
+                <div class="section-header">
+                    <h3>📆 学习日历</h3>
+                </div>
+                <div id="plan-calendar-container"></div>
+                <div id="date-tasks-panel"></div>
+            </div>
+
             <!-- 规划概览 -->
             <div class="plan-overview">
                 <div class="overview-card">
@@ -1117,6 +1126,13 @@ function renderPlanDisplay(plan) {
             </div>
         </div>
     `;
+
+    // 初始化日历组件
+    setTimeout(() => {
+        if (typeof initCalendarWidget === 'function') {
+            initCalendarWidget(plan);
+        }
+    }, 100);
 }
 
 /**

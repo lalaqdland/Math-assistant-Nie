@@ -1,0 +1,883 @@
+/**
+ * 考研数学一模拟试卷 - 样式表
+ * 从 考研数学一模拟题.html 提取
+ * Phase 14 代码封装重构
+ */
+
+/* ==================== 基础重置 ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.exam-page {
+    font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.exam-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+}
+
+/* ==================== 头部样式 ==================== */
+.exam-header {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exam-header h1 {
+    color: #2196F3;
+    font-size: 28px;
+}
+
+.header-controls {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.timer {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+}
+
+.mode-switch {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.mode-switch:hover {
+    background: #1976D2;
+}
+
+/* ==================== 主体区域 ==================== */
+.main-content {
+    flex: 1;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== 侧边栏 ==================== */
+.exam-sidebar {
+    width: 280px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.exam-sidebar h3 {
+    color: #2196F3;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* ==================== 答题卡 ==================== */
+.answer-card {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.card-item {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.card-item:hover {
+    border-color: #2196F3;
+}
+
+.card-item.answered {
+    background: #E3F2FD;
+    border-color: #2196F3;
+}
+
+.card-item.correct {
+    background: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
+
+.card-item.wrong {
+    background: #F44336;
+    color: white;
+    border-color: #F44336;
+}
+
+/* ==================== 题目样式 ==================== */
+.question {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.question-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.question-score {
+    color: #F44336;
+    font-weight: bold;
+}
+
+.question-content {
+    margin: 15px 0;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+/* ==================== 选择题选项 ==================== */
+.options {
+    margin: 15px 0;
+}
+
+.option {
+    display: block;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: white;
+}
+
+.option:hover {
+    border-color: #2196F3;
+    background: #E3F2FD;
+}
+
+.option input[type="radio"] {
+    margin-right: 10px;
+}
+
+.option.selected {
+    border-color: #2196F3;
+    background: #E3F2FD;
+}
+
+.option.correct {
+    border-color: #4CAF50;
+    background: #E8F5E9;
+}
+
+.option.wrong {
+    border-color: #F44336;
+    background: #FFEBEE;
+}
+
+/* ==================== 填空题输入框 ==================== */
+.blank-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.blank-input:focus {
+    outline: none;
+    border-color: #2196F3;
+}
+
+.blank-input.correct {
+    border-color: #4CAF50;
+    background: #E8F5E9;
+}
+
+.blank-input.wrong {
+    border-color: #F44336;
+    background: #FFEBEE;
+}
+
+/* ==================== 解答题文本框 ==================== */
+.solve-textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 15px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.solve-textarea:focus {
+    outline: none;
+    border-color: #2196F3;
+}
+
+/* ==================== 答案解析 ==================== */
+.explanation {
+    margin-top: 15px;
+    padding: 15px;
+    background: #FFF9C4;
+    border-left: 4px solid #FBC02D;
+    border-radius: 5px;
+    display: none;
+}
+
+.explanation.show {
+    display: block;
+}
+
+.explanation-title {
+    font-weight: bold;
+    color: #F57C00;
+    margin-bottom: 8px;
+}
+
+.view-answer-btn {
+    background: #FF9800;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.view-answer-btn:hover {
+    background: #F57C00;
+}
+
+/* ==================== 底部按钮 ==================== */
+.exam-footer {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submit-btn, .reset-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submit-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.submit-btn:hover {
+    background: #45a049;
+}
+
+.reset-btn {
+    background: #f44336;
+    color: white;
+}
+
+.reset-btn:hover {
+    background: #da190b;
+}
+
+/* ==================== 成绩显示 ==================== */
+.score-display {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2196F3;
+}
+
+.score-display.show {
+    display: block;
+}
+
+/* ==================== 统计信息 ==================== */
+.stats {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #e0e0e0;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+/* ==================== 分节标题 ==================== */
+.section-title {
+    background: #2196F3;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    margin: 30px 0 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.section-title:first-child {
+    margin-top: 0;
+}
+
+/* ==================== 模式指示器 ==================== */
+.mode-indicator {
+    display: inline-block;
+    padding: 5px 12px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+/* ==================== AI换题功能样式 ==================== */
+.refresh-btn {
+    background: #9C27B0;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.refresh-btn:hover {
+    background: #7B1FA2;
+}
+
+.refresh-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.refresh-btn.loading {
+    position: relative;
+}
+
+.refresh-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ==================== API配置模态框 ==================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2196F3;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: #2196F3;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.modal-btn-primary {
+    background: #2196F3;
+    color: white;
+}
+
+.modal-btn-primary:hover {
+    background: #1976D2;
+}
+
+.modal-btn-secondary {
+    background: #ccc;
+    color: #333;
+}
+
+.modal-btn-secondary:hover {
+    background: #bbb;
+}
+
+.api-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.api-status.active {
+    background: #4CAF50;
+    color: white;
+}
+
+.api-status.inactive {
+    background: #f44336;
+    color: white;
+}
+
+.settings-btn {
+    background: #FF9800;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.settings-btn:hover {
+    background: #F57C00;
+}
+
+/* ==================== 单题换题按钮样式 ==================== */
+.question-refresh-btn {
+    background: #9C27B0;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.question-refresh-btn:hover {
+    background: #7B1FA2;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.question-refresh-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.question-refresh-btn.loading::before {
+    content: '';
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+/* ==================== AI解析按钮样式 ==================== */
+.ai-explanation-btn {
+    background: linear-gradient(135deg, #FF9800, #FF5722);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 10px;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.ai-explanation-btn:hover {
+    background: linear-gradient(135deg, #F57C00, #E64A19);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.ai-explanation-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.ai-explanation-btn.loading::before {
+    content: '';
+    display: inline-block;
+    animation: spin 1s linear infinite;
+    margin-right: 5px;
+}
+
+/* ==================== AI解析内容区域 ==================== */
+.ai-explanation-content {
+    margin-top: 15px;
+    padding: 20px;
+    background: linear-gradient(to bottom, #E8F4FD, #F0F8FF);
+    border-left: 4px solid #2196F3;
+    border-radius: 5px;
+    display: none;
+}
+
+.ai-explanation-content.show {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ai-explanation-title {
+    font-weight: bold;
+    color: #1976D2;
+    margin-bottom: 15px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ai-explanation-section {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.ai-explanation-section-title {
+    font-weight: bold;
+    color: #FF9800;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.ai-explanation-section-content {
+    color: #333;
+    line-height: 1.8;
+}
+
+/* ==================== 错误提示 ==================== */
+.error-message {
+    color: #f44336;
+    font-size: 13px;
+    margin-top: 5px;
+    padding: 8px 12px;
+    background: #FFEBEE;
+    border-radius: 3px;
+    border-left: 3px solid #f44336;
+}
+
+/* ==================== 测试连接按钮 ==================== */
+.test-connection-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.test-connection-btn:hover {
+    background: #45a049;
+}
+
+.test-connection-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.connection-status {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.connection-status.success {
+    background: #E8F5E9;
+    color: #4CAF50;
+    border-left: 3px solid #4CAF50;
+}
+
+.connection-status.error {
+    background: #FFEBEE;
+    color: #f44336;
+    border-left: 3px solid #f44336;
+}
+
+/* ==================== 一键换题按钮样式 ==================== */
+.batch-refresh-btn {
+    background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.batch-refresh-btn:hover {
+    background: linear-gradient(135deg, #7B1FA2 0%, #6A1B9A 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(156, 39, 176, 0.3);
+}
+
+.batch-refresh-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ==================== 批量换题进度模态框 ==================== */
+.batch-progress-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.batch-progress-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.batch-progress-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.batch-progress-header {
+    font-size: 22px;
+    font-weight: bold;
+    color: #9C27B0;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.batch-progress-bar-container {
+    width: 100%;
+    height: 20px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.batch-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #9C27B0, #E040FB);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.batch-progress-text {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.batch-progress-status {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 20px;
+    min-height: 40px;
+}
+
+.batch-progress-status.error {
+    color: #f44336;
+}
+
+.batch-progress-status.success {
+    color: #4CAF50;
+}
+
+.batch-progress-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.batch-cancel-btn {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.batch-cancel-btn:hover {
+    background: #d32f2f;
+}
+
+.batch-close-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: none;
+}
+
+.batch-close-btn:hover {
+    background: #388E3C;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 1024px) {
+    .exam-container {
+        flex-direction: column;
+    }
+
+    .exam-sidebar {
+        width: 100%;
+        position: static;
+    }
+
+    .answer-card {
+        grid-template-columns: repeat(10, 1fr);
+    }
+}
